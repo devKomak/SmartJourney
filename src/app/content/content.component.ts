@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
+  //@ViewChild('startDateInput') startDate: ElementRef;
+
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }
