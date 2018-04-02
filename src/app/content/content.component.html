@@ -15,23 +15,23 @@
           <div class="card-body p-5">
             <form action="./flight.html">
               <div class="form-group"> 
-                <app-autocomplete></app-autocomplete> 
+                <app-autocomplete (userCoordsOutput)="getUserCoords($event)"></app-autocomplete> 
               </div>
               <div class="form-group"> <label>People</label>
-                <input class="form-control" placeholder="2" type="number"> </div>
+                <input value="1" #inputPeople class="form-control" placeholder="2" type="number"> </div>
                 <div class="form-group"> 
                 <mat-form-field class="example-full-width">
-                  <input matInput [matDatepicker]="picker1" placeholder="Choose a start date">
+                  <input #startDate matInput [matDatepicker]="picker1" placeholder="Choose a start date">
                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                   <mat-datepicker touchUi="true" #picker1></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                  <input matInput [matDatepicker]="picker2" placeholder="Choose a end date">
+                  <input #endDate matInput [matDatepicker]="picker2" placeholder="Choose a end date">
                   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                   <mat-datepicker touchUi="true" #picker2></mat-datepicker>
                 </mat-form-field>
                 </div>
-              <button type="submit" class="btn mt-2 btn-outline-dark" method="get" data-target="">Start</button>
+              <button type="submit" (click)="newJourney()" class="btn mt-2 btn-outline-dark" method="get" data-target="">Start</button>
             </form>
           </div>
         </div>

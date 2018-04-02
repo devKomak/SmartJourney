@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild, AfterViewInit, Input, OnChanges } from '@angular/core';
+import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild, AfterViewInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
@@ -25,6 +25,9 @@ export class AutocompleteComponent implements OnInit {
   public getMyLocation;
   public isEndPosition;
   public dir;
+  public userCoords;
+
+  @Output() userCoordsOutput = new EventEmitter<Object>();
 
   @ViewChild("searchStart")
   public searchElementStartRef: ElementRef;
@@ -45,6 +48,8 @@ export class AutocompleteComponent implements OnInit {
     this.zoom = 4;
     this.latitudeStart = 39.8282;
     this.longitudeStart = -98.5795;
+    this.latitudeEnd = 39.8282;
+    this.longitudeEnd = -98.5795;
     this.text = "";
 
     //create search FormControl
@@ -91,6 +96,15 @@ export class AutocompleteComponent implements OnInit {
           this.latitudeStart = place.geometry.location.lat();
           this.longitudeStart = place.geometry.location.lng();
           this.zoom = 12;
+
+                this.dir = {
+                origin: { lat: this.latitudeStart, lng: this.longitudeStart },
+                destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
+              }
+              
+              this.userCoords = {x1: this.latitudeStart, y1: this.longitudeStart, x2: this.latitudeEnd, y2: this.longitudeEnd};
+              console.log(this.userCoords);
+              this.userCoordsOutput.emit(this.userCoords);
         });
       });
     });
@@ -118,6 +132,8 @@ export class AutocompleteComponent implements OnInit {
                 destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
               }
             
+              this.userCoords = {x1: this.latitudeStart, y1: this.longitudeStart, x2: this.latitudeEnd, y2: this.longitudeEnd  }
+              this.userCoordsOutput.emit(this.userCoords);
 
           });
         });
