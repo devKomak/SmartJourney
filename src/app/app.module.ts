@@ -8,6 +8,11 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ContentComponent } from './content/content.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AutocompleteComponent } from './content/autocomplete/autocomplete.component';
+import { AgmCoreModule } from '@agm/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapComponent } from './content/google-map/google-map.component';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -16,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavigationComponent,
     ContentComponent,
     FooterComponent,
+    AutocompleteComponent,
+    GoogleMapComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatInputModule,
     MatRippleModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AgmDirectionModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho",
+      libraries: ["places"]
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
