@@ -14,10 +14,9 @@
         <div class="card">
           <div class="card-body p-5">
             <form action="./flight.html">
-              <div class="form-group"> <label>Where are you now?</label>
-                <input class="form-control" placeholder="Place name, please"> </div>
-              <div class="form-group"> <label>Where do you want to travel?</label>
-                <input class="form-control" placeholder="Place name, please"> </div>
+              <div class="form-group"> 
+                <app-autocomplete></app-autocomplete> 
+              </div>
               <div class="form-group"> <label>People</label>
                 <input class="form-control" placeholder="2" type="number"> </div>
                 <div class="form-group"> 
@@ -32,7 +31,7 @@
                   <mat-datepicker touchUi="true" #picker2></mat-datepicker>
                 </mat-form-field>
                 </div>
-              <button type="submit" class="btn mt-2 btn-outline-dark" method="get" data-target="./flight.html">Start</button>
+              <button type="submit" class="btn mt-2 btn-outline-dark" method="get" data-target="">Start</button>
             </form>
           </div>
         </div>

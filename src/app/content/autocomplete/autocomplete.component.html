@@ -1,0 +1,33 @@
+<div class="container">
+  <div class ="row">
+    <div class="col-md-6"><h1 class ="text-info">Enter data</h1></div>
+    <div class="col-md-6"><button class="btn btn-info float-right" (click)="getMyLocation()"> Use my current location </button></div>
+  </div>
+  <div class ="row">
+    <div class ="col-md-12">
+      <div>
+          <hr>
+      <mat-form-field class="example-full-width d-block">
+          <mat-label>Where are you now?</mat-label>
+            <input [value]="text" matInput placeholder="Origin place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"  #searchStart [formControl]="searchControlStart">
+      </mat-form-field>
+      <mat-form-field class="example-full-width d-block">
+          <mat-label>Where are you go?</mat-label>
+          <input matInput placeholder="Destination place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #searchEnd [formControl]="searchControlEnd">
+    </mat-form-field>
+  </div>
+    </div>
+  </div>
+    <div class ="row">
+      <div class ="col-md-12">
+          <agm-map [latitude]="latitudeStart" [longitude]="longitudeStart" [scrollwheel]="false" [zoom]="zoom">
+              <agm-marker [latitude]="latitudeStart" [longitude]="longitudeStart"></agm-marker>
+              <agm-marker *ngIf="isEndPosition" [latitude]="latitudeEnd" [longitude]="longitudeEnd"></agm-marker>
+              <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
+            </agm-map>
+      </div>
+  </div>
+</div>
+
+
+
