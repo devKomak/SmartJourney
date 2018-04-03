@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AutocompleteComponent } from './content/autocomplete/autocomplete.component';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GoogleMapComponent } from './content/google-map/google-map.component';
 import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
@@ -24,7 +23,6 @@ import { AgmDirectionModule } from 'agm-direction';
     ContentComponent,
     FooterComponent,
     AutocompleteComponent,
-    GoogleMapComponent,
 
   ],
   imports: [

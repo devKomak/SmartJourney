@@ -20,14 +20,23 @@
   </div>
     <div class ="row">
       <div class ="col-md-12">
-          <agm-map [latitude]="latitudeStart" [longitude]="longitudeStart" [scrollwheel]="false" [zoom]="zoom">
-              <agm-marker [latitude]="latitudeStart" [longitude]="longitudeStart"></agm-marker>
-              <agm-marker *ngIf="isEndPosition" [latitude]="latitudeEnd" [longitude]="longitudeEnd"></agm-marker>
-              <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction>
-            </agm-map>
+          <agm-map [fitBounds]="LatLngBounds" [latitude]="latitudeStart" [longitude]="longitudeStart" [scrollwheel]="true" [zoom]="zoom">
+              <agm-marker *ngIf="positionStart" [latitude]="latitudeStart" [longitude]="longitudeStart"></agm-marker>
+              <agm-marker *ngIf="positionEnd" [latitude]="latitudeEnd" [longitude]="longitudeEnd"></agm-marker>
+              <!-- <agm-direction #direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction> -->
+              <agm-polyline *ngIf="isTwoCoords"
+              [visible]="true"
+              [strokeWeight]="3">
+               <agm-polyline-point
+                 [latitude]="latitudeStart"
+                 [longitude]="longitudeStart">
+               </agm-polyline-point>
+               <agm-polyline-point
+               [latitude]="latitudeEnd"
+               [longitude]="longitudeEnd">
+             </agm-polyline-point>
+             </agm-polyline>
+          </agm-map>
       </div>
   </div>
 </div>
-
-
-

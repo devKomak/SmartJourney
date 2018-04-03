@@ -1,4 +1,5 @@
-import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild, AfterViewInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild,
+         AfterViewInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
@@ -23,10 +24,12 @@ export class AutocompleteComponent implements OnInit {
   public LatLng;
   public text: String;
   public getMyLocation;
-  public isEndPosition;
   public dir;
   public userCoords;
-  public isGeolocation;
+  public LatLngBounds;
+  public isTwoCoords;
+  public positionStart;
+  public positionEnd;
 
   @Output() userCoordsOutput = new EventEmitter<Object>();
 
@@ -36,86 +39,92 @@ export class AutocompleteComponent implements OnInit {
   @ViewChild('searchEnd')
   public searchElementEndRef: ElementRef;
 
-  constructor(
-    private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
-
-  ) {
-    this.isEndPosition = false;
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
   }
 
   ngOnInit() {
     // set google maps defaults
-    this.zoom = 4;
-    this.latitudeStart = 39.8282;
-    this.longitudeStart = -98.5795;
-    this.latitudeEnd = 39.8282;
-    this.longitudeEnd = -98.5795;
+    this.zoom = 1;
+    this.latitudeStart = 8;
+    this.longitudeStart = 5;
     this.text = '';
-    this.isGeolocation = false;
+    this.isTwoCoords = false;
+    this.positionStart = false;
+    this.positionEnd = false;
 
     // create search FormControl
     this.searchControlStart = new FormControl();
     this.searchControlEnd = new FormControl();
 
-    this.getMyLocation = () => {
 
+    // Geolocation HTML5
+    this.getMyLocation = () => {
       if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
+          this.geocoder =  new google.maps.Geocoder;
           this.latitudeStart = position.coords.latitude;
           this.longitudeStart = position.coords.longitude;
           this.LatLng = {lat: this.latitudeStart, lng: this.longitudeStart};
-          this.zoom = 12;
 
-          this.geocoder =  new google.maps.Geocoder;
+          // Change name coords addres to name place
           this.geocoder.geocode({'location': this.LatLng}, (results, status) => {
             if (status === 'OK') {
-              this.isGeolocation = true;
               this.text = results[0].formatted_address;
               this.searchElementStartRef.nativeElement.value = this.text;
 
-              this.dir = {
-                origin: { lat: this.latitudeStart, lng: this.longitudeStart },
-                destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
-              };
-              this.userCoords = {x1: this.latitudeStart, y1: this.longitudeStart, x2: this.latitudeEnd, y2: this.longitudeEnd  };
-              this.userCoordsOutput.emit(this.userCoords);
-
+              // Route beetwen markers
+              // this.dir = {
+              //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
+              //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
+              // };
             }
           });
-
+          if (!this.isTwoCoords) {
+            this.LatLngBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+          } else {
+            this.LatLngBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+            new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+          }
+          this.positionStart = true;
         });
       }
+
     };
 
-
-    // load Places Autocomplete
+    // load Start Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementStartRef.nativeElement);
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
           // get the place result
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
           // verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
           // set latitude, longitude and zoom
           this.latitudeStart = place.geometry.location.lat();
           this.longitudeStart = place.geometry.location.lng();
-          this.zoom = 12;
 
-                this.dir = {
-                origin: { lat: this.latitudeStart, lng: this.longitudeStart },
-                destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
-              };
+          // Route beetwen markers
+          //   this.dir = {
+          //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
+          //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
+          // };
 
-                this.userCoords = {x1: this.latitudeStart, y1: this.longitudeStart, x2: this.latitudeEnd, y2: this.longitudeEnd};
-                this.userCoordsOutput.emit(this.userCoords);
+              if (!this.isTwoCoords) {
+                this.LatLngBounds = new google.maps.LatLngBounds(
+                  new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+              );
+            } else {
+              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+                                                               new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+            }
 
         });
+          this.positionStart = true;
       });
     });
 
@@ -135,17 +144,17 @@ export class AutocompleteComponent implements OnInit {
             // set latitude, longitude and zoom
             this.latitudeEnd = place.geometry.location.lat();
             this.longitudeEnd = place.geometry.location.lng();
-            this.isEndPosition = true;
+            // Route beetwen markers
+            //   this.dir = {
+            //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
+            //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
+            // };
 
-              this.dir = {
-                origin: { lat: this.latitudeStart, lng: this.longitudeStart },
-                destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
-              };
-
-              this.userCoords = {x1: this.latitudeStart, y1: this.longitudeStart, x2: this.latitudeEnd, y2: this.longitudeEnd  };
-              this.userCoordsOutput.emit(this.userCoords);
-
+              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+                                                               new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
           });
+          this.isTwoCoords = true;
+          this.positionEnd = true;
         });
       });
 
