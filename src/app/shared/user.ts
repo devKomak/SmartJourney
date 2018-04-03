@@ -1,6 +1,6 @@
 export class User {
 
-    constructor(public userCoords, public people:number, public dates){
+    constructor(public id: number, public userCoords: Object, public people: number, public dates: Object) {
 
     }
 
