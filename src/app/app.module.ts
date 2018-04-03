@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule, MatFormFieldModule, MatNativeDateModule, MatDatepickerToggleIcon, MatDatepickerToggle, MatDatepickerInputEvent, MatDatepickerIntl,} from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule,
+         MatFormFieldModule, MatNativeDateModule, MatDatepickerToggleIcon, MatDatepickerToggle,
+         MatDatepickerInputEvent, MatDatepickerIntl, } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
 import { LogoComponent } from './logo/logo.component';
@@ -23,11 +25,11 @@ import { AgmDirectionModule } from 'agm-direction';
     FooterComponent,
     AutocompleteComponent,
     GoogleMapComponent,
-    
+
   ],
   imports: [
     BrowserModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -39,8 +41,8 @@ import { AgmDirectionModule } from 'agm-direction';
     ReactiveFormsModule,
     AgmDirectionModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho",
-      libraries: ["places"]
+      apiKey: 'AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho',
+      libraries: ['places']
     }),
   ],
   providers: [],

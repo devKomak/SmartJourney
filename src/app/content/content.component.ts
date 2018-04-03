@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../shared/user';
+import { UserService } from '../users.service';
 
 @Component({
   selector: 'app-content',
@@ -16,15 +17,14 @@ export class ContentComponent implements OnInit {
   public people: number;
   public dates;
 
-  constructor() {
-    this.users = new Array<User>();
+  constructor(private userService: UserService) {
   }
 
   newJourney() {
-    this.people = this.inputPeople.nativeElement.value;
-    this.dates = {startDate: this.startDate.nativeElement.value , endDate: this.endDate.nativeElement.value};
-    this.users.push(new User(this.userCoords, this.people, this.dates));
-    console.log(this.users[0].dates);
+
+    this.userService.addUser(this.userCoords,
+                             this.inputPeople.nativeElement.value,
+                             {startDate: this.startDate.nativeElement.value , endDate: this.endDate.nativeElement.value});
   }
 
   getUserCoords(event: any) {
@@ -32,6 +32,7 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.users = this.userService.getUsers();
   }
 
 
