@@ -1,9 +1,11 @@
 .card {
     background-color: #f2f2f2;
 }
+
 .check:invalid {
     border: 1px solid red;
 }
 .check:valid {
     border: 1px solid green;
 }
+

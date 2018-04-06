@@ -24,7 +24,7 @@
               <agm-marker *ngIf="positionStart" [latitude]="latitudeStart" [longitude]="longitudeStart"></agm-marker>
               <agm-marker *ngIf="positionEnd" [latitude]="latitudeEnd" [longitude]="longitudeEnd"></agm-marker>
               <!-- <agm-direction #direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination"></agm-direction> -->
-              <agm-polyline *ngIf="isTwoCoords"
+              <agm-polyline *ngIf="isTwoCoords&&positionStart"
               [visible]="true"
               [strokeWeight]="3">
                <agm-polyline-point
