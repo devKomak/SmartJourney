@@ -46,7 +46,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // set google maps defaults
-    this.zoom = 1;
+    this.zoom = 4;
     this.latitudeStart = 8;
     this.longitudeStart = 5;
     this.latitudeEnd = 8;

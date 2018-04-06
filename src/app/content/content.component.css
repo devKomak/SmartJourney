@@ -1,12 +1,11 @@
 .card {
     background-color: #f2f2f2;
 }
-<<<<<<< HEAD
-=======
+
 .check:invalid {
     border: 1px solid red;
 }
 .check:valid {
     border: 1px solid green;
 }
->>>>>>> 77042500d8b2da3a356c25ce780c9751d37805d2
+
