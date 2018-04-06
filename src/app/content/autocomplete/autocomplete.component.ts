@@ -11,7 +11,7 @@ import {} from '@types/googlemaps';
   styleUrls: ['./autocomplete.component.css']
 })
 
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   public latitudeStart: number;
   public longitudeStart: number;
@@ -30,6 +30,7 @@ export class AutocompleteComponent implements OnInit {
   public isTwoCoords;
   public positionStart;
   public positionEnd;
+  public currentPosition = false;
 
   @Output() userCoordsOutput = new EventEmitter<Object>();
 
@@ -42,15 +43,19 @@ export class AutocompleteComponent implements OnInit {
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
   }
 
+
   ngOnInit() {
     // set google maps defaults
     this.zoom = 1;
     this.latitudeStart = 8;
     this.longitudeStart = 5;
+    this.latitudeEnd = 8;
+    this.longitudeEnd = 5;
     this.text = '';
     this.isTwoCoords = false;
     this.positionStart = false;
     this.positionEnd = false;
+
 
     // create search FormControl
     this.searchControlStart = new FormControl();
@@ -79,14 +84,27 @@ export class AutocompleteComponent implements OnInit {
               // };
             }
           });
-          if (!this.isTwoCoords) {
-            this.LatLngBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
-          } else {
-            this.LatLngBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-            new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+           this.currentPosition = true;
+
+           if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length === 0) {
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            console.log('ff1');
           }
+
+          if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+            new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+            console.log('ff2');
+          }
+
+          if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
+            new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            console.log('ff3');
+          }
+
+
+
           this.positionStart = true;
         });
       }
@@ -113,15 +131,17 @@ export class AutocompleteComponent implements OnInit {
           //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
           //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
           // };
+          this.currentPosition = false;
+          if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length === 0) {
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            console.log('ff1');
+          }
 
-              if (!this.isTwoCoords) {
-                this.LatLngBounds = new google.maps.LatLngBounds(
-                  new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-              );
-            } else {
-              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-                                                               new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
-            }
+          if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+            new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+            console.log('ff2');
+          }
 
         });
           this.positionStart = true;
@@ -150,9 +170,25 @@ export class AutocompleteComponent implements OnInit {
             //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
             // };
 
+            if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
+              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+              console.log('ff1');
+            }
+
+            if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === false) {
+              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
+              new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+              console.log('ff2');
+            }
+
+            if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true ) {
               this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-                                                               new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+              new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+              console.log('ff3');
+            }
+
           });
+
           this.isTwoCoords = true;
           this.positionEnd = true;
         });
