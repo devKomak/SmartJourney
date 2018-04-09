@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { User } from '../shared/user';
-import { UserService } from '../users.service';
-import { MatDatepicker } from '@angular/material';
+import { User } from '../../shared/user';
+import { UserService } from '../../users.service';
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  selector: 'app-first-panel',
+  templateUrl: './first-panel.component.html',
+  styleUrls: ['./first-panel.component.css']
 })
-export class ContentComponent implements OnInit {
+export class FirstPanelComponent implements OnInit {
 
   public users: User[];
   public startD;
@@ -45,5 +44,4 @@ export class ContentComponent implements OnInit {
     this.userService.addPeople(event.data);
     console.log(event.data);
   }
-
 }

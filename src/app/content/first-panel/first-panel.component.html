@@ -1,0 +1,43 @@
+<div class="py-5 bg-info" style="background-repeat:repeat;">
+  <div class="container">
+    <div class="row">
+      <div class="align-self-center col-md-12 text-white">
+        <p class="lead">Do you want to discover the world?&nbsp;
+          <br>But you do not want to waste your time on searching for hotel, plane etc.?
+          <br> </p>
+        <h1 class="text-center text-md-left display-3">Let us organise your travel!
+          <br> </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body p-5">
+            <form action="./flight.html">
+              <div class="form-group">
+                <app-autocomplete ></app-autocomplete>
+              </div>
+              <div class="form-group">
+                <label for="people">People</label>
+                 <input required #inputPeople class="form-control" (input) = "addPeople($event)" value="1" placeholder="2" type="number" min="1" step="1" pattern="^[1-9]+$" title="Enter digit or number" />
+                </div>
+                <div class="form-group">
+                <mat-form-field class="example-full-width">
+                  <input #startDate required matInput  [matDatepicker]="picker1" (dateChange)="addStartDate($event)" placeholder="Choose a start date" >
+                  <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi="true" #picker1></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input required #endDate matInput (dateChange)="addEndDate($event)" [matDatepicker]="picker2" placeholder="Choose a end date" >
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker touchUi="true" #picker2></mat-datepicker>
+                </mat-form-field>
+                </div>
+              <button type="submit" (click)="newJourney()" class="btn mt-2 btn-outline-dark" method="get" data-target="">Start</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
