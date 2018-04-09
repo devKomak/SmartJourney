@@ -4,6 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
+import { UserService } from '../../users.service';
 
 @Component({
   selector: 'app-autocomplete',
@@ -32,15 +33,13 @@ export class AutocompleteComponent implements OnInit {
   public positionEnd;
   public currentPosition = false;
 
-  @Output() userCoordsOutput = new EventEmitter<Object>();
-
   @ViewChild('searchStart')
   public searchElementStartRef: ElementRef;
 
   @ViewChild('searchEnd')
   public searchElementEndRef: ElementRef;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+  constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private userService: UserService) {
   }
 
 
@@ -55,7 +54,7 @@ export class AutocompleteComponent implements OnInit {
     this.isTwoCoords = false;
     this.positionStart = false;
     this.positionEnd = false;
-
+    this.userCoords = {};
 
     // create search FormControl
     this.searchControlStart = new FormControl();
@@ -103,8 +102,9 @@ export class AutocompleteComponent implements OnInit {
             console.log('ff3');
           }
 
-
-
+          this.userCoords = { latStart: this.latitudeStart, lngStart: this.longitudeStart,
+                              latEnd: this.latitudeEnd, lngEnd: this.longitudeEnd };
+          this.userService.addUserCoords(this.userCoords);
           this.positionStart = true;
         });
       }
@@ -144,6 +144,10 @@ export class AutocompleteComponent implements OnInit {
           }
 
         });
+          this.userCoords = { latStart: this.latitudeStart, lngStart: this.longitudeStart,
+          latEnd: this.latitudeEnd, lngEnd: this.longitudeEnd };
+          console.log(this.userCoords);
+          this.userService.addUserCoords(this.userCoords);
           this.positionStart = true;
       });
     });
@@ -191,6 +195,9 @@ export class AutocompleteComponent implements OnInit {
 
           });
 
+          this.userCoords = { latStart: this.latitudeStart, lngStart: this.longitudeStart,
+          latEnd: this.latitudeEnd, lngEnd: this.longitudeEnd };
+          this.userService.addUserCoords(this.userCoords);
           this.isTwoCoords = true;
           this.positionEnd = true;
         });
