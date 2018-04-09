@@ -11,7 +11,7 @@ import {} from '@types/googlemaps';
   styleUrls: ['./autocomplete.component.css']
 })
 
-export class AutocompleteComponent implements OnInit, AfterViewInit {
+export class AutocompleteComponent implements OnInit {
 
   public latitudeStart: number;
   public longitudeStart: number;
@@ -175,13 +175,15 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
               console.log('ff1');
             }
 
-            if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === false) {
+            if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
+                this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === false) {
               this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
               new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
               console.log('ff2');
             }
 
-            if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true ) {
+            if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
+                this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true ) {
               this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
               new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
               console.log('ff3');
