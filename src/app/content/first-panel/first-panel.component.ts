@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { User } from '../../shared/user';
 import { UserService } from '../../users.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-panel',
@@ -18,7 +19,7 @@ export class FirstPanelComponent implements OnInit {
   @ViewChild('endDate') endDate: ElementRef;
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class FirstPanelComponent implements OnInit {
 
   newJourney() {
     console.log(this.userService.getUsers());
+    this.router.navigate(['airports']);
   }
 
   addStartDate(event: any) {
