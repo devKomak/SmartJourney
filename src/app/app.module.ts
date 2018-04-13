@@ -19,6 +19,7 @@ import { AutocompleteComponent } from './content/first-panel/autocomplete/autoco
 import { AirportsComponent } from './content/airports/airports.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponentComponent } from './login-component/login-component.component';
+import { RegisterComponentComponent } from './register-component/register-component.component';
 
 
 
@@ -32,7 +33,8 @@ import { LoginComponentComponent } from './login-component/login-component.compo
     AutocompleteComponent,
     FirstPanelComponent,
     AirportsComponent,
-    LoginComponentComponent
+    LoginComponentComponent,
+    RegisterComponentComponent
 
   ],
   imports: [
