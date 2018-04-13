@@ -16,13 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmDirectionModule } from 'agm-direction';
 import { FirstPanelComponent } from './content/first-panel/first-panel.component';
 import { AutocompleteComponent } from './content/first-panel/autocomplete/autocomplete.component';
-import { RouterModule, Routes } from '@angular/router';
 import { AirportsComponent } from './content/airports/airports.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponentComponent } from './login-component/login-component.component';
 
-const appRoutes: Routes = [
-  {path: '' , component: FirstPanelComponent}
-  {path: 'airports' , component: AirportsComponent}
-];
+
 
 @NgModule({
   declarations: [
@@ -33,7 +31,8 @@ const appRoutes: Routes = [
     FooterComponent,
     AutocompleteComponent,
     FirstPanelComponent,
-    AirportsComponent
+    AirportsComponent,
+    LoginComponentComponent
 
   ],
   imports: [
@@ -49,11 +48,11 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     AgmDirectionModule,
-    RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho',
       libraries: ['places']
     }),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
