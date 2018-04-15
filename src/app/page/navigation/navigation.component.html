@@ -13,7 +13,8 @@
             <br> </a>
         </li>
       </ul>
-      <a class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+      <a class="btn navbar-btn ml-2 text-white btn-secondary" *ngIf="!user"(click)="signIn()"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+      <a class="btn navbar-btn ml-2 text-white btn-secondary" *ngIf="user"(click)="logOut()"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Logout</a>
     </div>
   </div>
 </nav>

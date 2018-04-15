@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { User } from '../shared/user';
-import { UserService } from '../users.service';
+
 import { MatDatepicker } from '@angular/material';
+import { User } from '../../shared/user';
+import { UserService } from '../../users.service';
 
 @Component({
   selector: 'app-content',

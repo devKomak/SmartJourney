@@ -5,22 +5,32 @@ import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule,
          MatDatepickerInputEvent, MatDatepickerIntl, } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
-import { LogoComponent } from './logo/logo.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { ContentComponent } from './content/content.component';
-import { FooterComponent } from './footer/footer.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmDirectionModule } from 'agm-direction';
-import { FirstPanelComponent } from './content/first-panel/first-panel.component';
-import { AutocompleteComponent } from './content/first-panel/autocomplete/autocomplete.component';
-import { AirportsComponent } from './content/airports/airports.component';
-import { AppRoutingModule } from './app-routing.module';
-import { LoginComponentComponent } from './login-component/login-component.component';
-import { RegisterComponentComponent } from './register-component/register-component.component';
 
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { PageComponent } from './page/page.component';
+import { LogoComponent } from './page/logo/logo.component';
+import { NavigationComponent } from './page/navigation/navigation.component';
+import { ContentComponent } from './page/content/content.component';
+import { FooterComponent } from './page/footer/footer.component';
+import { AutocompleteComponent } from './page/content/first-panel/autocomplete/autocomplete.component';
+import { FirstPanelComponent } from './page/content/first-panel/first-panel.component';
+import { AirportsComponent } from './page/content/airports/airports.component';
+import { LoginComponent } from './page/login-component/login.component';
+import { UserComponent } from './page/user-component/usert.component';
+import { RegisterComponent } from './page/register-component/register.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './auth.service';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 
 
 @NgModule({
@@ -33,8 +43,10 @@ import { RegisterComponentComponent } from './register-component/register-compon
     AutocompleteComponent,
     FirstPanelComponent,
     AirportsComponent,
-    LoginComponentComponent,
-    RegisterComponentComponent
+    LoginComponent,
+    RegisterComponent,
+    UserComponent,
+    PageComponent
 
   ],
   imports: [
@@ -54,9 +66,13 @@ import { RegisterComponentComponent } from './register-component/register-compon
       apiKey: 'AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho',
       libraries: ['places']
     }),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase)
+  
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

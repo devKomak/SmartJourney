@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { User } from '../../shared/user';
-import { UserService } from '../../users.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../../../users.service';
+import { User } from '../../../shared/user';
 
 @Component({
   selector: 'app-first-panel',

@@ -4,7 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
-import { UserService } from '../../../users.service';
+import { UserService } from '../../../../users.service';
 
 @Component({
   selector: 'app-autocomplete',
