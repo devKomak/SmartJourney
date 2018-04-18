@@ -32,6 +32,7 @@ export class AutocompleteComponent implements OnInit {
   public positionStart;
   public positionEnd;
   public currentPosition = false;
+  public valueStart: String;
 
   @ViewChild('searchStart')
   public searchElementStartRef: ElementRef;
@@ -45,7 +46,7 @@ export class AutocompleteComponent implements OnInit {
 
   ngOnInit() {
     // set google maps defaults
-    this.zoom = 4;
+    this.zoom = 6;
     this.latitudeStart = 8;
     this.longitudeStart = 5;
     this.latitudeEnd = 8;
@@ -55,6 +56,7 @@ export class AutocompleteComponent implements OnInit {
     this.positionStart = false;
     this.positionEnd = false;
     this.userCoords = {};
+    this.valueStart = '';
 
     // create search FormControl
     this.searchControlStart = new FormControl();
@@ -74,8 +76,7 @@ export class AutocompleteComponent implements OnInit {
           this.geocoder.geocode({'location': this.LatLng}, (results, status) => {
             if (status === 'OK') {
               this.text = results[0].formatted_address;
-              this.searchElementStartRef.nativeElement.value = this.text;
-
+              this.valueStart = this.text;
               // Route beetwen markers
               // this.dir = {
               //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
@@ -97,8 +98,8 @@ export class AutocompleteComponent implements OnInit {
           }
 
           if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
-            new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+              new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
             console.log('ff3');
           }
 
@@ -176,22 +177,29 @@ export class AutocompleteComponent implements OnInit {
 
             if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
               this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
-              console.log('ff1');
+              console.log('ff1End');
             }
 
             if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
                 this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === false) {
               this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
               new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
-              console.log('ff2');
+              console.log('ff2End');
             }
 
             if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
-                this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true ) {
+                this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true && this.positionEnd === false) {
               this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
               new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
-              console.log('ff3');
+              console.log('ff3End');
             }
+
+            if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
+              this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true && this.positionEnd === true) {
+            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
+            new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            console.log('ff4End');
+          }
 
           });
 
