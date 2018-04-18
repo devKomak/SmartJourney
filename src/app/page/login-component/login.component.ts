@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import {Location} from '@angular/common'
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-login-component',
@@ -9,16 +10,23 @@ import {Location} from '@angular/common'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private afService: AuthService, private location:Location) { }
+  constructor(private af: AngularFireAuth, private afService: AuthService, private location: Location) { }
+  user;
 
   ngOnInit() {
+    this.af.authState.subscribe(auth => {
+      if (auth) {
+        this.location.back();
+      } else {
+
+
+      }
+    });
   }
 
-  login(){
+  login() {
     this.afService.loginWithGoogle();
- 
-    this.location.back();
-  
+
 
   }
 
