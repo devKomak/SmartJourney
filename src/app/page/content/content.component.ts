@@ -11,9 +11,7 @@ import { UserService } from '../../users.service';
 })
 export class ContentComponent implements OnInit {
 
-  public users: User[];
-  public startD;
-  public endD;
+
 
   @ViewChild('inputPeople') inputPeople: ElementRef;
   @ViewChild('startDate') startDate: ElementRef;
@@ -24,27 +22,7 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.users = this.userService.getUsers();
-
   }
 
-  newJourney() {
-    console.log(this.userService.getUsers());
-  }
-
-  addStartDate(event: any) {
-    this.startD = event.value;
-    this.userService.addUserData({start: event.value, end: this.endD});
-  }
-
-  addEndDate(event: any) {
-    this.endD = event.value;
-    this.userService.addUserData({start: this.startD, end: event.value});
-  }
-
-  addPeople(event: any) {
-    this.userService.addPeople(event.data);
-    console.log(event.data);
-  }
 
 }

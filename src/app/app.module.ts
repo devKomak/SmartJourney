@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule,
          MatFormFieldModule, MatNativeDateModule, MatDatepickerToggleIcon, MatDatepickerToggle,
-         MatDatepickerInputEvent, MatDatepickerIntl, } from '@angular/material';
+         MatDatepickerInputEvent, MatDatepickerIntl, MatSortModule, MatPaginatorModule, } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
 
@@ -31,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -56,11 +56,16 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatPaginatorModule,
     MatRippleModule,
+    MatTableModule,
+    MatSortModule,
     MatNativeDateModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatTableModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AgmDirectionModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho',

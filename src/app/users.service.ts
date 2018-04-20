@@ -1,35 +1,59 @@
 import { User } from './shared/user';
 import { OnInit, Injectable } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { userCoords } from './shared/userCoords';
+import { Dates } from './shared/dates';
+import { Airport } from './shared/airport';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UserService implements OnInit {
 
-  private users: User[];
+  private user: User;
   private userId: number;
+  public isAirports: boolean;
+  public subject = new Subject<Boolean>();
 
-  constructor() {
-    this.users = new Array<User>();
-    this.userId = 0;
-    this.users.push(new User(this.userId, {let: 2222} , 2 , {b: 4444} ));
+  constructor(private http: HttpClient) {
+    this.user = new User();
+    this.isAirports = false;
   }
 
   ngOnInit() {
   }
 
-  addUserCoords(userCoords: Object) {
-    this.users[0].userCoords = userCoords;
+  addUserCoords(userCoords: userCoords) {
+    this.user.setUserCoords(userCoords);
   }
 
   addPeople(people: number) {
-    this.users[0].people = people;
+    this.user.setPeople(people);
   }
-  addUserData( dates: Object) {
-    this.users[0].dates = dates;
-  }
-
-  getUsers() {
-    return this.users;
+  addUserDates( dates: Dates) {
+    this.user.setDates(dates);
   }
 
+  getAirports() {
+    let a = this.http.get("https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude="+this.user.userCoords.latStart+"&longitude="+this.user.userCoords.lngStart)
+    .subscribe(data =>{
+      this.user.setAirports(data);
+      this.subject.next(true);
+    });
+  }
 
-}
+
+  showAirports(){
+    console.log(this.user.airports);
+    return this.user.airports;
+  }
+
+  getUserCoords(){
+    return this.user.userCoords;
+  }
+
+  }
+
+
+
+
+
