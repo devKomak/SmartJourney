@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../users.service';
 import { User } from '../../../shared/user';
 import { NgForm } from '@angular/forms';
+import { Dates } from '../../../shared/dates';
+import { Airport } from '../../../shared/airport';
 
 @Component({
   selector: 'app-first-panel',
@@ -11,48 +13,51 @@ import { NgForm } from '@angular/forms';
 })
 export class FirstPanelComponent implements OnInit {
 
-  public users: User[];
-  public startD;
-  public endD;
+  public dates: Dates;
+  public people: number;
+  public airports: Airport[];
+  public isAirports: Boolean;
 
   @ViewChild('inputPeople') inputPeople: ElementRef;
   @ViewChild('startDate') startDate: ElementRef;
   @ViewChild('endDate') endDate: ElementRef;
 
-    minDate = new Date(2015, 0, 1);
-    maxDate = new Date(2020, 0, 1);
-    defaultPeople = 2;
-
   constructor(private userService: UserService, private router: Router) {
+
+    this.isAirports = false;
   }
 
   ngOnInit() {
-    this.users = this.userService.getUsers();
+    
 
   }
 
   onSubmit(f: NgForm) {
-    console.log(f);
+    if(f.valid == true){
+      this.addDates();
+      this.addPeople();
+      this.userService.getAirports();
+      this.userService.subject.asObservable().subscribe(message =>{
+        this.isAirports = message;
+        if(this.isAirports) this.router.navigate(['airports']);
+      });
+
+    }
 
   }
 
-  newJourney() {
-    console.log(this.userService.getUsers());
-    this.router.navigate(['airports']);
+
+
+  addDates() {
+    this.dates = new Dates(this.startDate.nativeElement.value, this.endDate.nativeElement.value);
+    this.userService.addUserDates(this.dates);
+    console.log(this.dates);
   }
 
-  addStartDate(event: any) {
-    this.startD = event.value;
-    this.userService.addUserData({start: event.value, end: this.endD});
-  }
 
-  addEndDate(event: any) {
-    this.endD = event.value;
-    this.userService.addUserData({start: this.startD, end: event.value});
-  }
-
-  addPeople(event: any) {
-    this.userService.addPeople(event.data);
-    console.log(event.data);
+  addPeople() {
+    this.people = this.inputPeople.nativeElement.value;
+    this.userService.addPeople(this.people);
+    console.log(this.people);
   }
 }
