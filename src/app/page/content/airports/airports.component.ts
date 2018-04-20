@@ -47,6 +47,13 @@ export class AirportsComponent implements OnInit, AfterViewInit {
     let tab = this.userService.showAirports();
     this.newTab = new Array();
     this.markers = new Array();
+    let coord = this.userService.getUserCoords();
+
+    this.markers.push({
+      lat: coord.latStart,
+      lng: coord.lngStart,
+      label: 'YOU'
+    })
 
     for(let i = 0; i < tab.length; i ++){
       this.newTab.push(
@@ -61,7 +68,7 @@ export class AirportsComponent implements OnInit, AfterViewInit {
       this.markers.push({
         lat: tab[i].location.latitude,
         lng: tab[i].location.longitude,
-        label: tab[i].airport
+        label: (i+1).toString()
       })
 
       this.LatLngBounds.extend(new google.maps.LatLng(tab[i].location.latitude,tab[i].location.longitude));
