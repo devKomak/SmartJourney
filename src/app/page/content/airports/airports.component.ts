@@ -16,7 +16,9 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   public airports: Airport[];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  lat: number = 51.678418;
+  lng: number = 7.809007;
+  
   displayedColumns = ['position', 'airportName', 'cityName', 'distance'];
   
   constructor(private location: Location, private userService: UserService) {
