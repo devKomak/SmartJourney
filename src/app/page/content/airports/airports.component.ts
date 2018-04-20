@@ -3,6 +3,7 @@ import {Location} from '@angular/common'
 import { Airport } from '../../../shared/airport';
 import { UserService } from '../../../users.service';
 import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import {} from '@types/googlemaps';
 @Component({
   selector: 'app-airports',
   templateUrl: './airports.component.html',
@@ -14,30 +15,38 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   public ELEMENT_DATA: Element[] ;
   public dataSource;
   public airports: Airport[];
+  public markers:marker[];
+  public tt;
+  public LatLngBounds;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   lat: number = 51.678418;
   lng: number = 7.809007;
-  
+
+
   displayedColumns = ['position', 'airportName', 'cityName', 'distance'];
   
   constructor(private location: Location, private userService: UserService) {
+    this.LatLngBounds = new google.maps.LatLngBounds();
     this.createTable();
     this.ELEMENT_DATA = this.newTab;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
    }
 
   ngOnInit() {
-
+   
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
+
+
   createTable(){
     let tab = this.userService.showAirports();
     this.newTab = new Array();
+    this.markers = new Array();
 
     for(let i = 0; i < tab.length; i ++){
       this.newTab.push(
@@ -48,6 +57,14 @@ export class AirportsComponent implements OnInit, AfterViewInit {
           distance: tab[i].distance
         }
       );
+
+      this.markers.push({
+        lat: tab[i].location.latitude,
+        lng: tab[i].location.longitude,
+        label: tab[i].airport
+      })
+
+      this.LatLngBounds.extend(new google.maps.LatLng(tab[i].location.latitude,tab[i].location.longitude));
     }
 
   }
@@ -64,4 +81,10 @@ export interface Element {
   position: number;
   cityName: number;
   distance: string;
+}
+
+interface marker {
+	lat: number;
+	lng: number;
+	label?: string;
 }

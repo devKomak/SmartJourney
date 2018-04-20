@@ -6,7 +6,6 @@
         <div class="card">
           <div class="card-body ">
             <h1 class="">Choose airport</h1>
-          </div>
           <div class="row">
             <div class="col-md-6 p-3 fload-md-left">
                The nearest airports:<br>
@@ -52,13 +51,20 @@
                 </mat-paginator>
 
               </div>
-
-             
         </div>
         <div class="col-md-6 p-3 fload-md-right">
-          <agm-map [latitude]="lat" [longitude]="lng">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          <agm-map [fitBounds]="LatLngBounds" [latitude]="lat" [longitude]="lng">
+            <agm-marker 
+            *ngFor="let m of markers; let i = index"
+            [latitude]="m.lat"
+            [longitude]="m.lng"
+            [label]="m.label"
+            >
+            </agm-marker>
           </agm-map>
+        
+</div>
+<button type="submit" class="btn mt-2 btn-outline-dark">Start</button>
           </div>
       </div>
     </div>
