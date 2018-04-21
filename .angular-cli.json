@@ -21,7 +21,8 @@
       "styles": [
            "../node_modules/mdbootstrap/css/mdb.min.css",
            "../node_modules/mdbootstrap/css/bootstrap.min.css",
-           "styles.css"
+           "styles.css",
+           "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
       ],
       "scripts": [     
             "../node_modules/mdbootstrap/js/jquery-3.2.1.min.js",
