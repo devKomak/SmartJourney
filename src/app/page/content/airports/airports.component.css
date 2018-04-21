@@ -16,3 +16,7 @@
 agm-map {
   height: 300px;
 }
+
+.mat-column-select {
+  overflow: initial;
+}

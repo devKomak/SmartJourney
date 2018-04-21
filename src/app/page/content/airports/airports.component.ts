@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {Location} from '@angular/common'
 import { Airport } from '../../../shared/airport';
 import { UserService } from '../../../users.service';
-import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import {MatTableDataSource, MatSort, MatPaginator, MatCheckbox, MatCell, MatCellDef} from '@angular/material';
 import {} from '@types/googlemaps';
+import { SelectionModel } from '@angular/cdk/collections';
 @Component({
   selector: 'app-airports',
   templateUrl: './airports.component.html',
@@ -18,14 +19,16 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   public markers:marker[];
   public tt;
   public LatLngBounds;
+  public choosedAirport;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   lat: number = 51.678418;
   lng: number = 7.809007;
+  selection = new SelectionModel<Element>(false, []);
 
-
-  displayedColumns = ['position', 'airportName', 'cityName', 'distance'];
+  displayedColumns = ['select','position', 'airportName', 'cityName', 'distance'];
   
+
   constructor(private location: Location, private userService: UserService) {
     this.LatLngBounds = new google.maps.LatLngBounds();
     this.createTable();
@@ -34,7 +37,6 @@ export class AirportsComponent implements OnInit, AfterViewInit {
    }
 
   ngOnInit() {
-   
   }
 
   ngAfterViewInit() {
@@ -42,6 +44,25 @@ export class AirportsComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+click(event){
+  console.log(event);
+}
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => {
+          this.selection.select(row);
+          console.log(this.selection.select(row));
+        });
+    
+  }
 
   createTable(){
     let tab = this.userService.showAirports();
@@ -76,6 +97,7 @@ export class AirportsComponent implements OnInit, AfterViewInit {
 
   }
 
+ 
   onBack() {
     this.location.back();
 
