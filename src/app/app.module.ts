@@ -32,6 +32,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {MatTableModule} from '@angular/material/table';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import {MatTableModule} from '@angular/material/table';
     ReactiveFormsModule,
     HttpClientModule,
     AgmDirectionModule,
+    AgmSnazzyInfoWindowModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB4z8ExGrK0l77Vl9YRIadi5iaUvZELDho',
       libraries: ['places']

@@ -20,6 +20,7 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   public tt;
   public LatLngBounds;
   public choosedAirport;
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   lat: number = 51.678418;
@@ -52,6 +53,11 @@ isAllSelected() {
 
 click(event){
   console.log(event);
+  this.choosedAirport = event;
+}
+
+next(){
+  if(this.choosedAirport) console.log(this.choosedAirport);
 }
 
   masterToggle() {
@@ -73,7 +79,7 @@ click(event){
     this.markers.push({
       lat: coord.latStart,
       lng: coord.lngStart,
-      label: 'YOU'
+      label: '0'
     })
 
     for(let i = 0; i < tab.length; i ++){
