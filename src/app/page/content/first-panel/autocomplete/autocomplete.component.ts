@@ -84,22 +84,22 @@ export class AutocompleteComponent implements OnInit {
               // };
             }
           });
-           this.currentPosition = true;
 
-           if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length === 0) {
+           if (this.currentPosition === false && this.positionEnd === false) {
             this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
             console.log('ff1');
           }
 
-          if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
+          if (this.positionStart === true && this.positionEnd === true) {
             this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
             new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
             console.log('ff2');
           }
 
-          if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-              new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+          if (this.positionEnd === true) {
+            this.LatLngBounds = new google.maps.LatLngBounds( new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
+            new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+             );
             console.log('ff3');
           }
 
@@ -107,6 +107,7 @@ export class AutocompleteComponent implements OnInit {
                               latEnd: this.latitudeEnd, lngEnd: this.longitudeEnd };
           this.userService.addUserCoords(this.userCoords);
           this.positionStart = true;
+          this.currentPosition = true;
         });
       }
 
@@ -150,6 +151,7 @@ export class AutocompleteComponent implements OnInit {
           console.log(this.userCoords);
           this.userService.addUserCoords(this.userCoords);
           this.positionStart = true;
+          this.currentPosition = false;
       });
     });
 
@@ -187,19 +189,13 @@ export class AutocompleteComponent implements OnInit {
               console.log('ff2End');
             }
 
-            if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
-                this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true && this.positionEnd === false) {
-              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-              new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+            if (this.positionStart === true) {
+              this.LatLngBounds = new google.maps.LatLngBounds( new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
+              new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
+             );
               console.log('ff3End');
             }
 
-            if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
-              this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === true && this.positionEnd === true) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
-            new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
-            console.log('ff4End');
-          }
 
           });
 
