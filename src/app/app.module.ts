@@ -33,6 +33,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {MatTableModule} from '@angular/material/table';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { FlightsComponent } from './page/content/flights/flights.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    PageComponent
+    PageComponent,
+    FlightsComponent
 
   ],
   imports: [
