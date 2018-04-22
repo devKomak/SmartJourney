@@ -24,15 +24,16 @@
                 </div>
                 <div class="form-group  px-3">
                 <mat-form-field class="example-full-width">
-                  <input ngModel [min]="minDate" [max]="maxDate" [formControl]="date" name="startDate" #startDate required matInput  [matDatepicker]="picker1" placeholder="Choose a start date" >
+                  <input ngModel [min]="minDateStart" [max]="maxDate" [formControl]="date" name="startDate" #startDate required matInput  [matDatepicker]="picker1" placeholder="Choose a start date" >
                   <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
                   <mat-datepicker touchUi="true" #picker1></mat-datepicker>
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
-                  <input ngModel [min]="minDate" [max]="maxDate" name="endDate" [formControl]="date" required #endDate matInput  [matDatepicker]="picker2" placeholder="Choose a end date" >
+                  <input ngModel  [min]="minDateEnd" [max]="maxDate" name="endDate" [formControl]="date" required #endDate matInput  [matDatepicker]="picker2" placeholder="Choose a end date" >
                   <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                   <mat-datepicker touchUi="true" #picker2></mat-datepicker>
                 </mat-form-field>
+                <span>Start date must be before or  end date</span>
                 </div>
               <button type="submit" class="btn mt-2 btn-outline-dark">Start</button>
             </form>

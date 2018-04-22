@@ -7,6 +7,7 @@ import { Dates } from '../../../shared/dates';
 import { Airport } from '../../../shared/airport';
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
+import { MatInput } from '@angular/material';
 const moment = _rollupMoment || _moment;
 
 
@@ -23,20 +24,41 @@ export class FirstPanelComponent implements OnInit {
   public isAirports: Boolean;
   public isEndAirport: Boolean;
   date = new FormControl(moment());
-  
+  public minDateStart = new Date();
+  public minDateEnd = new Date();
+
+
   @ViewChild('inputPeople') inputPeople: ElementRef;
   @ViewChild('startDate') startDate: ElementRef;
   @ViewChild('endDate') endDate: ElementRef;
 
   constructor(private userService: UserService, private router: Router) {
 
+    this.minDateStart.setDate(this.minDateStart.getDate()+1);
+    this.minDateEnd.setDate(this.minDateEnd.getDate()+1);
     this.isAirports = false;
     this.isEndAirport = false;
   }
 
   ngOnInit() {
-    
 
+
+  }
+
+  setEndDate(event){
+    this.minDateEnd.setDate(this.minDateStart.getDate());
+    console.log(event);
+  }
+
+  setStartDate(event: MatInput, f){
+    let day =event.value._i.date);
+    let month =event.value._i.month);
+    let year =event.value._i.year);
+    let dateTemp = new Date(event.value._i.year,event.value._i.month,event.value._i.date);
+    this.minDateStart.setDate(dateTemp.getDate());
+    this.startDate.nativeElement.min = dateTemp;
+    console.log(this.startDate.nativeElement.min);
+    console.log(this.startDate.nativeElement);
   }
 
   onSubmit(f: NgForm) {
