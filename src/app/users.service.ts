@@ -35,19 +35,19 @@ export class UserService implements OnInit {
 
   getAirports() {
     let a = this.http.get("https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude="+this.user.userCoords.latStart+"&longitude="+this.user.userCoords.lngStart)
-    .subscribe(data =>{
+    .subscribe(data => {
       this.user.setAirports(data);
       this.subject.next(true);
     });
   }
 
 
-  showAirports(){
+  showAirports() {
     console.log(this.user.airports);
     return this.user.airports;
   }
 
-  getUserCoords(){
+  getUserCoords() {
     return this.user.userCoords;
   }
 
