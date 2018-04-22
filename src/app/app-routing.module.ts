@@ -6,13 +6,15 @@ import { AirportsComponent } from "./page/content/airports/airports.component";
 import { FirstPanelComponent } from "./page/content/first-panel/first-panel.component";
 import { LoginComponent } from "./page/login-component/login.component";
 import { PageComponent } from "./page/page.component";
+import { FlightsComponent } from "./page/content/flights/flights.component";
 
 
 const appRoutes: Routes = [
     {path: '' , component: AppComponent, children :[
         {path: '', component: PageComponent, children:[
             {path: '', component: FirstPanelComponent},
-            {path: 'airports', component: AirportsComponent}
+            {path: 'airports', component: AirportsComponent},
+            {path: 'flights', component: FlightsComponent}
         ]}
     ]},
 

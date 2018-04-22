@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule,
          MatFormFieldModule, MatNativeDateModule, MatDatepickerToggleIcon, MatDatepickerToggle,
-         MatDatepickerInputEvent, MatDatepickerIntl, MatSortModule, MatPaginatorModule, } from '@angular/material';
+         MatDatepickerInputEvent, MatDatepickerIntl, MatSortModule, MatPaginatorModule, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
 
@@ -34,6 +34,18 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import {MatTableModule} from '@angular/material/table';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { FlightsComponent } from './page/content/flights/flights.component';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'YYYY-MM-DD',
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -81,7 +93,10 @@ import { FlightsComponent } from './page/content/flights/flights.component';
     AngularFireModule.initializeApp(environment.firebase)
   
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

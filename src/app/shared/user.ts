@@ -9,7 +9,9 @@ export class User {
     public people: number;
     public dates: Dates;
     public airports: Airport[];
-    
+    public endAirport: Airport;
+    public choosedAirport;
+
     constructor() {
         this.id = 0;
         this.userCoords = new userCoords(0, 0, 0, 0);
@@ -36,6 +38,27 @@ export class User {
 
     public setAirports(airports){
         this.airports = airports;
+    }
+
+    public setChoosedAirport(airport){
+        this.choosedAirport = airport;
+    }
+
+    public setEndAirport(airport: Airport[]){
+        console.log(airport);
+        let tab = new Array();
+
+        for(let i = 0; i < airport.length; i++){
+            tab[i] = airport[i].distance;
+        }
+
+        let min = Math.min(...tab);
+        for(let i = 0; i < airport.length; i++){
+            if(airport[i].distance === min) this.endAirport = airport[i];
+        }
+
+        console.log(this.endAirport);
+
     }
 
 

@@ -52,12 +52,16 @@ isAllSelected() {
   }
 
 click(event){
-  console.log(event);
   this.choosedAirport = event;
 }
 
 next(){
-  if(this.choosedAirport) console.log(this.choosedAirport);
+  if(this.choosedAirport) {
+    this.userService.addAirport(this.choosedAirport);
+    console.log(this.userService.getChoosedAirport());
+    console.log(this.userService.showAirportEnd());
+    this.userService.getFlights();
+  }
 }
 
   masterToggle() {
