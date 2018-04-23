@@ -9,11 +9,11 @@
           <div class="row">
             <div class="col-md-6 p-3 fload-md-left">
               <div class="example-container mat-elevation-z8">
-                
+
                 <mat-table #table [dataSource]="dataSource" matSort>
                   <ng-container matColumnDef="select">
                     <mat-header-cell *matHeaderCellDef>
-                   
+
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row" >
                       <mat-checkbox aria-required="true"  (click)="click(row)"
@@ -24,31 +24,31 @@
                   </ng-container>
                   <!--- Note that these columns can be defined in any order.
                         The actual rendered columns are set as a property on the row definition" -->
-              
+
                   <!-- Position Column -->
                   <ng-container matColumnDef="position">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
                   </ng-container>
-              
+
                   <!-- Name Column -->
                   <ng-container matColumnDef="airportName">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Airport name </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.airportName}} </mat-cell>
                   </ng-container>
-              
+
                   <!-- Weight Column -->
                   <ng-container matColumnDef="cityName">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> City name </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.cityName}} </mat-cell>
                   </ng-container>
-              
+
                   <!-- Symbol Column -->
                   <ng-container matColumnDef="distance">
                     <mat-header-cell *matHeaderCellDef mat-sort-header> Distance </mat-header-cell>
                     <mat-cell *matCellDef="let element"> {{element.distance}} </mat-cell>
                   </ng-container>
-              
+
                   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                 </mat-table>
@@ -63,22 +63,18 @@
         </div>
         <div class="col-md-6 p-3 fload-md-right">
           <agm-map [fitBounds]="LatLngBounds" [latitude]="lat" [longitude]="lng">
-            <agm-marker 
+            <agm-marker
             *ngFor="let m of markers; let i = index"
             [latitude]="m.lat"
             [longitude]="m.lng"
             [label]="m.label"
             >
-            <agm-snazzy-info-window *ngIf="m.label==='0'" [maxWidth]="200" [closeWhenOthersOpen]="true">
-              <ng-template>
-                YOUR POSITION
-              </ng-template>
-            </agm-snazzy-info-window>
             </agm-marker>
           </agm-map>
-        
+
 </div>
 <button type="submit" (click)="next()" class="btn mt-2 btn-outline-dark">Next</button>
+<mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
           </div>
       </div>
     </div>

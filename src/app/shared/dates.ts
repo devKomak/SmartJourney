@@ -1,5 +1,5 @@
-export class Dates{
-    constructor(public startDate: String, public endDate:String){
-        
+export class Dates {
+    constructor(public startDate: Date, public endDate: Date) {
+
     }
 }

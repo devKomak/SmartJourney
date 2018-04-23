@@ -1,11 +1,12 @@
-export class userCoords{
+// tslint:disable-next-line:class-name
+export class userCoords {
 
-    constructor(public latStart, public lngStart, public latEnd, public lngEnd){
+    constructor(public latStart, public lngStart, public latEnd, public lngEnd) {
 
     }
 
-    public getCoords(){
+    public getCoords() {
         return this;
     }
-  
+
 }
