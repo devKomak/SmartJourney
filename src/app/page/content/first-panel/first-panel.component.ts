@@ -26,7 +26,7 @@ export class FirstPanelComponent implements OnInit {
   date = new FormControl(moment());
   public minDateStart = new Date();
   public minDateEnd = new Date();
-
+  public started: boolean;
 
   @ViewChild('inputPeople') inputPeople: ElementRef;
   @ViewChild('startDate') startDate: ElementRef;
@@ -34,10 +34,11 @@ export class FirstPanelComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
 
-    this.minDateStart.setDate(this.minDateStart.getDate()+1);
-    this.minDateEnd.setDate(this.minDateEnd.getDate()+1);
+    this.minDateStart.setDate(this.minDateStart.getDate() + 1);
+    this.minDateEnd.setDate(this.minDateEnd.getDate() + 1);
     this.isAirports = false;
     this.isEndAirport = false;
+    this.started = false;
   }
 
   ngOnInit() {
@@ -45,16 +46,16 @@ export class FirstPanelComponent implements OnInit {
 
   }
 
-  setEndDate(event){
+  setEndDate(event) {
     this.minDateEnd.setDate(this.minDateStart.getDate());
     console.log(event);
   }
 
-  setStartDate(event: MatInput, f){
-    let day =event.value._i.date);
-    let month =event.value._i.month);
-    let year =event.value._i.year);
-    let dateTemp = new Date(event.value._i.year,event.value._i.month,event.value._i.date);
+  setStartDate(event: any) {
+    const day = event.value._i.date;
+    const month = event.value._i.month;
+    const year = event.value._i.year;
+    const dateTemp = new Date(event.value._i.year, event.value._i.month, event.value._i.date);
     this.minDateStart.setDate(dateTemp.getDate());
     this.startDate.nativeElement.min = dateTemp;
     console.log(this.startDate.nativeElement.min);
@@ -62,19 +63,21 @@ export class FirstPanelComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    if(f.valid == true){
+    if (f.valid === true) {
+      this.started = true;
+      console.log(this.started);
       this.addDates();
       this.addPeople();
       this.userService.getAirports();
-      this.userService.subject1.asObservable().subscribe(message =>{
+      this.userService.subject1.asObservable().subscribe(message => {
         this.isAirports = message;
-        if(this.isAirports && this.isEndAirport) this.router.navigate(['airports']);
+        if (this.isAirports && this.isEndAirport) { this.router.navigate(['airports']); }
       });
 
       this.userService.getAirportEnd();
-      this.userService.subject2.asObservable().subscribe(message =>{
+      this.userService.subject2.asObservable().subscribe(message => {
         this.isEndAirport = message;
-        if(this.isAirports && this.isEndAirport) this.router.navigate(['airports']);
+        if (this.isAirports && this.isEndAirport) { this.router.navigate(['airports']); }
       });
 
 

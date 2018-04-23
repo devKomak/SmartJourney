@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import {Location} from '@angular/common'
+import {Location} from '@angular/common';
 import { Airport } from '../../../shared/airport';
 import { UserService } from '../../../users.service';
 import {MatTableDataSource, MatSort, MatPaginator, MatCheckbox, MatCell, MatCellDef} from '@angular/material';
 import {} from '@types/googlemaps';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-airports',
   templateUrl: './airports.component.html',
@@ -16,25 +17,27 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   public ELEMENT_DATA: Element[] ;
   public dataSource;
   public airports: Airport[];
-  public markers:marker[];
+  public markers: Marker[];
   public tt;
   public LatLngBounds;
   public choosedAirport;
+  public started: boolean;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat = 51.678418;
+  lng = 7.809007;
   selection = new SelectionModel<Element>(false, []);
 
-  displayedColumns = ['select','position', 'airportName', 'cityName', 'distance'];
-  
+  displayedColumns = ['select', 'position', 'airportName', 'cityName', 'distance'];
 
-  constructor(private location: Location, private userService: UserService) {
+
+  constructor(private location: Location, private userService: UserService, private router: Router) {
     this.LatLngBounds = new google.maps.LatLngBounds();
     this.createTable();
     this.ELEMENT_DATA = this.newTab;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+    this.started = false;
    }
 
   ngOnInit() {
@@ -51,16 +54,18 @@ isAllSelected() {
     return numSelected === numRows;
   }
 
-click(event){
+click(event) {
   this.choosedAirport = event;
 }
 
-next(){
-  if(this.choosedAirport) {
+next() {
+  if (this.choosedAirport) {
+    this.started = true;
     this.userService.addAirport(this.choosedAirport);
-    console.log(this.userService.getChoosedAirport());
-    console.log(this.userService.showAirportEnd());
     this.userService.getFlights();
+    this.userService.isFlightsSubject.asObservable().subscribe(message => {
+      if (message === true) {  this.router.navigate(['flights']); }
+    });
   }
 }
 
@@ -71,26 +76,25 @@ next(){
           this.selection.select(row);
           console.log(this.selection.select(row));
         });
-    
   }
 
-  createTable(){
-    let tab = this.userService.showAirports();
+  createTable() {
+    const tab = this.userService.showAirports();
     this.newTab = new Array();
     this.markers = new Array();
-    let coord = this.userService.getUserCoords();
+    const coord = this.userService.getUserCoords();
 
     this.markers.push({
       lat: coord.latStart,
       lng: coord.lngStart,
       label: '0'
-    })
+    });
 
-    for(let i = 0; i < tab.length; i ++){
+    for (let i = 0; i < tab.length; i ++) {
       this.newTab.push(
         {
-          position:i+1,
-          airportName:tab[i].airport_name,
+          position: i + 1,
+          airportName: tab[i].airport_name,
           cityName: tab[i].city_name,
           distance: tab[i].distance
         }
@@ -99,20 +103,12 @@ next(){
       this.markers.push({
         lat: tab[i].location.latitude,
         lng: tab[i].location.longitude,
-        label: (i+1).toString()
-      })
+        label: (i + 1).toString()
+      });
 
-      this.LatLngBounds.extend(new google.maps.LatLng(tab[i].location.latitude,tab[i].location.longitude));
+      this.LatLngBounds.extend(new google.maps.LatLng(tab[i].location.latitude, tab[i].location.longitude));
     }
-
   }
-
- 
-  onBack() {
-    this.location.back();
-
-  }
-
 }
 
 export interface Element {
@@ -122,8 +118,8 @@ export interface Element {
   distance: string;
 }
 
-interface marker {
-	lat: number;
-	lng: number;
-	label?: string;
+interface Marker {
+lat: number;
+lng: number;
+label?: string;
 }

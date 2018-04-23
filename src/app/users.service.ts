@@ -5,6 +5,7 @@ import { userCoords } from './shared/userCoords';
 import { Dates } from './shared/dates';
 import { Airport } from './shared/airport';
 import { Subject } from 'rxjs/Subject';
+import { Results } from './shared/Results';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -14,6 +15,9 @@ export class UserService implements OnInit {
   public isAirports: boolean;
   public subject1 = new Subject<Boolean>();
   public subject2 = new Subject<Boolean>();
+  public isFlightsSubject = new Subject<Boolean>();
+  public isInBoundFlightSubject = new Subject<Boolean>();
+  public resultsFlights: Results[];
 
   constructor(private http: HttpClient) {
     this.user = new User();
@@ -23,8 +27,8 @@ export class UserService implements OnInit {
   ngOnInit() {
   }
 
-  addUserCoords(userCoords: userCoords) {
-    this.user.setUserCoords(userCoords);
+  addUserCoords(coords: userCoords) {
+    this.user.setUserCoords(coords);
   }
 
   addPeople(people: number) {
@@ -34,67 +38,73 @@ export class UserService implements OnInit {
     this.user.setDates(dates);
   }
 
-  addAirport(airport){
+  addAirport(airport) {
     this.user.setChoosedAirport(airport);
   }
 
-  getChoosedAirport(){
+  addInboundFlight(flight) {
+    this.user.setInboundFlight(flight);
+    if (flight) {  console.log('true'); this.isInBoundFlightSubject.next(true); }
+  }
+
+  getChoosedAirport() {
     return this.user.choosedAirport;
   }
 
   getAirports() {
-    let a = this.http.get("https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude="+this.user.userCoords.latStart+"&longitude="+this.user.userCoords.lngStart)
-    .subscribe(data =>{
+    // tslint:disable-next-line:max-line-length
+    const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude='
+    + this.user.userCoords.latStart + '&longitude=' + this.user.userCoords.lngStart)
+    .subscribe(data => {
       this.user.setAirports(data);
       this.subject1.next(true);
     });
   }
 
   getAirportEnd() {
-    let a = this.http.get("https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude="+this.user.userCoords.latEnd+"&longitude="+this.user.userCoords.lngEnd)
-    .subscribe((data: Airport[]) =>{
+    // tslint:disable-next-line:max-line-length
+    const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude='
+    + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd)
+    .subscribe((data: Airport[]) => {
       this.user.setEndAirport(data);
       this.subject2.next(true);
     });
   }
-  
-  showAirportEnd(){
+
+  showAirportEnd() {
     return this.user.endAirport;
   }
 
-  getFlights(){
+  getFlights() {
 
     let originName;
-    for(let i = 0; i < this.user.airports.length; i++){
-        if(this.user.airports[i].airport_name === this.user.choosedAirport.airportName) originName = this.user.airports[i].airport;
+    for (let i = 0; i < this.user.airports.length; i++) {
+        if (this.user.airports[i].airport_name === this.user.choosedAirport.airportName) { originName = this.user.airports[i].airport; }
     }
 
-    console.log(originName + " " + this.user.endAirport.airport);
+    // tslint:disable-next-line:max-line-length
+    // const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
+    // + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
+    // + '&return_date=' + this.user.dates.endDate)
+    // .subscribe(data  => {
+    // });
 
-    let a = this.http.get("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin="+ originName +"&destination="+this.user.endAirport.airport+"&departure_date="+this.user.dates.startDate+"&return_date="+this.user.dates.endDate)
-    .subscribe(data  =>{
-      console.log(data);
-    });
-
-    let b = this.http.get("https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin="+ originName +"&destination="+this.user.endAirport.airport+"&departure_date="+this.user.dates.startDate+"&return_date="+this.user.dates.endDate)
-    .subscribe(data  =>{
-      console.log(data);
+    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
+    + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
+    + '&return_date=' + this.user.dates.endDate + '&number_of_results=15')
+    .subscribe((data: any)  => {
+      this.resultsFlights = data.results;
+      if (this.resultsFlights) { this.isFlightsSubject.next(true); }
     });
 
   }
 
 
-  showAirports(){
+  showAirports() {
     return this.user.airports;
   }
 
-  getUserCoords(){
+  getUserCoords() {
     return this.user.userCoords;
   }
-
   }
-
-
-
-
-
