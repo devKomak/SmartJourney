@@ -44,7 +44,8 @@ export class UserService implements OnInit {
 
   addInboundFlight(flight) {
     this.user.setInboundFlight(flight);
-    if (flight) {  console.log('true'); this.isInBoundFlightSubject.next(true); }
+    if (flight) { this.isInBoundFlightSubject.next(true); }
+    console.log(this.isInBoundFlightSubject);
   }
 
   getChoosedAirport() {

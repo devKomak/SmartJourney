@@ -19,7 +19,7 @@
               </div>
               <div class="form-group px-3">
                   <mat-form-field class="example-full-width">
-                 <input matInput ngModel name="people" required #inputPeople class="form-control" (input)="addPeople($event)" placeholder="Number of people"  type="number" />
+                 <input matInput ngModel (input)="addPeople()" name="people" required #inputPeople class="form-control"  placeholder="Number of people"  type="number" />
                 </mat-form-field>
                 </div>
                 <div class="form-group  px-3">

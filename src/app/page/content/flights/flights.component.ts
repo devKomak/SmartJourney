@@ -26,8 +26,6 @@ export class FlightsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    console.log(this.userService.resultsFlights);
-
     this.started = false;
    this.createTable();
    this.ELEMENT_DATA = this.newTab;
@@ -54,6 +52,7 @@ export class FlightsComponent implements OnInit, AfterViewInit {
     if (this.choosedOutBoundFlight) {
       this.started = true;
       this.userService.addInboundFlight(this.choosedOutBoundFlight);
+      console.log(this.choosedOutBoundFlight);
       this.userService.isInBoundFlightSubject.asObservable().subscribe(message => {
         if (message === true) { console.log('truesss'); this.router.navigate(['']); }
       });
@@ -81,10 +80,8 @@ export class FlightsComponent implements OnInit, AfterViewInit {
         flightNumber[i] = new Array(6);
         airline[i] = new Array(6);
       for (let j = 0; j < tab[i].itineraries.length; j++) {
-        console.log(tab[i].itineraries.length);
         departsT[i][j] = new Array(6);
         for (let k = 0; k < tab[i].itineraries[j].inbound.flights.length; k++) {
-          console.log(j + ' ' + k + ' ' + i);
           departsT[i][j][k] = tab[i].itineraries[j].inbound.flights[k].departs_at.toString() + '\n';
           arrivesT[i][k] = tab[i].itineraries[j].inbound.flights[k].arrives_at.toString() + '\n';
           originT[i][k] = tab[i].itineraries[j].inbound.flights[k].origin.airport.toString() ;
@@ -105,13 +102,8 @@ export class FlightsComponent implements OnInit, AfterViewInit {
       }
     );
   }
-
-  console.log(departsT);
   }
 }
-
-
-
 }
 
 export interface Element {

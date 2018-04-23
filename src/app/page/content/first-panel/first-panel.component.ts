@@ -48,7 +48,6 @@ export class FirstPanelComponent implements OnInit {
 
   setEndDate(event) {
     this.minDateEnd.setDate(this.minDateStart.getDate());
-    console.log(event);
   }
 
   setStartDate(event: any) {
@@ -58,14 +57,11 @@ export class FirstPanelComponent implements OnInit {
     const dateTemp = new Date(event.value._i.year, event.value._i.month, event.value._i.date);
     this.minDateStart.setDate(dateTemp.getDate());
     this.startDate.nativeElement.min = dateTemp;
-    console.log(this.startDate.nativeElement.min);
-    console.log(this.startDate.nativeElement);
   }
 
   onSubmit(f: NgForm) {
     if (f.valid === true) {
       this.started = true;
-      console.log(this.started);
       this.addDates();
       this.addPeople();
       this.userService.getAirports();

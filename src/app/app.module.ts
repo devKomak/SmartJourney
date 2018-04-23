@@ -100,7 +100,7 @@ export const MY_FORMATS = {
   providers: [AuthService,
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
 
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},],
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
