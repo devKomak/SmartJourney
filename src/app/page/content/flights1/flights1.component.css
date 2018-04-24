@@ -1,8 +1,12 @@
 p:nth-child(2) {
     color: red;
-  }
-  table {
+}
+table {
     table-layout: auto;
     border-collapse: collapse;
     width: 100%;
-  }
+}
+td {
+    width:1px;
+    white-space:nowrap;
+}
