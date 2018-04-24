@@ -134,3 +134,6 @@ export interface ItinerariesEntity {
   outbound: Outbound;
   inbound: Inbound;
 }
+export interface Outbound {
+  flights?: (FlightsEntity)[] | null;
+}
