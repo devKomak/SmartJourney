@@ -36,5 +36,12 @@
                           <mat-header-cell *matHeaderCellDef mat-sort-header> Departs At </mat-header-cell>
                           <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.departs_at">{{a}}</p> </mat-cell>
                       </ng-container>
+
+                      <ng-container matColumnDef="arrives_at">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Arrives At </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.arrives_at">{{a}}</p> </mat-cell>
+                      </ng-container>
+
                       
+
                     </mat-table>
