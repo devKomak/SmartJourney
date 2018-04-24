@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 
 export class Flights1Component implements OnInit, AfterViewInit {
+
   public newTab;
   selection = new SelectionModel<Element>(false, []);
   public ELEMENT_DATA: Element[] ;
@@ -44,6 +45,7 @@ export class Flights1Component implements OnInit, AfterViewInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
+
 
   click(event) {
     this.choosedOutBoundFlight = event;
@@ -79,18 +81,35 @@ export class Flights1Component implements OnInit, AfterViewInit {
         destinationT[i] = new Array(6);
         flightNumber[i] = new Array(6);
         airline[i] = new Array(6);
-    for (let j = 0; j < tab[i].itineraries.length; j++) {
-      console.log(tab[i].itineraries.length);
-      departsT[i][j] = new Array(6);
-    for (let k = 0; k < tab[i].itineraries[j].outbound.flights.length; k++) {
-        console.log(j + ' ' + k + ' ' + i);
-        departsT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].departs_at.toString() + '\n';
-        arrivesT[i][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
-        originT[i][k] = tab[i].itineraries[j].outbound.flights[k].origin.airport.toString() ;
-        destinationT[i][k] =  tab[i].itineraries[j].outbound.flights[k].destination.airport.toString();
-        flightNumber[i][k] =  tab[i].itineraries[j].outbound.flights[k].flight_number.toString();
-        airline[i][k] =  tab[i].itineraries[j].outbound.flights[k].operating_airline.toString();
+      for (let j = 0; j < tab[i].itineraries.length; j++) {
+        console.log(tab[i].itineraries.length);
+        departsT[i][j] = new Array(6);
+        for (let k = 0; k < tab[i].itineraries[j].outbound.flights.length; k++) {
+          console.log(j + ' ' + k + ' ' + i);
+          departsT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].departs_at.toString() + '\n';
+          arrivesT[i][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
+          originT[i][k] = tab[i].itineraries[j].outbound.flights[k].origin.airport.toString() ;
+          destinationT[i][k] =  tab[i].itineraries[j].outbound.flights[k].destination.airport.toString();
+          flightNumber[i][k] =  tab[i].itineraries[j].outbound.flights[k].flight_number.toString();
+          airline[i][k] =  tab[i].itineraries[j].outbound.flights[k].operating_airline.toString();
+    }
+
+    this.newTab.push(
+      {
+        price: tab[i].fare.total_price,
+        departs_at: departsT[i][j],
+        arrives_at: arrivesT[i],
+        origin: originT[i],
+        destination: destinationT[i],
+        flightNumber: flightNumber[i],
+        airline:  airline[i]
+      }
+    );
+  }
+
+  console.log(departsT);
   }
 }
 
 }
+
