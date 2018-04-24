@@ -179,3 +179,7 @@ export interface Fare {
   price_per_adult: PricePerAdult;
   restrictions: Restrictions;
 }
+export interface PricePerAdult {
+  total_fare: string;
+  tax: string;
+}
