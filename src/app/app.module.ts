@@ -37,6 +37,7 @@ import {MatTableModule} from '@angular/material/table';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { FlightsComponent } from './page/content/flights/flights.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import { Flights1Component } from './page/content/flights1/flights1.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'YYYY-MM-DD',
@@ -63,7 +64,8 @@ export const MY_FORMATS = {
     RegisterComponent,
     UserComponent,
     PageComponent,
-    FlightsComponent
+    FlightsComponent,
+    Flights1Component
 
   ],
   imports: [

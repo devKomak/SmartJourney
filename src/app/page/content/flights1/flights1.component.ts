@@ -52,13 +52,7 @@ export class Flights1Component implements OnInit, AfterViewInit {
   }
 
   next() {
-    if (this.choosedOutBoundFlight) {
-      this.started = true;
-      this.userService.addInboundFlight(this.choosedOutBoundFlight);
-      this.userService.isInBoundFlightSubject.asObservable().subscribe(message => {
-        if (message === true) { console.log('truesss'); this.router.navigate(['']); }
-      });
-    }
+
   }
 
   createTable() {

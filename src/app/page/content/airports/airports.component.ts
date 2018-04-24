@@ -6,11 +6,15 @@ import {MatTableDataSource, MatSort, MatPaginator, MatCheckbox, MatCell, MatCell
 import {} from '@types/googlemaps';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-airports',
   templateUrl: './airports.component.html',
   styleUrls: ['./airports.component.css']
 })
+
+
 export class AirportsComponent implements OnInit, AfterViewInit {
 
   public newTab;
@@ -30,7 +34,6 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   selection = new SelectionModel<Element>(false, []);
 
   displayedColumns = ['select', 'position', 'airportName', 'cityName', 'distance'];
-
 
   constructor(private location: Location, private userService: UserService, private router: Router) {
     this.LatLngBounds = new google.maps.LatLngBounds();
@@ -62,8 +65,8 @@ next() {
   if (this.choosedAirport) {
     this.started = true;
     this.userService.addAirport(this.choosedAirport);
-    this.userService.getFlights();
-    this.userService.isFlightsSubject.asObservable().subscribe(message => {
+    this.userService.getInBoundFlights();
+    this.userService.isInBoundFlightSubject.asObservable().subscribe(message => {
       if (message === true) {  this.router.navigate(['flights']); }
     });
   }

@@ -27,17 +27,10 @@
 
                       <!-- Position Column -->
                       <ng-container matColumnDef="price">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Price in $ </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element[0].price}} </mat-cell>
                       </ng-container>
 
-                       <!-- Position Column -->
-                       <ng-container matColumnDef="typeOfFlight">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Inbound or Outbound flight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> <p>{{element[0].typeOfFlight}}</p></mat-cell>
-                        <mat-cell *matCellDef="let element"> <p>{{element[0].typeOfFlight}}</p></mat-cell>
-                        <mat-cell *matCellDef="let element"> <p>{{element[0].typeOfFlight}}</p></mat-cell>
-                      </ng-container>
 
                          <!-- Position Column -->
                          <ng-container matColumnDef="flightNumber">

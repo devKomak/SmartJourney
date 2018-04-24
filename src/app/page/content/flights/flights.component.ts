@@ -13,14 +13,14 @@ export class FlightsComponent implements OnInit, AfterViewInit {
 
   public newTab;
   selection = new SelectionModel<Element>(false, []);
-  public ELEMENT_DATA: Element[][];
+  public ELEMENT_DATA: Element[];
   public dataSource;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public choosedOutBoundFlight;
+  public choosedInBoundFlight;
   public started: boolean;
 
-  displayedColumns = ['select', 'price', 'typeOfFlight', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
+  displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
   constructor(private userService: UserService, private router: Router) {
   }
 
@@ -45,16 +45,17 @@ export class FlightsComponent implements OnInit, AfterViewInit {
 
 
   click(event) {
-    this.choosedOutBoundFlight = event;
+    this.choosedInBoundFlight = event;
+    console.log(this.choosedInBoundFlight);
   }
 
   next() {
-    if (this.choosedOutBoundFlight) {
+    if (this.choosedInBoundFlight) {
       this.started = true;
-      this.userService.addInboundFlight(this.choosedOutBoundFlight);
-      console.log(this.choosedOutBoundFlight);
-      this.userService.isInBoundFlightSubject.asObservable().subscribe(message => {
-        if (message === true) { console.log('truesss'); this.router.navigate(['']); }
+      this.userService.addInBoundFlight(this.choosedInBoundFlight);
+      this.userService.getOutBoundFlights();
+      this.userService.isOutBoundFlightSubject.asObservable().subscribe(message => {
+        if (message === true) {  this.router.navigate(['flights1']); }
       });
     }
   }
@@ -82,13 +83,13 @@ export class FlightsComponent implements OnInit, AfterViewInit {
         airline[i] = new Array(6);
       for (let j = 0; j < tab[i].itineraries.length; j++) {
         departsT[i][j] = new Array(6);
-        for (let k = 0; k < tab[i].itineraries[j].inbound.flights.length; k++) {
-          departsT[i][j][k] = tab[i].itineraries[j].inbound.flights[k].departs_at.toString() + '\n';
-          arrivesT[i][k] = tab[i].itineraries[j].inbound.flights[k].arrives_at.toString() + '\n';
-          originT[i][k] = tab[i].itineraries[j].inbound.flights[k].origin.airport.toString() ;
-          destinationT[i][k] =  tab[i].itineraries[j].inbound.flights[k].destination.airport.toString();
-          flightNumber[i][k] =  tab[i].itineraries[j].inbound.flights[k].flight_number.toString();
-          airline[i][k] =  tab[i].itineraries[j].inbound.flights[k].operating_airline.toString();
+        for (let k = 0; k < tab[i].itineraries[j].outbound.flights.length; k++) {
+          departsT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].departs_at.toString() + '\n';
+          arrivesT[i][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
+          originT[i][k] = tab[i].itineraries[j].outbound.flights[k].origin.airport.toString() ;
+          destinationT[i][k] =  tab[i].itineraries[j].outbound.flights[k].destination.airport.toString();
+          flightNumber[i][k] =  tab[i].itineraries[j].outbound.flights[k].flight_number.toString();
+          airline[i][k] =  tab[i].itineraries[j].outbound.flights[k].operating_airline.toString();
     }
 
     this.newTab.push(
@@ -101,18 +102,7 @@ export class FlightsComponent implements OnInit, AfterViewInit {
         destination: destinationT[i],
         flightNumber: flightNumber[i],
         airline: airline[i],
-        typeOfFlight: 'InBound'
         },
-        {
-          price: tab[i].fare.total_price,
-          departs_at: departsT[i][j],
-          arrives_at: arrivesT[i],
-          origin: originT[i],
-          destination: destinationT[i],
-          flightNumber: flightNumber[i],
-          airline: airline[i],
-          typeOfFlight: 'OutBound'
-          },
       ]
     );
   }
@@ -128,7 +118,6 @@ export interface Element {
   destination: string;
   flightNumber: string;
   airline: string;
-  typeOfFlight: string;
 }
 
 export interface Result {

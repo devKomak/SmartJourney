@@ -45,7 +45,7 @@ export class User {
         this.choosedAirport = airport;
     }
 
-    public setInboundFlight(flight) {
+    public setInBoundFlight(flight) {
       this.choosedInBoundFlight = flight;
   }
 
