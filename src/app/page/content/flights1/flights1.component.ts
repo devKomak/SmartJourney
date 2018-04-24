@@ -152,3 +152,6 @@ export interface OriginOrDestination {
   airport: string;
   terminal?: string | null;
 }
+export interface DestinationOrOrigin {
+  airport: string;
+}
