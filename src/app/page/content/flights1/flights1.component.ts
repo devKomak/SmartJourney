@@ -9,11 +9,6 @@ import { Router } from '@angular/router';
   templateUrl: './flights1.component.html',
   styleUrls: ['./flights1.component.css']
 })
-export class Flights1Component implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class Flights1Component implements OnInit, AfterViewInit {
 }
