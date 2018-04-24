@@ -52,4 +52,9 @@
                           <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.destination">{{a}}</p> </mat-cell>
                       </ng-container>
 
+                      <ng-container matColumnDef="airline">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Airline </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.airline">{{a}}</p> </mat-cell>
+                      </ng-container>
+
                     </mat-table>
