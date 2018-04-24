@@ -160,3 +160,6 @@ export interface BookingInfo {
   booking_code: string;
   seats_remaining: number;
 }
+export interface Inbound {
+  flights?: (FlightsEntity1)[] | null;
+}
