@@ -174,3 +174,8 @@ export interface FlightsEntity1 {
   aircraft: string;
   booking_info: BookingInfo;
 }
+export interface Fare {
+  total_price: string;
+  price_per_adult: PricePerAdult;
+  restrictions: Restrictions;
+}
