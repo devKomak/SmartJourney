@@ -183,3 +183,7 @@ export interface PricePerAdult {
   total_fare: string;
   tax: string;
 }
+export interface Restrictions {
+  refundable: boolean;
+  change_penalties: boolean;
+}
