@@ -72,7 +72,13 @@ export class Flights1Component implements OnInit, AfterViewInit {
     const destinationT = new Array();
     const flightNumber = new Array();
     const airline = new Array();
-  
+    for (let i = 0; i < tab.length; i++) {
+      departsT[i] = new Array(6);
+        arrivesT[i] = new Array(6);
+        originT[i] = new Array(6);
+        destinationT[i] = new Array(6);
+        flightNumber[i] = new Array(6);
+        airline[i] = new Array(6);
 }
 
 }
