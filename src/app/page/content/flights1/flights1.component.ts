@@ -148,3 +148,7 @@ export interface FlightsEntity {
   aircraft: string;
   booking_info: BookingInfo;
 }
+export interface OriginOrDestination {
+  airport: string;
+  terminal?: string | null;
+}
