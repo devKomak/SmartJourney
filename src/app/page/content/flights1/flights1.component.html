@@ -27,4 +27,9 @@
                           <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
                       </ng-container>
 
+                      <ng-container matColumnDef="flightNumber">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Flight Number </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.flightNumber">{{a}}</p> </mat-cell>
+                      </ng-container>
+
                     </mat-table>
