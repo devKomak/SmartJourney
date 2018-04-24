@@ -50,14 +50,14 @@ export class Flights1Component implements OnInit, AfterViewInit {
   }
 
   next() {
-    if (this.choosedInBoundFlight) {
-      this.started = true;
-      this.userService.addInBoundFlight(this.choosedInBoundFlight);
-      this.userService.getOutBoundFlights();
-      this.userService.isOutBoundFlightSubject.asObservable().subscribe(message => {
-        if (message === true) {  this.router.navigate(['flights1']); }
-      });
-    }
+    // if (this.choosedInBoundFlight) {
+    //   this.started = true;
+    //   this.userService.addInBoundFlight(this.choosedInBoundFlight);
+    //   this.userService.getOutBoundFlights();
+    //   this.userService.isOutBoundFlightSubject.asObservable().subscribe(message => {
+    //     if (message === true) {  this.router.navigate(['flights1']); }
+    //   });
+    // }
   }
 
   createTable() {
