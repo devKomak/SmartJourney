@@ -58,5 +58,21 @@ export class Flights1Component implements OnInit, AfterViewInit {
       });
     }
   }
+
+  createTable() {
+    const tab = this.userService.resultsFlights;
+    this.newTab = new Array();
+    const arrives = new Array();
+    const arrivesT = new Array();
+    const departs = new Array();
+    const departsT = new Array();
+    const origin = new Array();
+    const originT = new Array();
+    const destination = new Array();
+    const destinationT = new Array();
+    const flightNumber = new Array();
+    const airline = new Array();
   
+}
+
 }
