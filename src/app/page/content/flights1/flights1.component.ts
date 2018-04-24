@@ -9,16 +9,15 @@ import { Router } from '@angular/router';
   templateUrl: './flights1.component.html',
   styleUrls: ['./flights1.component.css']
 })
-
 export class Flights1Component implements OnInit, AfterViewInit {
 
   public newTab;
   selection = new SelectionModel<Element>(false, []);
-  public ELEMENT_DATA: Element[] ;
+  public ELEMENT_DATA: Element[];
   public dataSource;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public choosedOutBoundFlight;
+  public choosedInBoundFlight;
   public started: boolean;
 
   displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
@@ -26,8 +25,6 @@ export class Flights1Component implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
-    console.log(this.userService.resultsFlights);
 
     this.started = false;
    this.createTable();
@@ -48,11 +45,19 @@ export class Flights1Component implements OnInit, AfterViewInit {
 
 
   click(event) {
-    this.choosedOutBoundFlight = event;
+    this.choosedInBoundFlight = event;
+    console.log(this.choosedInBoundFlight);
   }
 
   next() {
-
+    if (this.choosedInBoundFlight) {
+      this.started = true;
+      this.userService.addInBoundFlight(this.choosedInBoundFlight);
+      this.userService.getOutBoundFlights();
+      this.userService.isOutBoundFlightSubject.asObservable().subscribe(message => {
+        if (message === true) {  this.router.navigate(['flights1']); }
+      });
+    }
   }
 
   createTable() {
@@ -68,6 +73,7 @@ export class Flights1Component implements OnInit, AfterViewInit {
     const destinationT = new Array();
     const flightNumber = new Array();
     const airline = new Array();
+
     for (let i = 0; i < tab.length; i++) {
       departsT[i] = new Array(6);
         arrivesT[i] = new Array(6);
@@ -76,12 +82,11 @@ export class Flights1Component implements OnInit, AfterViewInit {
         flightNumber[i] = new Array(6);
         airline[i] = new Array(6);
       for (let j = 0; j < tab[i].itineraries.length; j++) {
-        console.log(tab[i].itineraries.length);
         departsT[i][j] = new Array(6);
+        arrivesT[i][j] = new Array(6);
         for (let k = 0; k < tab[i].itineraries[j].outbound.flights.length; k++) {
-          console.log(j + ' ' + k + ' ' + i);
           departsT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].departs_at.toString() + '\n';
-          arrivesT[i][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
+          arrivesT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
           originT[i][k] = tab[i].itineraries[j].outbound.flights[k].origin.airport.toString() ;
           destinationT[i][k] =  tab[i].itineraries[j].outbound.flights[k].destination.airport.toString();
           flightNumber[i][k] =  tab[i].itineraries[j].outbound.flights[k].flight_number.toString();
@@ -89,22 +94,21 @@ export class Flights1Component implements OnInit, AfterViewInit {
     }
 
     this.newTab.push(
-      {
+      [
+        {
         price: tab[i].fare.total_price,
         departs_at: departsT[i][j],
-        arrives_at: arrivesT[i],
+        arrives_at: arrivesT[i][j],
         origin: originT[i],
         destination: destinationT[i],
         flightNumber: flightNumber[i],
-        airline:  airline[i]
-      }
+        airline: airline[i],
+        },
+      ]
     );
   }
-
-  console.log(departsT);
   }
 }
-
 }
 
 export interface Element {
@@ -116,6 +120,7 @@ export interface Element {
   flightNumber: string;
   airline: string;
 }
+
 export interface Result {
   currency: string;
   results?: (ResultsEntity)[] | null;
@@ -181,3 +186,4 @@ export interface Restrictions {
   refundable: boolean;
   change_penalties: boolean;
 }
+

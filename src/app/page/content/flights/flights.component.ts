@@ -83,9 +83,10 @@ export class FlightsComponent implements OnInit, AfterViewInit {
         airline[i] = new Array(6);
       for (let j = 0; j < tab[i].itineraries.length; j++) {
         departsT[i][j] = new Array(6);
+        arrivesT[i][j] = new Array(6);
         for (let k = 0; k < tab[i].itineraries[j].outbound.flights.length; k++) {
           departsT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].departs_at.toString() + '\n';
-          arrivesT[i][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
+          arrivesT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
           originT[i][k] = tab[i].itineraries[j].outbound.flights[k].origin.airport.toString() ;
           destinationT[i][k] =  tab[i].itineraries[j].outbound.flights[k].destination.airport.toString();
           flightNumber[i][k] =  tab[i].itineraries[j].outbound.flights[k].flight_number.toString();
@@ -97,7 +98,7 @@ export class FlightsComponent implements OnInit, AfterViewInit {
         {
         price: tab[i].fare.total_price,
         departs_at: departsT[i][j],
-        arrives_at: arrivesT[i],
+        arrives_at: arrivesT[i][j],
         origin: originT[i],
         destination: destinationT[i],
         flightNumber: flightNumber[i],
