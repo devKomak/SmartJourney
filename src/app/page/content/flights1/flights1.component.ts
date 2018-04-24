@@ -82,6 +82,15 @@ export class Flights1Component implements OnInit, AfterViewInit {
     for (let j = 0; j < tab[i].itineraries.length; j++) {
       console.log(tab[i].itineraries.length);
       departsT[i][j] = new Array(6);
+    for (let k = 0; k < tab[i].itineraries[j].outbound.flights.length; k++) {
+        console.log(j + ' ' + k + ' ' + i);
+        departsT[i][j][k] = tab[i].itineraries[j].outbound.flights[k].departs_at.toString() + '\n';
+        arrivesT[i][k] = tab[i].itineraries[j].outbound.flights[k].arrives_at.toString() + '\n';
+        originT[i][k] = tab[i].itineraries[j].outbound.flights[k].origin.airport.toString() ;
+        destinationT[i][k] =  tab[i].itineraries[j].outbound.flights[k].destination.airport.toString();
+        flightNumber[i][k] =  tab[i].itineraries[j].outbound.flights[k].flight_number.toString();
+        airline[i][k] =  tab[i].itineraries[j].outbound.flights[k].operating_airline.toString();
+  }
 }
 
 }
