@@ -57,4 +57,6 @@
                           <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.airline">{{a}}</p> </mat-cell>
                       </ng-container>
 
+                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
                     </mat-table>
