@@ -126,3 +126,7 @@ export interface Result {
   currency: string;
   results?: (ResultsEntity)[] | null;
 }
+export interface ResultsEntity {
+  itineraries?: (ItinerariesEntity)[] | null;
+  fare: Fare;
+}
