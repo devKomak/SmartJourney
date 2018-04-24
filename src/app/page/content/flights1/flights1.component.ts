@@ -11,4 +11,8 @@ import { Router } from '@angular/router';
 })
 
 export class Flights1Component implements OnInit, AfterViewInit {
+  public newTab;
+  selection = new SelectionModel<Element>(false, []);
+  public ELEMENT_DATA: Element[] ;
+  public dataSource;
 }
