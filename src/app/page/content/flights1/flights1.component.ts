@@ -44,5 +44,9 @@ export class Flights1Component implements OnInit, AfterViewInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
+
+  click(event) {
+    this.choosedOutBoundFlight = event;
+  }
   
 }
