@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { UserService } from '../../../users.service';
 @Component({
   selector: 'app-flights1',
   templateUrl: './flights1.component.html',
