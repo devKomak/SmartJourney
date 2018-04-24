@@ -1,3 +1,23 @@
-<p>
-  flights1 works!
-</p>
+<div class="py-5" style="background-image: url(&quot;https://images.pexels.com/photos/62623/wing-plane-flying-airplane-62623.jpeg&quot;); background-repeat: repeat;">
+  <div class="container">
+    <div class="row"> </div>
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="card">
+          <div class="card-body ">
+            <h1 class="">Choose outbound flights</h1>
+          <div class="row">
+            <div class="col-md-12 p-3 ">
+                <div class="example-container mat-elevation-z8">
+
+                    <mat-table #table [dataSource]="dataSource" matSort>
+                      <ng-container matColumnDef="select">
+                        <mat-header-cell *matHeaderCellDef></mat-header-cell>  
+                          <mat-cell *matCellDef="let row" >
+                            <mat-checkbox aria-required="true" (click)="click(row)"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)">
+                            </mat-checkbox>
+                          </mat-cell>
+                      </ng-container>
+                    </mat-table>
