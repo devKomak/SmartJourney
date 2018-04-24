@@ -47,5 +47,9 @@
                           <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.origin">{{a}}</p> </mat-cell>
                       </ng-container>
 
+                      <ng-container matColumnDef="destination">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Destination </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.destination">{{a}}</p> </mat-cell>
+                      </ng-container>
 
                     </mat-table>
