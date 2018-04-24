@@ -122,3 +122,7 @@ export interface Element {
   flightNumber: string;
   airline: string;
 }
+export interface Result {
+  currency: string;
+  results?: (ResultsEntity)[] | null;
+}
