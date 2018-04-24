@@ -155,3 +155,8 @@ export interface OriginOrDestination {
 export interface DestinationOrOrigin {
   airport: string;
 }
+export interface BookingInfo {
+  travel_class: string;
+  booking_code: string;
+  seats_remaining: number;
+}
