@@ -13,14 +13,14 @@ export class FlightsComponent implements OnInit, AfterViewInit {
 
   public newTab;
   selection = new SelectionModel<Element>(false, []);
-  public ELEMENT_DATA: Element[] ;
+  public ELEMENT_DATA: Element[][];
   public dataSource;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public choosedOutBoundFlight;
   public started: boolean;
 
-  displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
+  displayedColumns = ['select', 'price', 'typeOfFlight', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
   constructor(private userService: UserService, private router: Router) {
   }
 
@@ -72,6 +72,7 @@ export class FlightsComponent implements OnInit, AfterViewInit {
     const destinationT = new Array();
     const flightNumber = new Array();
     const airline = new Array();
+
     for (let i = 0; i < tab.length; i++) {
       departsT[i] = new Array(6);
         arrivesT[i] = new Array(6);
@@ -91,15 +92,28 @@ export class FlightsComponent implements OnInit, AfterViewInit {
     }
 
     this.newTab.push(
-      {
+      [
+        {
         price: tab[i].fare.total_price,
         departs_at: departsT[i][j],
         arrives_at: arrivesT[i],
         origin: originT[i],
         destination: destinationT[i],
         flightNumber: flightNumber[i],
-        airline:  airline[i]
-      }
+        airline: airline[i],
+        typeOfFlight: 'InBound'
+        },
+        {
+          price: tab[i].fare.total_price,
+          departs_at: departsT[i][j],
+          arrives_at: arrivesT[i],
+          origin: originT[i],
+          destination: destinationT[i],
+          flightNumber: flightNumber[i],
+          airline: airline[i],
+          typeOfFlight: 'OutBound'
+          },
+      ]
     );
   }
   }
@@ -114,6 +128,7 @@ export interface Element {
   destination: string;
   flightNumber: string;
   airline: string;
+  typeOfFlight: string;
 }
 
 export interface Result {

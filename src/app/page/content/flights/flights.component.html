@@ -28,39 +28,47 @@
                       <!-- Position Column -->
                       <ng-container matColumnDef="price">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element[0].price}} </mat-cell>
+                      </ng-container>
+
+                       <!-- Position Column -->
+                       <ng-container matColumnDef="typeOfFlight">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Inbound or Outbound flight </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> <p>{{element[0].typeOfFlight}}</p></mat-cell>
+                        <mat-cell *matCellDef="let element"> <p>{{element[0].typeOfFlight}}</p></mat-cell>
+                        <mat-cell *matCellDef="let element"> <p>{{element[0].typeOfFlight}}</p></mat-cell>
                       </ng-container>
 
                          <!-- Position Column -->
                          <ng-container matColumnDef="flightNumber">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Flight Number </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.flightNumber">{{a}}</p> </mat-cell>
+                            <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].flightNumber">{{a}}</p> </mat-cell>
                           </ng-container>
 
                             <!-- Position Column -->
                          <ng-container matColumnDef="departs_at">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Departs At </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.departs_at">{{a}}</p> </mat-cell>
+                            <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].departs_at">{{a}}</p> </mat-cell>
                           </ng-container>
 
                           <ng-container matColumnDef="arrives_at">
                               <mat-header-cell *matHeaderCellDef mat-sort-header> Arrives At </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.arrives_at">{{a}}</p> </mat-cell>
+                              <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].arrives_at">{{a}}</p> </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="origin">
                                 <mat-header-cell *matHeaderCellDef mat-sort-header> Origin </mat-header-cell>
-                                <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.origin">{{a}}</p> </mat-cell>
+                                <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].origin">{{a}}</p> </mat-cell>
                               </ng-container>
 
                               <ng-container matColumnDef="destination">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header> Destination </mat-header-cell>
-                                  <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.destination">{{a}}</p> </mat-cell>
+                                  <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].destination">{{a}}</p> </mat-cell>
                                 </ng-container>
 
                                 <ng-container matColumnDef="airline">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header> Airline </mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> <p *ngFor="let a of element.airline">{{a}}</p> </mat-cell>
+                                    <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].airline">{{a}}</p> </mat-cell>
                                   </ng-container>
 
                       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
