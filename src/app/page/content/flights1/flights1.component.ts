@@ -19,4 +19,9 @@ export class Flights1Component implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public choosedOutBoundFlight;
   public started: boolean;
+
+  displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
+  constructor(private userService: UserService, private router: Router) {
+  }
+  
 }
