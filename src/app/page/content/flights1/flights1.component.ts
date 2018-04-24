@@ -23,5 +23,15 @@ export class Flights1Component implements OnInit, AfterViewInit {
   displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
   constructor(private userService: UserService, private router: Router) {
   }
+
+  ngOnInit() {
+
+    console.log(this.userService.resultsFlights);
+
+    this.started = false;
+   this.createTable();
+   this.ELEMENT_DATA = this.newTab;
+    this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  }
   
 }
