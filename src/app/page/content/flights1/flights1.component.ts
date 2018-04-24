@@ -137,3 +137,14 @@ export interface ItinerariesEntity {
 export interface Outbound {
   flights?: (FlightsEntity)[] | null;
 }
+export interface FlightsEntity {
+  departs_at: string;
+  arrives_at: string;
+  origin: OriginOrDestination;
+  destination: DestinationOrOrigin;
+  marketing_airline: string;
+  operating_airline: string;
+  flight_number: string;
+  aircraft: string;
+  booking_info: BookingInfo;
+}
