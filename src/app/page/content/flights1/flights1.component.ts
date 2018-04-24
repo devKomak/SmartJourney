@@ -130,3 +130,7 @@ export interface ResultsEntity {
   itineraries?: (ItinerariesEntity)[] | null;
   fare: Fare;
 }
+export interface ItinerariesEntity {
+  outbound: Outbound;
+  inbound: Inbound;
+}
