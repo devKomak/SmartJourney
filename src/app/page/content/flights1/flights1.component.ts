@@ -79,6 +79,9 @@ export class Flights1Component implements OnInit, AfterViewInit {
         destinationT[i] = new Array(6);
         flightNumber[i] = new Array(6);
         airline[i] = new Array(6);
+    for (let j = 0; j < tab[i].itineraries.length; j++) {
+      console.log(tab[i].itineraries.length);
+      departsT[i][j] = new Array(6);
 }
 
 }
