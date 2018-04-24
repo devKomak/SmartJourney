@@ -33,5 +33,10 @@ export class Flights1Component implements OnInit, AfterViewInit {
    this.ELEMENT_DATA = this.newTab;
     this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
   
 }
