@@ -163,3 +163,14 @@ export interface BookingInfo {
 export interface Inbound {
   flights?: (FlightsEntity1)[] | null;
 }
+export interface FlightsEntity1 {
+  departs_at: string;
+  arrives_at: string;
+  origin: OriginOrDestination;
+  destination: OriginOrDestination;
+  marketing_airline: string;
+  operating_airline: string;
+  flight_number: string;
+  aircraft: string;
+  booking_info: BookingInfo;
+}
