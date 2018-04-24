@@ -1,3 +1,12 @@
 input.ng-valid{
   border:1px blue;
 }
+
+agm-map {
+  height: 300px;
+}
+
+
+input.ng-invalid.ng-touched {
+border:2px red;
+}

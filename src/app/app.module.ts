@@ -72,6 +72,7 @@ export const MY_FORMATS = {
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatPaginatorModule,
     MatRippleModule,

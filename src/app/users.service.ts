@@ -92,10 +92,10 @@ export class UserService implements OnInit {
 
     const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
     + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
-    + '&return_date=' + this.user.dates.endDate + '&number_of_results=15')
+    + '&return_date=' + this.user.dates.endDate + '&number_of_results=35')
     .subscribe((data: any)  => {
       this.resultsFlights = data.results;
-      if (this.resultsFlights) { this.isFlightsSubject.next(true); }
+      if (this.resultsFlights) { this.isFlightsSubject.next(true); console.log(this.resultsFlights); }
     });
 
   }

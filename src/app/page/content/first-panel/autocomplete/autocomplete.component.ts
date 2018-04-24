@@ -1,6 +1,6 @@
 import { Component, ElementRef, NgModule, NgZone, OnInit, ViewChild,
          AfterViewInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
@@ -36,7 +36,8 @@ export class AutocompleteComponent implements OnInit {
 
   @ViewChild('searchStart')
   public searchElementStartRef: ElementRef;
-
+  @Input() address: FormGroup;
+  @Input() destination: FormGroup;
   @ViewChild('searchEnd')
   public searchElementEndRef: ElementRef;
 
