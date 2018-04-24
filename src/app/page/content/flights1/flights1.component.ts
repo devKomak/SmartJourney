@@ -113,3 +113,12 @@ export class Flights1Component implements OnInit, AfterViewInit {
 
 }
 
+export interface Element {
+  departs_at: string;
+  price: string;
+  arrives_at: string;
+  origin: string;
+  destination: string;
+  flightNumber: string;
+  airline: string;
+}
