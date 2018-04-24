@@ -15,4 +15,8 @@ export class Flights1Component implements OnInit, AfterViewInit {
   selection = new SelectionModel<Element>(false, []);
   public ELEMENT_DATA: Element[] ;
   public dataSource;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  public choosedOutBoundFlight;
+  public started: boolean;
 }
