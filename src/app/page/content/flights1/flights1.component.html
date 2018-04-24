@@ -66,3 +66,11 @@
                      [pageSizeOptions]="[5, 10, 20]"
                      [showFirstLastButtons]="true">
                     </mat-paginator>
+
+                  </div>
+                </div>
+                <button type="submit" (click)="next()" class="btn mt-2 btn-outline-dark">Next</button>
+                <mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
+            </div>
+          </div>
+        </div>
