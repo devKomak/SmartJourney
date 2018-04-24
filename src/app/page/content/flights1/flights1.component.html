@@ -11,6 +11,7 @@
                 <div class="example-container mat-elevation-z8">
 
                     <mat-table #table [dataSource]="dataSource" matSort>
+
                       <ng-container matColumnDef="select">
                         <mat-header-cell *matHeaderCellDef></mat-header-cell>  
                           <mat-cell *matCellDef="let row" >
@@ -20,4 +21,10 @@
                             </mat-checkbox>
                           </mat-cell>
                       </ng-container>
+                      
+                      <ng-container matColumnDef="price">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+                      </ng-container>
+
                     </mat-table>
