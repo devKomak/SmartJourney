@@ -24,7 +24,7 @@
            "styles.css",
            "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
       ],
-      "scripts": [     
+      "scripts": [
             "../node_modules/mdbootstrap/js/jquery-3.2.1.min.js",
             "../node_modules/mdbootstrap/js/popper.min.js",
             "../node_modules/mdbootstrap/js/mdb.min.js",
