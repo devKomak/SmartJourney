@@ -8,11 +8,3 @@ table {
 }
 td{width:1px;white-space:nowrap;}
 
-agm-map {
-  height: 300px;
-}
-
-
-input.ng-invalid.ng-touched {
-border:2px red;
-}

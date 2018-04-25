@@ -9,11 +9,11 @@
           <hr>
       <mat-form-field class="example-full-width d-block">
           <mat-label>Where are you now?</mat-label>
-            <input required [(ngModel)]="valueStart"  matInput placeholder="Origin place" autocorrect="true" autocapitalize="off" spellcheck="true" type="text"  #searchStart [formControl]="searchControlStart" >
+            <input required [(ngModel)]="valueStart"  matInput placeholder="Origin place" autocorrect="true" autocapitalize="off" spellcheck="true" type="text"  #searchStart [formControl]="searchControlStart" ngModel>
       </mat-form-field>
       <mat-form-field class="example-full-width d-block">
           <mat-label>Where are you go?</mat-label>
-          <input required matInput placeholder="Destination place" autocorrect="true" autocapitalize="off" spellcheck="true" type="text" #searchEnd [formControl]="searchControlEnd" >
+          <input required matInput placeholder="Destination place" autocorrect="true" autocapitalize="off" spellcheck="true" type="text" #searchEnd [formControl]="searchControlEnd" ngModel>
     </mat-form-field>
   </div>
     </div>
