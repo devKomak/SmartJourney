@@ -62,7 +62,6 @@ export class FirstPanelComponent implements OnInit {
   @ViewChild('endDate') endDate: ElementRef;
 
 
-
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private userService: UserService,
     private router: Router, private fb: FormBuilder) {
 
@@ -71,6 +70,10 @@ export class FirstPanelComponent implements OnInit {
     this.isAirports = false;
     this.isEndAirport = false;
     this.started = false;
+  }
+
+  zoomChange(f: any) {
+    console.log(f);
   }
 
   ngOnInit() {
@@ -101,7 +104,6 @@ export class FirstPanelComponent implements OnInit {
     this.searchControlStart = new FormControl();
     this.searchControlEnd = new FormControl();
 
-
     // Geolocation HTML5
     this.getMyLocation = () => {
       if ('geolocation' in navigator) {
@@ -110,7 +112,7 @@ export class FirstPanelComponent implements OnInit {
           this.latitudeStart = position.coords.latitude;
           this.longitudeStart = position.coords.longitude;
           this.LatLng = {lat: this.latitudeStart, lng: this.longitudeStart};
-
+          this.LatLngBounds = new google.maps.LatLngBounds();
           // Change name coords addres to name place
           this.geocoder.geocode({'location': this.LatLng}, (results, status) => {
             if (status === 'OK') {
@@ -125,21 +127,22 @@ export class FirstPanelComponent implements OnInit {
           });
 
            if (this.currentPosition === false && this.positionEnd === false) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
-            console.log('ff1');
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
           }
 
           if (this.positionStart === true && this.positionEnd === true) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-            new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
-            console.log('ff2');
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
           }
 
           if (this.positionEnd === true) {
-            this.LatLngBounds = new google.maps.LatLngBounds( new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
-            new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-             );
-            console.log('ff3');
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+          }
+
+          if (this.positionEnd === false && this.positionStart === true) {
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
           }
 
           this.userCoords = { latStart: this.latitudeStart, lngStart: this.longitudeStart,
@@ -166,7 +169,7 @@ export class FirstPanelComponent implements OnInit {
           // set latitude, longitude and zoom
           this.latitudeStart = place.geometry.location.lat();
           this.longitudeStart = place.geometry.location.lng();
-
+          this.LatLngBounds = new google.maps.LatLngBounds();
           // Route beetwen markers
           //   this.dir = {
           //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
@@ -174,14 +177,12 @@ export class FirstPanelComponent implements OnInit {
           // };
           this.currentPosition = false;
           if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length === 0) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
-            console.log('ff1');
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
           }
 
           if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
-            this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-            new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
-            console.log('ff2');
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+            this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
           }
 
         });
@@ -210,6 +211,7 @@ export class FirstPanelComponent implements OnInit {
             // set latitude, longitude and zoom
             this.latitudeEnd = place.geometry.location.lat();
             this.longitudeEnd = place.geometry.location.lng();
+            this.LatLngBounds = new google.maps.LatLngBounds();
             // Route beetwen markers
             //   this.dir = {
             //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
@@ -217,24 +219,20 @@ export class FirstPanelComponent implements OnInit {
             // };
 
             if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
-              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
-              console.log('ff1End');
-            }
+              this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
+
+                        }
 
             if (this.searchElementStartRef.nativeElement.value.length !== 0 &&
                 this.searchElementEndRef.nativeElement.value.length !== 0 && this.currentPosition === false) {
-              this.LatLngBounds = new google.maps.LatLngBounds(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
-              new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
-              console.log('ff2End');
+                  this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+                  this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
             }
 
             if (this.positionStart === true) {
-              this.LatLngBounds = new google.maps.LatLngBounds( new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd),
-              new google.maps.LatLng(this.latitudeStart, this.longitudeStart),
-             );
-              console.log('ff3End');
+              this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
+              this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));
             }
-
 
           });
 
@@ -287,9 +285,10 @@ export class FirstPanelComponent implements OnInit {
 
   }
 
-
   addPeople() {
     this.people = this.inputPeople.nativeElement.value;
     this.userService.addPeople(this.people);
   }
 }
+
+
