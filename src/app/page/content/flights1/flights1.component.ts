@@ -17,7 +17,7 @@ export class Flights1Component implements OnInit, AfterViewInit {
   public dataSource;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public choosedInBoundFlight;
+  public choosedOutBoundFlight;
   public started: boolean;
 
   displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
@@ -45,19 +45,21 @@ export class Flights1Component implements OnInit, AfterViewInit {
 
 
   click(event) {
-    this.choosedInBoundFlight = event;
-    console.log(this.choosedInBoundFlight);
+    this.choosedOutBoundFlight = event;
+    console.log(this.choosedOutBoundFlight);
   }
 
   next() {
-    // if (this.choosedInBoundFlight) {
-    //   this.started = true;
-    //   this.userService.addInBoundFlight(this.choosedInBoundFlight);
-    //   this.userService.getOutBoundFlights();
-    //   this.userService.isOutBoundFlightSubject.asObservable().subscribe(message => {
-    //     if (message === true) {  this.router.navigate(['flights1']); }
-    //   });
-    // }
+     if (this.choosedOutBoundFlight) {
+       this.started = true;
+       this.userService.addOutBoundFlight(this.choosedOutBoundFlight);
+       this.userService.getCars().subscribe();
+
+       this.userService.isCars.asObservable().subscribe(message => {
+        if (message === true) {  this.router.navigate(['cars']); }
+      });
+
+     }
   }
 
   createTable() {

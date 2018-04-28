@@ -6,17 +6,20 @@ import { Dates } from './shared/dates';
 import { Airport } from './shared/airport';
 import { Subject } from 'rxjs/Subject';
 import { Results } from './shared/Results';
+import { ProviderCar } from './shared/provider-car';
+import { Car } from './shared/car';
 
 @Injectable()
 export class UserService implements OnInit {
 
-  private user: User;
+  public user: User;
   private userId: number;
   public isAirports: boolean;
   public subject1 = new Subject<Boolean>();
   public subject2 = new Subject<Boolean>();
   public isOutBoundFlightSubject = new Subject<Boolean>();
   public isInBoundFlightSubject = new Subject<Boolean>();
+  public isCars = new Subject<Boolean>();
   public resultsFlights: Results[];
 
   constructor(private http: HttpClient) {
@@ -46,8 +49,45 @@ export class UserService implements OnInit {
     this.user.setInBoundFlight(flight);
   }
 
+  addOutBoundFlight(flight) {
+    this.user.setOutBoundFlight(flight);
+  }
+
   getChoosedAirport() {
     return this.user.choosedAirport;
+
+  }
+
+  getCars() {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get('http://api.sandbox.amadeus.com/v1.2/cars/search-circle?pick_up=' + this.user.dates.startDate
+    + '&drop_off=' + this.user.dates.endDate + '&latitude=' + this.user.userCoords.latEnd
+    + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT')
+    .map((response: Response) => {
+      const data = response.results;
+      for (const p of data) {
+
+        const providerName = p.provider.company_name;
+        const location = p.location;
+        const address = {street: p.address.line1, city: p.address.city};
+        const cars = p.cars;
+
+        const carTemp = new Array<Car>();
+
+        for (const c of p.cars) {
+          const transmission = c.vehicle_info.transmission;
+          const air_conditioning = c.vehicle_info.air_conditioning;
+          const category = c.vehicle_info.category;
+          const type = c.vehicle_info.type;
+          const fuel = c.vehicle_info.fuel;
+          const cost = c.estimated_total.amount;
+          carTemp.push(new Car(transmission, fuel, air_conditioning, category, type, cost));
+        }
+        this.user.provider.push(new ProviderCar(providerName, location, address, carTemp));
+      }
+      this.isCars.next(true);
+    }
+  );
   }
 
   getAirports() {

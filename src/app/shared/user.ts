@@ -1,6 +1,7 @@
 import { userCoords } from './userCoords';
 import { Dates } from './dates';
 import { Airport } from './airport';
+import { ProviderCar } from './provider-car';
 
 export class User {
 
@@ -12,6 +13,8 @@ export class User {
     public endAirport: Airport;
     public choosedAirport;
     public choosedInBoundFlight;
+    public choosedOutBoundFlight;
+    public provider: ProviderCar[];
 
     constructor() {
         this.id = 0;
@@ -19,6 +22,7 @@ export class User {
         this.people = 0;
         this.dates = new Dates(new Date(), new Date());
         this.airports = new Array<Airport>();
+        this.provider = new Array<ProviderCar>();
     }
 
     public setId(id) {
@@ -41,6 +45,10 @@ export class User {
         this.airports = airports;
     }
 
+    public addAirport(airport) {
+        this.airports.push(airport);
+    }
+
     public setChoosedAirport(airport) {
         this.choosedAirport = airport;
     }
@@ -48,6 +56,10 @@ export class User {
     public setInBoundFlight(flight) {
       this.choosedInBoundFlight = flight;
   }
+
+  public setOutBoundFlight(flight) {
+    this.choosedOutBoundFlight = flight;
+}
 
     public setEndAirport(airport: Airport[]) {
         const tab = new Array();

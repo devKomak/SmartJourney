@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../users.service';
+import { Provider } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-car',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarComponent implements OnInit {
 
-  constructor() { }
+  providers: Provider[];
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.providers = this.userService.user.provider;
   }
 
 }
