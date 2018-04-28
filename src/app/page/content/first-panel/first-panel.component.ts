@@ -113,16 +113,13 @@ export class FirstPanelComponent implements OnInit {
           this.longitudeStart = position.coords.longitude;
           this.LatLng = {lat: this.latitudeStart, lng: this.longitudeStart};
           this.LatLngBounds = new google.maps.LatLngBounds();
+
           // Change name coords addres to name place
           this.geocoder.geocode({'location': this.LatLng}, (results, status) => {
             if (status === 'OK') {
               this.text = results[0].formatted_address;
               this.valueStart = this.text;
-              // Route beetwen markers
-              // this.dir = {
-              //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
-              //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
-              // };
+
             }
           });
 
@@ -160,21 +157,15 @@ export class FirstPanelComponent implements OnInit {
       const autocomplete = new google.maps.places.Autocomplete(this.searchElementStartRef.nativeElement);
       autocomplete.addListener('place_changed', () => {
         this.ngZone.run(() => {
-          // get the place result
+
           const place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          // verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          // set latitude, longitude and zoom
           this.latitudeStart = place.geometry.location.lat();
           this.longitudeStart = place.geometry.location.lng();
           this.LatLngBounds = new google.maps.LatLngBounds();
-          // Route beetwen markers
-          //   this.dir = {
-          //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
-          //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
-          // };
+
           this.currentPosition = false;
           if (this.searchElementStartRef.nativeElement.value.length !== 0 && this.searchElementEndRef.nativeElement.value.length === 0) {
             this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeStart, this.longitudeStart));
@@ -195,28 +186,20 @@ export class FirstPanelComponent implements OnInit {
       });
     });
 
-      // load Places Autocomplete END
+    // load End Places Autocomplete
       this.mapsAPILoader.load().then(() => {
         const autocomplete1 = new google.maps.places.Autocomplete(this.searchElementEndRef.nativeElement);
         autocomplete1.addListener('place_changed', () => {
           this.ngZone.run(() => {
-            // get the place result
             const place: google.maps.places.PlaceResult = autocomplete1.getPlace();
 
-            // verify result
             if (place.geometry === undefined || place.geometry === null) {
               return;
             }
 
-            // set latitude, longitude and zoom
             this.latitudeEnd = place.geometry.location.lat();
             this.longitudeEnd = place.geometry.location.lng();
             this.LatLngBounds = new google.maps.LatLngBounds();
-            // Route beetwen markers
-            //   this.dir = {
-            //   origin: { lat: this.latitudeStart, lng: this.longitudeStart },
-            //   destination: { lat: this.latitudeEnd, lng: this.longitudeEnd }
-            // };
 
             if (this.searchElementStartRef.nativeElement.value.length === 0 && this.searchElementEndRef.nativeElement.value.length !== 0) {
               this.LatLngBounds.extend(new google.maps.LatLng(this.latitudeEnd, this.longitudeEnd));

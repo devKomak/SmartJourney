@@ -52,7 +52,7 @@ export class UserService implements OnInit {
 
   getAirports() {
     // tslint:disable-next-line:max-line-length
-    const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude='
+    return this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude='
     + this.user.userCoords.latStart + '&longitude=' + this.user.userCoords.lngStart)
     .subscribe(data => {
       this.user.setAirports(data);

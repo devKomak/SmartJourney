@@ -50,7 +50,6 @@ export class User {
   }
 
     public setEndAirport(airport: Airport[]) {
-        console.log(airport);
         const tab = new Array();
 
         for (let i = 0; i < airport.length; i++) {
@@ -62,7 +61,6 @@ export class User {
             if (airport[i].distance === min) { this.endAirport = airport[i]; }
         }
 
-        console.log(this.endAirport);
 
     }
 
