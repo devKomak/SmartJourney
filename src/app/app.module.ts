@@ -38,7 +38,9 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { FlightsComponent } from './page/content/flights/flights.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import { Flights1Component } from './page/content/flights1/flights1.component';
-import { CarComponent } from './page/content/car/car.component';
+import { CarsComponent } from './page/content/cars/cars.component';
+import { CarComponent } from './page/content/cars/car/car.component';
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'YYYY-MM-DD',
@@ -67,6 +69,7 @@ export const MY_FORMATS = {
     PageComponent,
     FlightsComponent,
     Flights1Component,
+    CarsComponent,
     CarComponent
 
   ],

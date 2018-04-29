@@ -63,7 +63,7 @@ export class UserService implements OnInit {
     return this.http.get('http://api.sandbox.amadeus.com/v1.2/cars/search-circle?pick_up=' + this.user.dates.startDate
     + '&drop_off=' + this.user.dates.endDate + '&latitude=' + this.user.userCoords.latEnd
     + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT')
-    .map((response: Response) => {
+    .map((response: any) => {
       const data = response.results;
       for (const p of data) {
 

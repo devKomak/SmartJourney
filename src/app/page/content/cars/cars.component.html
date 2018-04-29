@@ -1,0 +1,32 @@
+  <div class="py-5" style="background-image: url(&quot;https://images.pexels.com/photos/62623/wing-plane-flying-airplane-62623.jpeg&quot;); background-repeat: repeat;">
+    <div class="container">
+      <div class="row"> </div>
+      <div class="row">
+        <div class="col-md-12 ">
+          <div class="card">
+            <div class="card-body  ">
+              <h1 class="" >Choose car</h1>
+              <div *ngFor="let provider of temp|slice:0:show;let i=index;let cP=count" >
+                      <div class="card-header"> {{provider[0]}}</div>
+                        <div class="card-body bg-light">
+                          <h4>{{provider[1].providerName}}</h4>
+                          <h6 class="text-muted">{{provider[1].address.street}}, {{provider[1].address.city}}</h6>
+                          <p>Tranmsission: {{provider[2].tranmission}}
+                            <br>
+                            Fuel: {{provider[2].fuel}}
+                            <br>
+                            Air conditioning: {{provider[2].air_conditioning}}
+                            <br>
+                            Category: {{provider[2].category}}
+                            <br>
+                            Type: {{provider[2].type}}
+                          </p>
+                          <button type="button" class="btn-success" >Get this car</button>
+                      </div>
+                    </div>
+                    <button type="button" class="btn-info" (click)="showValue()" >Show more</button>
+                </div>
+              </div>
+            </div>
+
+

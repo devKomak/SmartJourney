@@ -8,7 +8,7 @@ import { LoginComponent } from './page/login-component/login.component';
 import { PageComponent } from './page/page.component';
 import { FlightsComponent } from './page/content/flights/flights.component';
 import { Flights1Component } from './page/content/flights1/flights1.component';
-import { CarComponent } from './page/content/car/car.component';
+import { CarsComponent } from './page/content/cars/cars.component';
 
 
 const appRoutes: Routes = [
@@ -18,7 +18,7 @@ const appRoutes: Routes = [
             {path: 'airports', component: AirportsComponent},
             {path: 'flights', component: FlightsComponent},
             {path: 'flights1', component: Flights1Component},
-            {path: 'cars', component: CarComponent}
+            {path: 'cars', component: CarsComponent}
         ]}
     ]},
 
