@@ -21,7 +21,6 @@ import { LogoComponent } from './page/logo/logo.component';
 import { NavigationComponent } from './page/navigation/navigation.component';
 import { ContentComponent } from './page/content/content.component';
 import { FooterComponent } from './page/footer/footer.component';
-import { AutocompleteComponent } from './page/content/first-panel/autocomplete/autocomplete.component';
 import { FirstPanelComponent } from './page/content/first-panel/first-panel.component';
 import { AirportsComponent } from './page/content/airports/airports.component';
 import { LoginComponent } from './page/login-component/login.component';
@@ -39,7 +38,6 @@ import { FlightsComponent } from './page/content/flights/flights.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
-import { CarComponent } from './page/content/cars/car/car.component';
 import { environment } from '../environments/environment';
 
 export const MY_FORMATS = {
@@ -61,7 +59,6 @@ export const MY_FORMATS = {
     NavigationComponent,
     ContentComponent,
     FooterComponent,
-    AutocompleteComponent,
     FirstPanelComponent,
     AirportsComponent,
     LoginComponent,
@@ -71,7 +68,6 @@ export const MY_FORMATS = {
     FlightsComponent,
     Flights1Component,
     CarsComponent,
-    CarComponent
 
   ],
   imports: [
