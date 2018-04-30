@@ -1,7 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "smart-journey"
+    "name": "smart-journey",
+    "ejected": false
+
   },
   "apps": [
     {
@@ -19,20 +21,22 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-           "../node_modules/mdbootstrap/css/mdb.min.css",
-           "../node_modules/mdbootstrap/css/bootstrap.min.css",
-           "styles.css",
-           "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
+        "../node_modules/mdbootstrap/css/mdb.min.css",
+        "../node_modules/mdbootstrap/css/bootstrap.min.css",
+        "styles.css",
+        "../node_modules/snazzy-info-window/dist/snazzy-info-window.css"
       ],
       "scripts": [
-            "../node_modules/mdbootstrap/js/jquery-3.2.1.min.js",
-            "../node_modules/mdbootstrap/js/popper.min.js",
-            "../node_modules/mdbootstrap/js/mdb.min.js",
-            "../node_modules/mdbootstrap/js/bootstrap.min.js"],
+        "../node_modules/mdbootstrap/js/jquery-3.2.1.min.js",
+        "../node_modules/mdbootstrap/js/popper.min.js",
+        "../node_modules/mdbootstrap/js/mdb.min.js",
+        "../node_modules/mdbootstrap/js/bootstrap.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "prod": "environments/environment.prod.ts",
+        "local": "environments/.env"
       }
     }
   ],
@@ -62,6 +66,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }
