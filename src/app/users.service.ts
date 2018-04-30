@@ -63,7 +63,7 @@ export class UserService implements OnInit {
 
   getCars() {
     // tslint:disable-next-line:max-line-length
-    return this.http.get('http://api.sandbox.amadeus.com/v1.2/cars/search-circle?pick_up=' + this.user.dates.startDate
+    return this.http.get('https://api.sandbox.amadeus.com/v1.2/cars/search-circle?pick_up=' + this.user.dates.startDate
     + '&drop_off=' + this.user.dates.endDate + '&latitude=' + this.user.userCoords.latEnd
     + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=' + this.amadeusKey)
     .map((response: any) => {
