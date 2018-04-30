@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmDirectionModule } from 'agm-direction';
 
 import { AngularFireModule } from 'angularfire2';
-import { environment } from '../environments/environment';
+
 import { PageComponent } from './page/page.component';
 import { LogoComponent } from './page/logo/logo.component';
 import { NavigationComponent } from './page/navigation/navigation.component';
@@ -40,6 +40,7 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { CarComponent } from './page/content/cars/car/car.component';
+import { environment } from '../environments/environment';
 
 export const MY_FORMATS = {
   parse: {
