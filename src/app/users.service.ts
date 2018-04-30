@@ -8,10 +8,12 @@ import { Subject } from 'rxjs/Subject';
 import { Results } from './shared/Results';
 import { ProviderCar } from './shared/provider-car';
 import { Car } from './shared/car';
+import { environment } from '../environments/environment.prod';
 
 @Injectable()
 export class UserService implements OnInit {
 
+  private amadeusKey;
   public user: User;
   private userId: number;
   public isAirports: boolean;
@@ -25,6 +27,7 @@ export class UserService implements OnInit {
   constructor(private http: HttpClient) {
     this.user = new User();
     this.isAirports = false;
+    this.amadeusKey = environment.amadeus_API_KEY;
   }
 
   ngOnInit() {
@@ -62,7 +65,7 @@ export class UserService implements OnInit {
     // tslint:disable-next-line:max-line-length
     return this.http.get('http://api.sandbox.amadeus.com/v1.2/cars/search-circle?pick_up=' + this.user.dates.startDate
     + '&drop_off=' + this.user.dates.endDate + '&latitude=' + this.user.userCoords.latEnd
-    + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT')
+    + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=' + this.amadeusKey)
     .map((response: any) => {
       const data = response.results;
       for (const p of data) {
@@ -92,7 +95,7 @@ export class UserService implements OnInit {
 
   getAirports() {
     // tslint:disable-next-line:max-line-length
-    return this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude='
+    return this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=' + this.amadeusKey + '&latitude='
     + this.user.userCoords.latStart + '&longitude=' + this.user.userCoords.lngStart)
     .subscribe(data => {
       this.user.setAirports(data);
@@ -102,7 +105,7 @@ export class UserService implements OnInit {
 
   getAirportEnd() {
     // tslint:disable-next-line:max-line-length
-    const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&latitude='
+    const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=' + this.amadeusKey + '&latitude='
     + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd)
     .subscribe((data: Airport[]) => {
       this.user.setEndAirport(data);
@@ -128,7 +131,7 @@ export class UserService implements OnInit {
     // .subscribe(data  => {
     // });
 
-    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
+    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
     +  '&number_of_results=35')
     .subscribe((data: any)  => {
@@ -152,7 +155,7 @@ export class UserService implements OnInit {
     // .subscribe(data  => {
     // });
 
-    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
+    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     +  this.user.endAirport.airport + '&destination=' + originName + '&departure_date=' + this.user.dates.endDate
     +  '&number_of_results=35')
     .subscribe((data: any)  => {

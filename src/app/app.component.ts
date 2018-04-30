@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './users.service';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
+
+const AmadeusKey = environment.amadeus_API_KEY;
 
 @Component({
   selector: 'app-root',
@@ -9,13 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
   providers: [UserService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 
 }
