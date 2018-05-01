@@ -31,11 +31,13 @@ export class CarsComponent implements OnInit {
     this.prices = new Array();
     this.temp = new Array();
 
+
     for (let i = 0; i < this.providers.length; i++) {
       for (let j = 0; j < this.providers[i].cars.length; j++) {
         this.prices.push(this.providers[i].cars[j].cost);
       }
     }
+
     this.prices.sort((a: number, b: number) => {
       return a - b;
     });
@@ -44,7 +46,6 @@ export class CarsComponent implements OnInit {
   });
 
     this.prices = unique;
-    console.log(this.providers);
     let d = 0;
     for (let k = 0; k < this.prices.length; k++) {
       for (let i = 0; i < this.providers.length; i++) {
@@ -60,6 +61,9 @@ export class CarsComponent implements OnInit {
         }
         }
       }
+
+      console.log(this.temp);
+
   }
 
 }

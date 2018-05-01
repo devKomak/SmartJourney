@@ -57,7 +57,10 @@ export class Flights1Component implements OnInit, AfterViewInit {
 
        this.userService.isCars.asObservable().subscribe(message => {
         if (message === true) {  this.router.navigate(['cars']); }
-      });
+      },
+    error => {
+      this.router.navigate(['error']);
+    });
 
      }
   }

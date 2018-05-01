@@ -39,6 +39,7 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { environment } from '../environments/environment';
+import { ErrorComponent } from './page/error/error.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -68,6 +69,7 @@ export const MY_FORMATS = {
     FlightsComponent,
     Flights1Component,
     CarsComponent,
+    ErrorComponent,
 
   ],
   imports: [

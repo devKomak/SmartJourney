@@ -259,6 +259,7 @@ export class FirstPanelComponent implements OnInit {
         this.isEndAirport = message;
         if (this.isAirports && this.isEndAirport) { this.router.navigate(['airports']); }
       });
+
     }
   }
 

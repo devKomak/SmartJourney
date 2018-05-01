@@ -9,6 +9,7 @@ import { Results } from './shared/Results';
 import { ProviderCar } from './shared/provider-car';
 import { Car } from './shared/car';
 import { environment } from '../environments/environment.prod';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -24,7 +25,7 @@ export class UserService implements OnInit {
   public isCars = new Subject<Boolean>();
   public resultsFlights: Results[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.user = new User();
     this.isAirports = false;
     this.amadeusKey = environment.amadeus_API_KEY;
@@ -65,7 +66,7 @@ export class UserService implements OnInit {
     // tslint:disable-next-line:max-line-length
     return this.http.get('https://api.sandbox.amadeus.com/v1.2/cars/search-circle?pick_up=' + this.user.dates.startDate
     + '&drop_off=' + this.user.dates.endDate + '&latitude=' + this.user.userCoords.latEnd
-    + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=' + this.amadeusKey)
+    + '&longitude=' + this.user.userCoords.lngEnd + '&apikey=' + this.amadeusKey + '&currency=USD')
     .map((response: any) => {
       const data = response.results;
       for (const p of data) {
@@ -100,7 +101,8 @@ export class UserService implements OnInit {
     .subscribe(data => {
       this.user.setAirports(data);
       this.subject1.next(true);
-    });
+    }
+  );
   }
 
   getAirportEnd() {
@@ -110,6 +112,9 @@ export class UserService implements OnInit {
     .subscribe((data: Airport[]) => {
       this.user.setEndAirport(data);
       this.subject2.next(true);
+    },
+    error => {
+        this.router.navigate(['error']);
     });
   }
 
@@ -137,6 +142,9 @@ export class UserService implements OnInit {
     .subscribe((data: any)  => {
       this.resultsFlights = data.results;
       if (this.resultsFlights) { this.isInBoundFlightSubject.next(true); console.log(this.resultsFlights); }
+    },
+    error => {
+        this.router.navigate(['error']);
     });
 
   }
@@ -161,6 +169,9 @@ export class UserService implements OnInit {
     .subscribe((data: any)  => {
       this.resultsFlights = data.results;
       if (this.resultsFlights) { this.isOutBoundFlightSubject.next(true); console.log(this.resultsFlights); }
+    },
+    error => {
+        this.router.navigate(['error']);
     });
 
   }

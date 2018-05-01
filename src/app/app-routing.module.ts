@@ -9,6 +9,7 @@ import { PageComponent } from './page/page.component';
 import { FlightsComponent } from './page/content/flights/flights.component';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
+import { ErrorComponent } from './page/error/error.component';
 
 
 const appRoutes: Routes = [
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
         ]}
     ]},
 
+    {path: 'error', component: ErrorComponent},
     {path: 'login', component: LoginComponent}
 
   ];

@@ -1,32 +1,52 @@
-  <div class="py-5" style="background-image: url(&quot;https://images.pexels.com/photos/62623/wing-plane-flying-airplane-62623.jpeg&quot;); background-repeat: repeat;">
-    <div class="container">
-      <div class="row"> </div>
-      <div class="row">
-        <div class="col-md-12 ">
-          <div class="card">
-            <div class="card-body  ">
-              <h1 class="" >Choose car</h1>
-              <div *ngFor="let provider of temp|slice:0:show;let i=index;let cP=count" >
-                      <div class="card-header"> {{provider[0]}}</div>
-                        <div class="card-body bg-light">
-                          <h4>{{provider[1].providerName}}</h4>
-                          <h6 class="text-muted">{{provider[1].address.street}}, {{provider[1].address.city}}</h6>
-                          <p>Tranmsission: {{provider[2].tranmission}}
-                            <br>
-                            Fuel: {{provider[2].fuel}}
-                            <br>
-                            Air conditioning: {{provider[2].air_conditioning}}
-                            <br>
-                            Category: {{provider[2].category}}
-                            <br>
-                            Type: {{provider[2].type}}
-                          </p>
-                          <button type="button" class="btn-success" >Get this car</button>
+            <div class="py-5" style="background-image: url(&quot;https://images.pexels.com/photos/62623/wing-plane-flying-airplane-62623.jpeg&quot;); background-repeat: repeat;">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 ">
+                      <div class="card">
+                        <div class="card-body ">
+                        <h1 class="" >Choose car</h1>
+                          <div *ngFor="let provider of temp|slice:0:show;let i=index;let cP=count" >
+                            <div class="row">
+                              <div class="col-md-12">
+                            <div class="card">
+                              <div class="card-body ">
+                                <div class="card-body border-dark mb-3">
+                                  <div class="row">
+                                    <div class="col-md-5">
+                                    <h4>{{provider[1].providerName}}</h4>
+                                    <h6 class="text-muted">{{provider[1].address.street}}, {{provider[1].address.city}}</h6>
+                                    <span class="glyphicon glyphicon-usd"></span> <p class="text-warning">Price : {{provider[0] | currency:'USD'}}</p>
+                                    <br>
+                                    <ul class="list-group list-group-flush">
+                                      <li class="list-group-item active">Information about car</li>
+                                      <li class="list-group-item">Tranmsission: {{provider[2].tranmission}}</li>
+                                      <li class="list-group-item">Fuel: {{provider[2].fuel}}</li>
+                                      <li class="list-group-item">Air conditioning: {{provider[2].air_conditioning}}</li>
+                                      <li class="list-group-item">Category: {{provider[2].category}}</li>
+                                      <li class="list-group-item">Type: {{provider[2].type}}</li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-md-7">
+                                    <img src="https://images.freeimages.com/images/large-previews/e8e/limosine-1450334.jpg" class="img-fluid">
+                                </div>
+                                </div>
+                                <a class="btn btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Take this car</a>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+
+                        </div>
+
+                        <a class="btn btn-block btn-primary" (click)="showValue()" ><span class="glyphicon glyphicon-search"></span> Show more</a>
                       </div>
                     </div>
-                    <button type="button" class="btn-info" (click)="showValue()" >Show more</button>
-                </div>
-              </div>
-            </div>
+                  </div>
+</div>
+</div>
+</div>
+
+
 
 
