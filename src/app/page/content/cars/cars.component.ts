@@ -12,6 +12,7 @@ export class CarsComponent implements OnInit {
   providers: Provider[];
   public providerIndex: number[];
   public carIndex: number[];
+  public choosedCar;
   prices: Array<Number>;
   temp;
   isCar;
@@ -23,6 +24,12 @@ export class CarsComponent implements OnInit {
 
   showValue() {
     this.show += 5;
+  }
+
+  takeCar(car: any) {
+    this.choosedCar = car;
+    console.log(this.choosedCar);
+
   }
 
   ngOnInit() {
