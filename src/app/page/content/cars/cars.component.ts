@@ -26,6 +26,10 @@ export class CarsComponent implements OnInit {
     this.show += 5;
   }
 
+  showValueLess() {
+    if (this.show >= 10)  {this.show -= 5; }
+  }
+
   takeCar(car: any) {
     this.choosedCar = car;
     console.log(this.choosedCar);
