@@ -40,6 +40,7 @@ import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { environment } from '../environments/environment';
 import { ErrorComponent } from './page/error/error.component';
+import { HotelsComponent } from './page/content/hotels/hotels.component';
 
 export const MY_FORMATS = {
   parse: {
@@ -70,6 +71,7 @@ export const MY_FORMATS = {
     Flights1Component,
     CarsComponent,
     ErrorComponent,
+    HotelsComponent,
 
   ],
   imports: [
