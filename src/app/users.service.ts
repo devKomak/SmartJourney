@@ -34,6 +34,10 @@ export class UserService implements OnInit {
   ngOnInit() {
   }
 
+  getUser() {
+    return this.user;
+  }
+
   addUserCoords(coords: userCoords) {
     this.user.setUserCoords(coords);
   }
@@ -90,6 +94,10 @@ export class UserService implements OnInit {
         this.user.provider.push(new ProviderCar(providerName, location, address, carTemp));
       }
       this.isCars.next(true);
+    },
+    error => {
+      console.log('error');
+      this.router.navigate(['error']);
     }
   );
   }
@@ -138,7 +146,7 @@ export class UserService implements OnInit {
 
     const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
-    +  '&number_of_results=35')
+    +  '&number_of_results=35' + '&currency=USD')
     .subscribe((data: any)  => {
       this.resultsFlights = data.results;
       if (this.resultsFlights) { this.isInBoundFlightSubject.next(true); console.log(this.resultsFlights); }
@@ -165,7 +173,7 @@ export class UserService implements OnInit {
 
     const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     +  this.user.endAirport.airport + '&destination=' + originName + '&departure_date=' + this.user.dates.endDate
-    +  '&number_of_results=35')
+    +  '&number_of_results=35' + '&currency=USD')
     .subscribe((data: any)  => {
       this.resultsFlights = data.results;
       if (this.resultsFlights) { this.isOutBoundFlightSubject.next(true); console.log(this.resultsFlights); }

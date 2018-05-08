@@ -2,6 +2,7 @@ import { userCoords } from './userCoords';
 import { Dates } from './dates';
 import { Airport } from './airport';
 import { ProviderCar } from './provider-car';
+import { Flights } from './flights';
 
 export class User {
 
@@ -23,6 +24,9 @@ export class User {
         this.dates = new Dates(new Date(), new Date());
         this.airports = new Array<Airport>();
         this.provider = new Array<ProviderCar>();
+        this.choosedAirport = {};
+        this.choosedInBoundFlight = {};
+        this.choosedOutBoundFlight = {};
     }
 
     public setId(id) {

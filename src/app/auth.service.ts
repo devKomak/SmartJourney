@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-    user: Observable<firebase.User>;
+    userAuth: Observable<firebase.User>;
     userDetails: firebase.User = null;
 
     constructor(private afAuth: AngularFireAuth, private router: Router) {
-        this.user = afAuth.authState;
-  this.user.subscribe(
+        this.userAuth = afAuth.authState;
+  this.userAuth.subscribe(
           (user) => {
             if (user) {
               this.userDetails = user;
@@ -31,7 +31,7 @@ export class AuthService {
 
     logout() {
         this.afAuth.auth.signOut();
-        this.user = null;
+        this.userAuth = null;
    }
 
 }

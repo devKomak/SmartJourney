@@ -42,7 +42,8 @@ import { environment } from '../environments/environment';
 import { ErrorComponent } from './page/error/error.component';
 import { HotelsComponent } from './page/content/hotels/hotels.component';
 import { SummaryComponent } from './page/content/summary/summary.component';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import { CdkStepperModule } from '@angular/cdk/stepper';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'YYYY-MM-DD',
@@ -78,6 +79,7 @@ export const MY_FORMATS = {
   ],
   imports: [
     BrowserModule,
+    CdkStepperModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
@@ -87,6 +89,7 @@ export const MY_FORMATS = {
     MatPaginatorModule,
     MatRippleModule,
     MatDividerModule,
+    MatStepperModule,
     MatTableModule,
     MatSortModule,
     MatProgressBarModule,

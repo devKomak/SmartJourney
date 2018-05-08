@@ -27,7 +27,7 @@
 
                       <!-- Position Column -->
                       <ng-container matColumnDef="price">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Price in $ </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element[0].price | currency:'USD'}} </mat-cell>
                       </ng-container>
 
@@ -41,12 +41,12 @@
                             <!-- Position Column -->
                          <ng-container matColumnDef="departs_at">
                             <mat-header-cell *matHeaderCellDef mat-sort-header> Departs At </mat-header-cell>
-                            <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].departs_at">{{a}}</p> </mat-cell>
+                            <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].departs_at">{{a | date:'medium'}}</p> </mat-cell>
                           </ng-container>
 
                           <ng-container matColumnDef="arrives_at">
                               <mat-header-cell *matHeaderCellDef mat-sort-header> Arrives At </mat-header-cell>
-                              <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].arrives_at">{{a}}</p> </mat-cell>
+                              <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].arrives_at">{{a| date:'medium'}}</p> </mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="origin">

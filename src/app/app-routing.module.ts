@@ -10,6 +10,7 @@ import { FlightsComponent } from './page/content/flights/flights.component';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { ErrorComponent } from './page/error/error.component';
+import { SummaryComponent } from './page/content/summary/summary.component';
 
 
 const appRoutes: Routes = [
@@ -19,10 +20,11 @@ const appRoutes: Routes = [
             {path: 'airports', component: AirportsComponent},
             {path: 'flights', component: FlightsComponent},
             {path: 'flights1', component: Flights1Component},
-            {path: 'cars', component: CarsComponent}
+            {path: 'cars', component: CarsComponent},
+            {path: 'summary', component: SummaryComponent}
         ]}
     ]},
-
+    {path: 'summary', component: SummaryComponent},
     {path: 'error', component: ErrorComponent},
     {path: 'login', component: LoginComponent}
 

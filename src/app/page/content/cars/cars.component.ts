@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../users.service';
 import { Provider } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cars',
@@ -18,7 +19,7 @@ export class CarsComponent implements OnInit {
   isCar;
   show = 5;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -33,6 +34,7 @@ export class CarsComponent implements OnInit {
   takeCar(car: any) {
     this.choosedCar = car;
     console.log(this.choosedCar);
+    this.router.navigate(['summary']);
 
   }
 

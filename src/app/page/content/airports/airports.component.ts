@@ -87,12 +87,6 @@ next() {
     this.markers = new Array();
     const coord = this.userService.getUserCoords();
 
-    this.markers.push({
-      lat: coord.latStart,
-      lng: coord.lngStart,
-      label: '0'
-    });
-
     for (let i = 0; i < tab.length; i ++) {
       this.newTab.push(
         {
