@@ -11,6 +11,9 @@ import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { ErrorComponent } from './page/error/error.component';
 import { SummaryComponent } from './page/content/summary/summary.component';
+import { RegisterComponent } from './page/register-component/register.component';
+import { AccountComponent } from './page/content/account/account.component';
+import { AccountDetailComponent } from './page/content/account/account-detail/account-detail.component';
 
 
 const appRoutes: Routes = [
@@ -21,12 +24,15 @@ const appRoutes: Routes = [
             {path: 'flights', component: FlightsComponent},
             {path: 'flights1', component: Flights1Component},
             {path: 'cars', component: CarsComponent},
-            {path: 'summary', component: SummaryComponent}
+            {path: 'summary', component: SummaryComponent},
+            {path: 'account', component: AccountComponent},
+            {path: 'detail/:id', component: AccountDetailComponent}
         ]}
     ]},
     {path: 'summary', component: SummaryComponent},
     {path: 'error', component: ErrorComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent}
 
   ];
 

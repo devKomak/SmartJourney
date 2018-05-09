@@ -4,6 +4,7 @@ import { AuthService } from '../../auth.service';
 import { Observable } from '@firebase/util';
 import * as firebase from 'firebase/app';
 import {AngularFireAuth} from 'angularfire2/auth';
+import { UserService } from '../../users.service';
 
 @Component({
   selector: 'app-navigation',
@@ -12,7 +13,8 @@ import {AngularFireAuth} from 'angularfire2/auth';
 })
 export class NavigationComponent implements OnInit {
   state;
-  constructor(private af: AngularFireAuth, private router: Router, private auth: AuthService) { }
+  constructor(private af: AngularFireAuth, private router: Router, private auth: AuthService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.state = false;
@@ -33,6 +35,15 @@ export class NavigationComponent implements OnInit {
 
   logOut() {
     this.auth.logout();
+    this.router.navigate(['']);
+  }
+
+  saveData() {
+
+  }
+
+  saveData1() {
+
   }
 
 }

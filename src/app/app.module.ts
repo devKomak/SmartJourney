@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmDirectionModule } from 'agm-direction';
 
 import { AngularFireModule } from 'angularfire2';
-
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { PageComponent } from './page/page.component';
 import { LogoComponent } from './page/logo/logo.component';
 import { NavigationComponent } from './page/navigation/navigation.component';
@@ -44,6 +44,8 @@ import { HotelsComponent } from './page/content/hotels/hotels.component';
 import { SummaryComponent } from './page/content/summary/summary.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { CdkStepperModule } from '@angular/cdk/stepper';
+import { AccountComponent } from './page/content/account/account.component';
+import { AccountDetailComponent } from './page/content/account/account-detail/account-detail.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'YYYY-MM-DD',
@@ -75,6 +77,8 @@ export const MY_FORMATS = {
     ErrorComponent,
     HotelsComponent,
     SummaryComponent,
+    AccountComponent,
+    AccountDetailComponent,
 
   ],
   imports: [
@@ -85,6 +89,7 @@ export const MY_FORMATS = {
     MatDatepickerModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+
     MatInputModule,
     MatPaginatorModule,
     MatRippleModule,
@@ -108,7 +113,8 @@ export const MY_FORMATS = {
     AppRoutingModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
 
   ],
   providers: [AuthService,

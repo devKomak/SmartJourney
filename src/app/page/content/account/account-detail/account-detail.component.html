@@ -1,0 +1,128 @@
+<div class="py-5 bg-info" style="background-repeat:repeat;">
+  <div class="container">
+    <div class="row"> </div>
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="card">
+          <div class="card-body ">
+            <h1 class="" >Summary of journey</h1>
+            <div class="card" >
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                      <ng-template matStepLabel>Basics information</ng-template>
+                        Your travel will start on <b>{{user.dates.startDate | date:'full'}}</b> and end on <b>{{user.dates.endDate| date:'full'}}</b><br>
+                        Number of people: <b>{{user.people}}</b> <br>
+                        <b>From: </b>{{nameStart}} <b>To: </b> {{nameEnd}}
+                      <div>
+                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                      </div>
+                      </form>
+                  </mat-step>
+                  <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">
+                      <ng-template matStepLabel="Step 1">Flights</ng-template>
+                      Choosed airport: <b>{{user.choosedAirport.airportName}}</b><br>
+                      Inbound flight: <br>
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Price</th>
+                              <th scope="col">#</th>
+                              <th scope="col">Arrives at</th>
+                              <th scope="col">Departs at</th>
+                              <th scope="col">Flight number</th>
+                              <th scope="col">From airport</th>
+                              <th scope="col">To airport</th>
+                              <th scope="col">Airline</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let flight of user.choosedInBoundFlight[0].airline;let c=index;">
+                              <td *ngIf="c===0" [attr.rowspan]="flight.length+1">{{user.choosedInBoundFlight[0].price | currency:'USD'}}</td>
+                              <th scope="row">{{c+1}}</th>
+                              <td>{{user.choosedInBoundFlight[0].arrives_at[c] | date:'medium'}}</td>
+                              <td>{{user.choosedInBoundFlight[0].departs_at[c]| date:'medium'}}</td>
+                              <td>{{user.choosedInBoundFlight[0].flightNumber[c]}}</td>
+                              <td>{{user.choosedInBoundFlight[0].origin[c]}}</td>
+                              <td>{{user.choosedInBoundFlight[0].destination[c]}}</td>
+                              <td>{{user.choosedInBoundFlight[0].airline[c]}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <br>
+                        Outbound flight: <br>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Price</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Arrives at</th>
+                                <th scope="col">Departs at</th>
+                                <th scope="col">Flight number</th>
+                                <th scope="col">From airport</th>
+                                <th scope="col">To airport</th>
+                                <th scope="col">Airline</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let flight of user.choosedOutBoundFlight[0].airline;let c=index;">
+                                <td *ngIf="c===0" [attr.rowspan]="flight.length+1">{{user.choosedOutBoundFlight[0].price | currency:'USD'}}</td>
+                                <th scope="row">{{c+1}}</th>
+                                <td>{{user.choosedOutBoundFlight[0].arrives_at[c] | date:'medium'}}</td>
+                                <td>{{user.choosedOutBoundFlight[0].departs_at[c]| date:'medium'}}</td>
+                                <td>{{user.choosedOutBoundFlight[0].flightNumber[c]}}</td>
+                                <td>{{user.choosedOutBoundFlight[0].origin[c]}}</td>
+                                <td>{{user.choosedOutBoundFlight[0].destination[c]}}</td>
+                                <td>{{user.choosedOutBoundFlight[0].airline[c]}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    <br>
+                      <div>
+                        <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                      </div>
+                      </form>
+                  </mat-step>
+                  <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">>
+                    <ng-template matStepLabel>Car</ng-template>
+                    You are now done.
+                    <div>
+                        <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                        <button mat-raised-button color="primary" matStepperNext>Next</button>
+                    </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">
+                      <ng-template matStepLabel>Hotels</ng-template>
+                      You are now done.
+                      <div>
+                          <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                          <button mat-raised-button color="primary" matStepperNext>Next</button>
+                      </div>
+                      </form>
+                    </mat-step>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                        <ng-template matStepLabel>Interesting places</ng-template>
+                        You are now done.
+                        <div>
+                            <button mat-raised-button color="warn" matStepperPrevious>Back</button>
+                        </div>
+                        </form>
+                      </mat-step>
+                </mat-horizontal-stepper>
+            </div>
+            <div class="float-right"> <button (click)="back()"  mat-raised-button color="accent">Back</button></div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 p-3 fload-md-left">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

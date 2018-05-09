@@ -10,6 +10,11 @@ import { ProviderCar } from './shared/provider-car';
 import { Car } from './shared/car';
 import { environment } from '../environments/environment.prod';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { jsonEval } from '@firebase/util';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -24,11 +29,19 @@ export class UserService implements OnInit {
   public isInBoundFlightSubject = new Subject<Boolean>();
   public isCars = new Subject<Boolean>();
   public resultsFlights: Results[];
+  public userJourneys;
+  public journeysCollection: AngularFirestoreCollection<any>;
+  public journeyDoc: AngularFirestoreDocument<any>;
+  public journeys: Observable<any>;
+  public journey: Observable<any>;
+  public summaryJourneys;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService, private afs: AngularFirestore) {
+    this.journeysCollection = this.afs.collection('journeys');
     this.user = new User();
     this.isAirports = false;
     this.amadeusKey = environment.amadeus_API_KEY;
+    this.summaryJourneys = [];
   }
 
   ngOnInit() {
@@ -64,6 +77,24 @@ export class UserService implements OnInit {
   getChoosedAirport() {
     return this.user.choosedAirport;
 
+  }
+
+
+  getJourneys(): Observable<any[]> {
+    this.summaryJourneys = [];
+    this.journeys = this.journeysCollection.snapshotChanges().map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data();
+        if (data.data.uid == this.authService.getUid()) {
+                  this.summaryJourneys.push(data.data);
+        }
+      });
+    });
+    return this.journeys;
+  }
+
+  newJourney(user: any) {
+    this.journeysCollection.add(user);
   }
 
   getCars() {
@@ -191,4 +222,9 @@ export class UserService implements OnInit {
   getUserCoords() {
     return this.user.userCoords;
   }
+  }
+
+
+  interface Journey {
+    journey: User;
   }

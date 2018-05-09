@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../users.service';
 import { User } from 'firebase/app';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-summary',
@@ -17,17 +21,35 @@ export class SummaryComponent implements OnInit {
   public nameEnd;
   public LatLng1;
   public LatLng2;
-
+  state;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-  constructor(private userService: UserService, private _formBuilder: FormBuilder) {
+  constructor(private afs: AngularFirestore, private userService: UserService, private _formBuilder: FormBuilder,
+    private af: AngularFireAuth) {
+    this.userService.user.uid = this.af.auth.currentUser.uid;
     this.user = this.userService.getUser();
-    console.log(this.user);
+  }
+
+  saveJourney() {
+    this.userService.user.uid = this.af.auth.currentUser.uid;
+    this.user = this.userService.getUser();
+    const data = JSON.parse(JSON.stringify(this.user));
+    this.userService.newJourney({data});
   }
 
   ngOnInit() {
+
+    this.state = false;
+    this.af.authState.subscribe(auth => {
+      if (auth) {
+        this.state = true;
+      } else {
+        this.state = false;
+      }
+    });
+
     this.geocoder =  new google.maps.Geocoder;
 
     this.LatLng1 = {lat: this.userService.user.userCoords.latStart, lng: this.userService.user.userCoords.lngStart};
@@ -35,6 +57,7 @@ export class SummaryComponent implements OnInit {
           this.geocoder.geocode({'location': this.LatLng1}, (results, status) => {
             if (status === 'OK') {
               this.nameStart = results[0].formatted_address;
+              this.userService.user.nameStarted = this.nameStart;
             }
           });
 
@@ -43,6 +66,7 @@ export class SummaryComponent implements OnInit {
       this.geocoder.geocode({'location': this.LatLng2}, (results, status) => {
         if (status === 'OK') {
           this.nameEnd = results[0].formatted_address;
+          this.userService.user.nameEnded = this.nameEnd;
         }
       });
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import {Location} from '@angular/common';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login-component',
@@ -26,8 +27,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.afService.loginWithGoogle();
+  }
 
-
+  onSignIn(f: NgForm) {
+    this.afService.signInUser(f.value.email, f.value.password);
   }
 
 

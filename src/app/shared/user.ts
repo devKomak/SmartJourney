@@ -16,6 +16,9 @@ export class User {
     public choosedInBoundFlight;
     public choosedOutBoundFlight;
     public provider: ProviderCar[];
+    public uid;
+    public nameStarted;
+    public nameEnded;
 
     constructor() {
         this.id = 0;
@@ -27,6 +30,9 @@ export class User {
         this.choosedAirport = {};
         this.choosedInBoundFlight = {};
         this.choosedOutBoundFlight = {};
+        this.uid = '';
+        this.nameEnded = '';
+        this.nameStarted = '';
     }
 
     public setId(id) {

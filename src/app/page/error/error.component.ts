@@ -13,7 +13,7 @@ export class ErrorComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.router.navigate(['']);
-    }, 7000);
+    }, 10000);
   }
 
 }
