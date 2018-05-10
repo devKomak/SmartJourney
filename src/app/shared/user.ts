@@ -19,6 +19,7 @@ export class User {
     public uid;
     public nameStarted;
     public nameEnded;
+    public choosedCar;
 
     constructor() {
         this.id = 0;
@@ -33,6 +34,7 @@ export class User {
         this.uid = '';
         this.nameEnded = '';
         this.nameStarted = '';
+        this.choosedCar = {};
     }
 
     public setId(id) {

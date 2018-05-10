@@ -1,6 +1,5 @@
 <div class="py-5 bg-info" style="background-repeat:repeat;">
   <div class="container">
-    <div class="row"> </div>
     <div class="row">
       <div class="col-md-12 ">
         <div class="card">
@@ -86,9 +85,30 @@
                       </form>
                   </mat-step>
                   <mat-step [stepControl]="firstFormGroup">
-                      <form [formGroup]="firstFormGroup">>
+                      <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Car</ng-template>
-                    You are now done.
+                    <div class="row">
+                      <div class="col-md-4">
+                        <img class="img-responsive" class="height:250px width:250px img-fluid" src="https://images.freeimages.com/images/large-previews/e8e/limosine-1450334.jpg"/>
+                      </div>
+                      <div class="col-md-4">
+                        <p><b>Price:</b> {{user.choosedCar[0]}} </p>
+                        <p><b>Company name:</b> {{user.choosedCar[1].providerName}}</p>
+                        <p><b>Address:</b>
+                        {{user.choosedCar[1].address.city}}, {{user.choosedCar[1].address.street}}</p>
+                      </div>
+                      <div class="col-md-4">
+                        Information about car:
+                        <ul class="list-group">
+                            <li class="list-group-item">Air conditioning: {{user.choosedCar[2].air_conditioning}}</li>
+                            <li class="list-group-item">Category: {{user.choosedCar[2].category}}</li>
+                            <li class="list-group-item">Fuel: {{user.choosedCar[2].fuel}}</li>
+                            <li class="list-group-item">Transmission: {{user.choosedCar[2].tranmission}}</li>
+                            <li class="list-group-item">Type: {{user.choosedCar[2].type}}</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <br>
                     <div>
                         <button mat-raised-button color="warn" matStepperPrevious>Back</button>
                         <button mat-raised-button color="primary" matStepperNext>Next</button>

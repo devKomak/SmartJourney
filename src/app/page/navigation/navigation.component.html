@@ -12,7 +12,7 @@
           <a class="nav-link" (click)="saveData1()" >Contacts</a>
         </li>
         <li *ngIf="state" class="nav-item">
-          <a class="nav-link" [routerLink]="['/account']" >Your account</a>
+          <a class="nav-link" [routerLink]="['/account']" >My account</a>
         </li>
       </ul>
       <a class="btn navbar-btn ml-2 text-white btn-secondary" *ngIf="!state" (click)="signIn()"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>

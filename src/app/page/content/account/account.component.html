@@ -1,14 +1,41 @@
 <div class="py-5 bg-info" style="background-repeat:repeat;">
-  <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-body p-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ">
+          <div class="card">
+            <div class="card-body ">
+              <h1 class="" >My account</h1>
+              <div class="card" >
+                  <div class="row">
+                    <div class="col-md-3">
+                        <img class="card-img-top img-responsive" [src]="photoUrl" alt="Card image cap" >
+                        </div>
+                        <div class="col-md-4">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">{{displayName}}</li>
+                          <li class="list-group-item">{{email}}</li>
+                          <li class="list-group-item">Last login: {{lastTime}}</li>
+                        </ul>
+                      </div>
+                  </div>
+                  <br>
+            <div class="row">
+              <div class="col-md-12">
             <ul class="list-group">
-              <li class="list-group-item active">Your journeys</li>
-              <a><li class="list-group-item list-group-item-action" *ngFor="let journey of journeys;let i=index" [routerLink]="['/detail',i]" >Journey {{i+1}} </li> </a>
+              <li class="list-group-item active">Last saved journeys</li>
+              <a>
+                <li class="list-group-item list-group-item-action" *ngFor="let journey of journeys;let i=index" [routerLink]="['/detail',i]" >Journey {{i+1}}
+                </li>
+                <p class="py-1 px-1" *ngIf="length==0">You haven't any saved journeys yet.</p>
+              </a>
             </ul>
+          </div>
+            </div>
+            </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+

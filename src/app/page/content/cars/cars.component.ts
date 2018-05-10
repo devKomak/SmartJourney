@@ -34,6 +34,7 @@ export class CarsComponent implements OnInit {
   takeCar(car: any) {
     this.choosedCar = car;
     console.log(this.choosedCar);
+    this.userService.user.choosedCar = this.choosedCar;
     this.router.navigate(['summary']);
 
   }

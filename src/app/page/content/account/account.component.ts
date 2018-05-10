@@ -11,18 +11,29 @@ export class AccountComponent implements OnInit {
 
   uid;
   journeys;
-
+  displayName: string;
+  photoUrl: string;
+  email: string;
+  lastTime: string;
+  length: number;
 
   constructor(private userService: UserService, private auth: AuthService) {
     this.uid = '';
    }
 
   ngOnInit() {
+    this.journeys = [];
     this.uid = this.auth.getUid;
+    this.displayName = this.auth.userDetails.displayName;
+    this.photoUrl = this.auth.userDetails.photoURL;
+    this.email = this.auth.userDetails.email;
+    this.lastTime = this.auth.userDetails.metadata.lastSignInTime;
+
     this.userService.getJourneys().subscribe(message => {
       console.log(this.userService.summaryJourneys);
       this.journeys = [];
       this.journeys = this.userService.summaryJourneys;
+      this.length = this.journeys.length;
     });
   }
 
