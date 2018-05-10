@@ -5,7 +5,8 @@ import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule,
          MatDatepickerInputEvent, MatDatepickerIntl, MatSortModule, MatPaginatorModule, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS,
          MatProgressBarModule,
          MatDividerModule,
-         MatTabsModule, } from '@angular/material';
+         MatTabsModule,
+         MatListModule, } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
 
@@ -89,6 +90,7 @@ export const MY_FORMATS = {
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatListModule,
     ReactiveFormsModule,
     MatTabsModule,
     MatInputModule,
