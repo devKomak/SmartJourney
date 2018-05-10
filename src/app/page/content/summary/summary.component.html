@@ -131,7 +131,13 @@
                       </form>
                     </mat-step>
               </mat-horizontal-stepper>
-              <div class="float-right"> <button *ngIf="state" (click)="saveJourney()" mat-raised-button color="accent">Save Journey</button></div>
+              <div class="float-right"> <button *ngIf="state&&saved===false" (click)="saveJourney()" mat-raised-button color="accent">Save Journey</button></div>
+              <div *ngIf="!state" class="alert alert-info">
+                  <strong>Info!</strong> If you want to save your journey you have to sign in!
+                </div>
+                <div *ngIf="state&&saved===true" class="alert alert-success">
+                    <strong>Success!</strong> Your journey has been saved! Redirecting to home page ...
+                </div>
         </div>
       </div>
     </div>

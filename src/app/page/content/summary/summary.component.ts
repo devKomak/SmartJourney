@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -22,14 +23,15 @@ export class SummaryComponent implements OnInit {
   public LatLng1;
   public LatLng2;
   state;
+  saved: boolean;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
   constructor(private afs: AngularFirestore, private userService: UserService, private _formBuilder: FormBuilder,
-    private af: AngularFireAuth) {
-    this.userService.user.uid = this.af.auth.currentUser.uid;
+    private af: AngularFireAuth, private router: Router) {
     this.user = this.userService.getUser();
+    this.saved = false;
   }
 
   saveJourney() {
@@ -37,6 +39,8 @@ export class SummaryComponent implements OnInit {
     this.user = this.userService.getUser();
     const data = JSON.parse(JSON.stringify(this.user));
     this.userService.newJourney({data});
+    this.saved = true;
+    setTimeout(() => {this.router.navigate(['']); }, 4000);
   }
 
   ngOnInit() {
@@ -44,6 +48,7 @@ export class SummaryComponent implements OnInit {
     this.state = false;
     this.af.authState.subscribe(auth => {
       if (auth) {
+        this.userService.user.uid = this.af.auth.currentUser.uid;
         this.state = true;
       } else {
         this.state = false;
