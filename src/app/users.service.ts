@@ -85,6 +85,7 @@ export class UserService implements OnInit {
     this.journeys = this.journeysCollection.snapshotChanges().map(changes => {
       return changes.map(action => {
         const data = action.payload.doc.data();
+        // tslint:disable-next-line:triple-equals
         if (data.data.uid == this.authService.getUid()) {
                   this.summaryJourneys.push(data.data);
         }
@@ -222,9 +223,4 @@ export class UserService implements OnInit {
   getUserCoords() {
     return this.user.userCoords;
   }
-  }
-
-
-  interface Journey {
-    journey: User;
   }

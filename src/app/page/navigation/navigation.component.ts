@@ -38,12 +38,4 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  saveData() {
-
-  }
-
-  saveData1() {
-
-  }
-
 }

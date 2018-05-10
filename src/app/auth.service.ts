@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
@@ -10,8 +11,10 @@ export class AuthService {
     userAuth: Observable<firebase.User>;
     userDetails: firebase.User = null;
     token: string;
+    registerError: Subject<String>;
 
     constructor(private afAuth: AngularFireAuth, private router: Router) {
+      this.registerError = new Subject<String>();
         this.userAuth = afAuth.authState;
   this.userAuth.subscribe(
           (user) => {
@@ -30,10 +33,11 @@ export class AuthService {
         .then(
           message => {
             firebase.auth().currentUser.getIdToken().then(token => this.token = token);
+            this.registerError.next('Ok');
           }
         )
         .catch(
-          error => console.log(error)
+          error => this.registerError.next(error)
         );
     }
 
@@ -42,7 +46,7 @@ export class AuthService {
         .then(message => {
           firebase.auth().currentUser.getIdToken().then(token => this.token = token);
         })
-        .catch(error => console.log(error));
+        .catch(error => error);
     }
 
     loginWithGoogle() {

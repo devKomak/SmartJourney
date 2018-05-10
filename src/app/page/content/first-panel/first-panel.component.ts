@@ -7,11 +7,12 @@ import { Dates } from '../../../shared/dates';
 import { Airport } from '../../../shared/airport';
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
-import { MatInput, ErrorStateMatcher } from '@angular/material';
+import { MatInput, ErrorStateMatcher, MatDatepicker, MatDatepickerInput } from '@angular/material';
 const moment = _rollupMoment || _moment;
 import { Validators } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { MapsAPILoader } from '@agm/core';
+import { Input } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-first-panel',
@@ -40,7 +41,7 @@ export class FirstPanelComponent implements OnInit {
   public positionEnd;
   public currentPosition = false;
   public valueStart: String;
-
+  dateError;
   @ViewChild('searchStart')
   public searchElementStartRef: ElementRef;
   @ViewChild('searchEnd')
@@ -61,12 +62,11 @@ export class FirstPanelComponent implements OnInit {
   @ViewChild('startDate') startDate: ElementRef;
   @ViewChild('endDate') endDate: ElementRef;
 
-
   constructor(private mapsAPILoader: MapsAPILoader, private ngZone: NgZone, private userService: UserService,
     private router: Router, private fb: FormBuilder) {
 
     this.minDateStart.setDate(this.minDateStart.getDate() + 1);
-    this.minDateEnd.setDate(this.minDateEnd.getDate() + 1);
+    this.minDateEnd.setDate(this.minDateStart.getDate() + 1);
     this.isAirports = false;
     this.isEndAirport = false;
     this.started = false;
@@ -74,6 +74,11 @@ export class FirstPanelComponent implements OnInit {
 
   zoomChange(f: any) {
     console.log(f);
+  }
+
+
+  change(startDate: MatDatepickerInput<this>) {
+    console.log(startDate);
   }
 
   ngOnInit() {
@@ -242,9 +247,26 @@ export class FirstPanelComponent implements OnInit {
     this.startDate.nativeElement.min = dateTemp;
   }
 
+  addDates() {
+    this.dates = new Dates(this.startDate.nativeElement.value, this.endDate.nativeElement.value);
+    this.userService.addUserDates(this.dates);
+
+  }
+
+  addPeople() {
+    this.people = this.inputPeople.nativeElement.value;
+    this.userService.addPeople(this.people);
+  }
+
   onSubmit() {
 
-      if (this.dataForm.valid) {
+      if (this.dataForm.get('startDate').value._d > this.dataForm.get('endDate').value._d) {
+        this.dateError = true;
+      } else {
+        this.dateError = false;
+      }
+
+      if (this.dataForm.valid && this.dateError === false) {
       this.started = true;
       this.addDates();
       this.addPeople();
@@ -263,16 +285,6 @@ export class FirstPanelComponent implements OnInit {
     }
   }
 
-  addDates() {
-    this.dates = new Dates(this.startDate.nativeElement.value, this.endDate.nativeElement.value);
-    this.userService.addUserDates(this.dates);
-
-  }
-
-  addPeople() {
-    this.people = this.inputPeople.nativeElement.value;
-    this.userService.addPeople(this.people);
-  }
 }
 
 
