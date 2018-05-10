@@ -14,6 +14,7 @@ import { SummaryComponent } from './page/content/summary/summary.component';
 import { RegisterComponent } from './page/register-component/register.component';
 import { AccountComponent } from './page/content/account/account.component';
 import { AccountDetailComponent } from './page/content/account/account-detail/account-detail.component';
+import { HotelsComponent } from './page/content/hotels/hotels.component';
 
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
             {path: 'flights', component: FlightsComponent},
             {path: 'flights1', component: Flights1Component},
             {path: 'cars', component: CarsComponent},
+            {path: 'hotels', component: HotelsComponent},
             {path: 'summary', component: SummaryComponent},
             {path: 'account', component: AccountComponent},
             {path: 'detail/:id', component: AccountDetailComponent}

@@ -3,6 +3,7 @@ import { Dates } from './dates';
 import { Airport } from './airport';
 import { ProviderCar } from './provider-car';
 import { Flights } from './flights';
+import { Hotel } from './hotel';
 
 export class User {
 
@@ -20,6 +21,7 @@ export class User {
     public nameStarted;
     public nameEnded;
     public choosedCar;
+    public hotels: Hotel[];
 
     constructor() {
         this.id = 0;
@@ -35,6 +37,7 @@ export class User {
         this.nameEnded = '';
         this.nameStarted = '';
         this.choosedCar = {};
+        this.hotels = [];
     }
 
     public setId(id) {

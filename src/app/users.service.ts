@@ -15,6 +15,7 @@ import { jsonEval } from '@firebase/util';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { Hotel } from './shared/hotel';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -35,6 +36,7 @@ export class UserService implements OnInit {
   public journeys: Observable<any>;
   public journey: Observable<any>;
   public summaryJourneys;
+  public hotels: Hotel[];
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private afs: AngularFirestore) {
     this.journeysCollection = this.afs.collection('journeys');
@@ -42,6 +44,7 @@ export class UserService implements OnInit {
     this.isAirports = false;
     this.amadeusKey = environment.amadeus_API_KEY;
     this.summaryJourneys = [];
+    this.hotels = [];
   }
 
   ngOnInit() {
@@ -96,6 +99,32 @@ export class UserService implements OnInit {
 
   newJourney(user: any) {
     this.journeysCollection.add(user);
+  }
+
+  getHotels() {
+    console.log('getting');
+    // tslint:disable-next-line:max-line-length
+    return this.http.get('http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=' + this.user.userCoords.latEnd
+    + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&check_in=' + this.user.dates.startDate + '&check_out=' +
+     this.user.dates.endDate + '&currency=USD&number_of_results=50&apikey=' + this.amadeusKey + '&currency=USD')
+     .map((response: any) => {
+        const data = response.results;
+        console.log(data);
+        for (const p of data) {
+          const name = p.property_name;
+          const street = p.address.line1;
+          const city = p.address.city;
+          const price = p.total_price.amount;
+          const contacts = p.contacts[0].detail;
+          const amenitiesTab = [];
+          for (const a of p.amenities) {
+            amenitiesTab.push({amenity: a.amenity, description: a.description });
+          }
+
+          this.hotels.push(new Hotel(name, {city: city, street: street}, price, contacts, amenitiesTab));
+        }
+        console.log(this.hotels);
+     });
   }
 
   getCars() {
