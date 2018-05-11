@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-body ">
                         <h1>Choose hotel</h1>
-                        <div>
+                        <div *ngFor="let b of hotels|slice:0:show;let i=index">
                             <h2>Hotel name: {{b.name}}</h2>
                             <mat-tab-group >
                                 <mat-tab label="Basics information">
