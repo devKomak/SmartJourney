@@ -25,5 +25,9 @@ export class HotelsComponent implements OnInit {
 
 }
 check(hotel: Hotel, index: number){
+  this.started = true;
+    this.index = index;
+    this.userService.addHotel(hotel);
+    this.userService.getPlaces().subscribe(message =>{}, 
 )
 }
