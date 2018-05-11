@@ -30,7 +30,8 @@ export class PlacesComponent implements OnInit {
   }
 
   summary(){
-
+    this.userService.user.choosedPlaces = this.choosedPlaces;
+    this.router.navigate(['summary']);
   }
 
   choosePlace(p: Place, index: number){

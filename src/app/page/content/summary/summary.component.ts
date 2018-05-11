@@ -45,6 +45,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.user);
     this.state = false;
     this.af.authState.subscribe(auth => {
       if (auth) {
