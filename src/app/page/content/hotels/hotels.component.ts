@@ -34,3 +34,7 @@ check(hotel: Hotel, index: number){
       if (message === true) {  this.router.navigate(['places']); }
 )
 }
+
+showValue() {
+  this.show += 5;
+}
