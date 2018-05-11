@@ -52,7 +52,13 @@ export class AccountDetailComponent implements OnInit {
    back() {
      this.location.back();
    }
-
+   public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
   ngOnInit() {
 
       this.firstFormGroup = this._formBuilder.group({

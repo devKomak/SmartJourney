@@ -56,6 +56,7 @@ export class FirstPanelComponent implements OnInit {
   public minDateEnd = new Date();
   public started: boolean;
   public markerCheck;
+  public error;
   dataForm: FormGroup;
   isOrigin = new Subject<FormControl>();
 
