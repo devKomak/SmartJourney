@@ -11,7 +11,10 @@ import { Router } from '@angular/router';
 })
 export class HotelsComponent implements OnInit {
 
-
+  hotels: Hotel[];
+  show = 5;
+  public started: boolean;
+  public index: number;
   constructor() {
 
   }
