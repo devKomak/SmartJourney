@@ -30,7 +30,8 @@
                                     <img src="https://images.freeimages.com/images/large-previews/e8e/limosine-1450334.jpg" class="img-fluid">
                                 </div>
                                 </div>
-                                <a (click)="takeCar(provider)" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Take this car</a>
+                                <a (click)="takeCar(provider, i)" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-ok"></span> Take this car</a>
+                                <mat-progress-bar *ngIf="started&&i===index" mode="indeterminate"></mat-progress-bar>
                               </div>
                             </div>
                           </div>
@@ -47,7 +48,6 @@
 </div>
 </div>
 </div>
-
 
 
 

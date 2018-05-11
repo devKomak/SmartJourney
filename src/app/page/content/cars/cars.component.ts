@@ -14,10 +14,13 @@ export class CarsComponent implements OnInit {
   public providerIndex: number[];
   public carIndex: number[];
   public choosedCar;
+  public started: boolean;
+  public index;
   prices: Array<Number>;
   temp;
   isCar;
   show = 5;
+
 
   constructor(private userService: UserService, private router: Router) {
 
@@ -31,12 +34,18 @@ export class CarsComponent implements OnInit {
     if (this.show >= 10)  {this.show -= 5; }
   }
 
-  takeCar(car: any) {
+  takeCar(car: any, index: number) {
     this.choosedCar = car;
     console.log(this.choosedCar);
     this.userService.user.choosedCar = this.choosedCar;
-    this.router.navigate(['hotels']);
-
+    this.index = index;
+    this.started = true;
+    this.userService.getHotels().subscribe(response => {
+      console.log(response);
+    });
+    this.userService.isHotels.subscribe(message => {
+      if (message === true) {  this.router.navigate(['hotels']); }
+    })
   }
 
   ngOnInit() {
@@ -44,7 +53,7 @@ export class CarsComponent implements OnInit {
 
     this.prices = new Array();
     this.temp = new Array();
-
+    this.started = false;
 
     for (let i = 0; i < this.providers.length; i++) {
       for (let j = 0; j < this.providers[i].cars.length; j++) {

@@ -16,6 +16,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { Hotel } from './shared/hotel';
+import { Place } from './shared/place';
 
 @Injectable()
 export class UserService implements OnInit {
@@ -29,6 +30,8 @@ export class UserService implements OnInit {
   public isOutBoundFlightSubject = new Subject<Boolean>();
   public isInBoundFlightSubject = new Subject<Boolean>();
   public isCars = new Subject<Boolean>();
+  public isHotels = new Subject<Boolean>();
+  public isPlaces = new Subject<Boolean>();
   public resultsFlights: Results[];
   public userJourneys;
   public journeysCollection: AngularFirestoreCollection<any>;
@@ -37,7 +40,8 @@ export class UserService implements OnInit {
   public journey: Observable<any>;
   public summaryJourneys;
   public hotels: Hotel[];
-
+  public places: Place[];
+  
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private afs: AngularFirestore) {
     this.journeysCollection = this.afs.collection('journeys');
     this.user = new User();
@@ -45,6 +49,7 @@ export class UserService implements OnInit {
     this.amadeusKey = environment.amadeus_API_KEY;
     this.summaryJourneys = [];
     this.hotels = [];
+    this.places = [];
   }
 
   ngOnInit() {
@@ -67,6 +72,10 @@ export class UserService implements OnInit {
 
   addAirport(airport) {
     this.user.setChoosedAirport(airport);
+  }
+
+  addHotel(hotel: Hotel){
+    this.user.choosedHotel = hotel;
   }
 
   addInBoundFlight(flight) {
@@ -102,14 +111,12 @@ export class UserService implements OnInit {
   }
 
   getHotels() {
-    console.log('getting');
     // tslint:disable-next-line:max-line-length
     return this.http.get('http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=' + this.user.userCoords.latEnd
     + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&check_in=' + this.user.dates.startDate + '&check_out=' +
      this.user.dates.endDate + '&currency=USD&number_of_results=50&apikey=' + this.amadeusKey + '&currency=USD')
      .map((response: any) => {
         const data = response.results;
-        console.log(data);
         for (const p of data) {
           const name = p.property_name;
           const street = p.address.line1;
@@ -120,11 +127,44 @@ export class UserService implements OnInit {
           for (const a of p.amenities) {
             amenitiesTab.push({amenity: a.amenity, description: a.description });
           }
-
           this.hotels.push(new Hotel(name, {city: city, street: street}, price, contacts, amenitiesTab));
         }
-        console.log(this.hotels);
+        this.isHotels.next(true);
+     },
+     error => {
+       console.log('error');
+       this.router.navigate(['error']);
      });
+  }
+
+  getPlaces(){
+    return this.http.get('https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-circle?latitude='
+    + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd + '&social_media=true' + '&radius=20&apikey=' + this.amadeusKey)
+    .map((response: any) => {
+      console.log(response);
+       const data = response.points_of_interest;
+       for (const p of data) {
+        const title = p.title;
+        const walkTime = p.walk_time;
+        const mainImage = p.main_image;
+        const latitude = p.location.latitude;
+        const longitude = p.location.longitude;
+        const link = p.location.google_maps_link;
+        const description = p.details.description;
+        const short_description = p.details.short_description;
+        const wikipedia = p.details.wiki_page_link;
+
+        this.places.push(new Place(mainImage, title, short_description, description,
+                        {latitude: latitude, longitude: longitude, link: link},
+                         wikipedia, walkTime))
+      }
+      console.log(this.places);
+      this.isPlaces.next(true);
+    },
+    error => {
+      console.log('error');
+      this.router.navigate(['error']);
+    });
   }
 
   getCars() {

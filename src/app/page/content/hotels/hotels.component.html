@@ -4,8 +4,8 @@
         <div class="col-md-12 ">
             <div class="card">
               <div class="card-body ">
-              <h1 class="" >Choose hotel</h1>
-              <div *ngFor="let b of hotels|slice:0:show">
+              <h1>Choose hotel</h1>
+              <div *ngFor="let b of hotels|slice:0:show;let i=index">
                 <h2>Hotel name: {{b.name}}</h2>
                 <mat-tab-group >
                 <mat-tab label="Basics information">
@@ -22,7 +22,11 @@
                     <br>
                 </mat-tab>
               </mat-tab-group>
-              <button type="button" class="btn btn-primary">Check this hotel</button>
+              <button type="button" (click)="check(b,i)" class="btn btn-primary">Choose this hotel</button>
+              <mat-progress-bar *ngIf="started&&i===index" mode="indeterminate"></mat-progress-bar>
+              <div *ngIf="error&&i===index" class="alert alert-danger" role="alert">
+                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+              </div>
             </div>
             <a class="btn btn-block btn-primary" (click)="showValue()" ><span class="glyphicon glyphicon-search"></span> Show more</a>
             <a class="btn btn-block btn-warning" (click)="showValueLess()" ><span class="glyphicon glyphicon-search"></span> Show less</a>
@@ -32,3 +36,4 @@
     </div>
   </div>
 </div>
+

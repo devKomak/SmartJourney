@@ -6,16 +6,14 @@ import { MatButtonModule, MatCheckboxModule, MatRippleModule, MatInputModule,
          MatProgressBarModule,
          MatDividerModule,
          MatTabsModule,
-         MatListModule, } from '@angular/material';
+         MatListModule,
+         MatProgressSpinnerModule, } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { AppComponent } from './app.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgmDirectionModule } from 'agm-direction';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { PageComponent } from './page/page.component';
@@ -34,20 +32,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { FlightsComponent } from './page/content/flights/flights.component';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { environment } from '../environments/environment';
 import { ErrorComponent } from './page/error/error.component';
 import { HotelsComponent } from './page/content/hotels/hotels.component';
 import { SummaryComponent } from './page/content/summary/summary.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { AccountComponent } from './page/content/account/account.component';
 import { AccountDetailComponent } from './page/content/account/account-detail/account-detail.component';
+import { PlacesComponent } from './page/content/places/places.component';
+
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'YYYY-MM-DD',
@@ -81,6 +82,7 @@ export const MY_FORMATS = {
     SummaryComponent,
     AccountComponent,
     AccountDetailComponent,
+    PlacesComponent,
 
   ],
   imports: [
@@ -93,6 +95,7 @@ export const MY_FORMATS = {
     MatListModule,
     ReactiveFormsModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     MatInputModule,
     MatPaginatorModule,
     MatRippleModule,

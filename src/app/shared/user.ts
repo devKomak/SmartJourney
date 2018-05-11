@@ -22,6 +22,7 @@ export class User {
     public nameEnded;
     public choosedCar;
     public hotels: Hotel[];
+    public choosedHotel: Hotel;
 
     constructor() {
         this.id = 0;

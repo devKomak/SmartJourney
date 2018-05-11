@@ -287,4 +287,3 @@ export class FirstPanelComponent implements OnInit {
 
 }
 
-
