@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../users.service';
+import { Hotel } from '../../../shared/hotel';
+import { Router } from '@angular/router';
 
 
 @Component({
