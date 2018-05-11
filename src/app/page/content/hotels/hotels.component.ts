@@ -23,7 +23,7 @@ export class HotelsComponent implements OnInit {
     this.started = false;
   }
 
-}
+
 check(hotel: Hotel, index: number){
   this.started = true;
     this.index = index;
@@ -33,7 +33,7 @@ check(hotel: Hotel, index: number){
     this.userService.isPlaces.subscribe(message =>{
       if (message === true) {  this.router.navigate(['places']); }
 }
-
+}
 showValue() {
   this.show += 5;
 }
