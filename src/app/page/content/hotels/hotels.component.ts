@@ -15,8 +15,8 @@ export class HotelsComponent implements OnInit {
   show = 5;
   public started: boolean;
   public index: number;
-  constructor() {
-
+  constructor(private userService: UserService, private router: Router) {
+    this.hotels = this.userService.hotels;
   }
 
   ngOnInit() {
