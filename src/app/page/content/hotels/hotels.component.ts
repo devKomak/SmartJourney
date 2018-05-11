@@ -32,7 +32,6 @@ check(hotel: Hotel, index: number){
       error => { console.log(error)});
     this.userService.isPlaces.subscribe(message =>{
       if (message === true) {  this.router.navigate(['places']); }
-)
 }
 
 showValue() {
