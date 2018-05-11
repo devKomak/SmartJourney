@@ -78,6 +78,10 @@ export class UserService implements OnInit {
     this.user.choosedHotel = hotel;
   }
 
+  addPlaces(places: Place[]){
+    this.user.choosedPlaces = places;
+  }
+
   addInBoundFlight(flight) {
     this.user.setInBoundFlight(flight);
   }
@@ -139,7 +143,7 @@ export class UserService implements OnInit {
 
   getPlaces(){
     return this.http.get('https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-circle?latitude='
-    + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd + '&social_media=true' + '&radius=20&apikey=' + this.amadeusKey)
+    + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&apikey=' + this.amadeusKey + '&number_of_results=30')
     .map((response: any) => {
       console.log(response);
        const data = response.points_of_interest;
