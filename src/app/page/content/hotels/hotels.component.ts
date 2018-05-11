@@ -20,7 +20,7 @@ export class HotelsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.started = false;
   }
 
 }
