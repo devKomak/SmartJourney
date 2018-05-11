@@ -3,6 +3,7 @@ import { UserService } from '../../../users.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-flights',
@@ -19,9 +20,12 @@ export class FlightsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public choosedInBoundFlight;
   public started: boolean;
+  public errorMessage;
+  public errorMessageShort;
+  public error;
 
   displayedColumns = ['select', 'price', 'flightNumber', 'departs_at', 'arrives_at', 'origin', 'destination', 'airline'];
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private location: Location) {
   }
 
   ngOnInit() {
@@ -49,11 +53,23 @@ export class FlightsComponent implements OnInit, AfterViewInit {
     console.log(this.choosedInBoundFlight);
   }
 
+  back(){
+    this.location.back();
+  }
+
   next() {
     if (this.choosedInBoundFlight) {
       this.started = true;
       this.userService.addInBoundFlight(this.choosedInBoundFlight);
-      this.userService.getOutBoundFlights();
+      this.userService.getOutBoundFlights().subscribe(response =>{},
+        error => 
+        {
+          console.log(error);
+          this.error = true;
+          this.errorMessage = error.error.more_info;
+          this.errorMessageShort = error.error.message;
+          this.started = false;
+        });
       this.userService.isOutBoundFlightSubject.asObservable().subscribe(message => {
         if (message === true) {  this.router.navigate(['flights1']); }
       });

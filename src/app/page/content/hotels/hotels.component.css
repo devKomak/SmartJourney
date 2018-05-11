@@ -1,8 +1,5 @@
-#progress {
-    width: 500px;
-    height: 20px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -250px;
+  hr.style5 {
+    background-color: #fff;
+    border-top: 2px dashed #8c8b8b;
   }
+  

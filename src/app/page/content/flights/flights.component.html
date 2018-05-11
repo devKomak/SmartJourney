@@ -49,12 +49,12 @@
                             </ng-container>
 
                             <ng-container matColumnDef="origin">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header> Origin </mat-header-cell>
+                                <mat-header-cell *matHeaderCellDef mat-sort-header> From airport </mat-header-cell>
                                 <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].origin">{{a}}</p> </mat-cell>
                               </ng-container>
 
                               <ng-container matColumnDef="destination">
-                                  <mat-header-cell *matHeaderCellDef mat-sort-header> Destination </mat-header-cell>
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header> To airport </mat-header-cell>
                                   <mat-cell *matCellDef="let element"> <p *ngFor="let a of element[0].destination">{{a}}</p> </mat-cell>
                                 </ng-container>
 
@@ -75,8 +75,14 @@
 
                   </div>
           </div>
-          <button type="submit" (click)="next()" class="btn mt-2 btn-outline-dark">Next</button>
-          <mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        <strong>{{errorMessageShort}}</strong> <br>More: {{errorMessage}}<br>
+      </div>
+      <div>
+        <button (click)="back()" class="btn mt-2 btn-outline-dark">Back</button>
+        <button type="submit" (click)="next()" class="btn mt-2 btn-outline-dark">Next</button>
+        <mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
       </div>
     </div>
   </div>

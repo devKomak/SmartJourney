@@ -1,38 +1,47 @@
 <div class="py-5 bg-info" style="background-repeat:repeat">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 "> 
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 ">
                 <div class="card">
-                    <div class="card-body ">
-                        <h1>Choose hotel</h1>
-                        <div *ngFor="let b of hotels|slice:0:show;let i=index">
-                            <h2>Hotel name: {{b.name}}</h2>
-                            <mat-tab-group >
-                                <mat-tab label="Basics information">
-                                    <p ><br>
-                                        Price: {{b.price | currency:'USD'}}<br>
-                                        Telephone number: {{b.contacts}}<br>
-                                        Address: {{b.address.street}}, {{b.address.city}}
-                                      </p>
-                                </mat-tab>
-                                <mat-tab label="Amenities"> 
-                                    <ul class="list-group">
-                                        <li class="list-group-item" *ngFor ="let a of b.amenities"> {{a.description}} </li>
-                                    </ul>
-                                    <br>
-                                </mat-tab>
-                            </mat-tab-group>
-                            <button type="button" (click)="check(b,i)" class="btn btn-primary">Choose this hotel</button>
-                            <mat-progress-bar *ngIf="started&&i===index" mode="indeterminate"></mat-progress-bar>
-                            <div *ngIf="error&&i===index" class="alert alert-danger" role="alert">
-                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                              </div>
-                              <a class="btn btn-block btn-primary" (click)="showValue()" ><span class="glyphicon glyphicon-search"></span> Show more</a>
-                              <a class="btn btn-block btn-warning" (click)="showValueLess()" ><span class="glyphicon glyphicon-search"></span> Show less</a>
-                        </div>
-                    </div>
+                  <div class="card-body ">
+                  <h1>Choose hotel</h1>
+                  <div *ngFor="let b of hotels|slice:0:show;let i=index">
+                      <div class="card">
+                          <div class="card-body ">
+                            <div class="card-body border-dark mb-3">
+                   <h2>{{b.name}}</h2>
+                   <mat-tab-group >
+                    <mat-tab label="Basics information">
+                      <p ><br>
+                        Price: {{b.price | currency:'USD'}}<br>
+                        Telephone number: {{b.contacts}}<br>
+                       Address: {{b.address.street}}, {{b.address.city}}
+                      </p>
+                    </mat-tab>
+                    <mat-tab label="Amenities"> 
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor ="let a of b.amenities"> {{a.description}} </li>
+                        </ul>
+                        <br>
+                   </mat-tab>
+                  </mat-tab-group>
+                  <button type="button" (click)="check(b,i)" class="btn btn-primary">Choose this hotel</button>
+                  <a (click)="back()" class="btn btn-primary btn-info"> Back</a>
+                  <mat-progress-bar *ngIf="started&&i===index" mode="indeterminate"></mat-progress-bar>
+                  <br>
+                  <div *ngIf="error&&i===index" class="alert alert-danger" role="alert">
+                   <strong>Oh snap!</strong> {{errorMessage}}
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+
                 </div>
+                <a class="btn btn-block btn-primary" (click)="showValue()" ><span class="glyphicon glyphicon-search"></span> Show more</a>
+               <a class="btn btn-block btn-warning" (click)="showValueLess()" ><span class="glyphicon glyphicon-search"></span> Show less</a>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>

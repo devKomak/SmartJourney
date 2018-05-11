@@ -86,6 +86,12 @@
                 </div>
               <button type="submit" class="btn mt-2 btn-outline-dark">Start</button>
               <mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
+              <div *ngIf="error" class="alert alert-danger" role="alert">
+                <strong>Oh snap!</strong> {{errorMessage}}
+               </div>
+               <div *ngIf="markerCheck===false" class="alert alert-danger" role="alert">
+                <strong>Warning!</strong> Please select places from list
+               </div>
             </form>
           </div>
         </div>

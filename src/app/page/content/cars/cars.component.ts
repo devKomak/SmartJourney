@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../users.service';
 import { Provider } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cars',
@@ -20,9 +21,11 @@ export class CarsComponent implements OnInit {
   temp;
   isCar;
   show = 5;
+  public errorMessage;
+  public errorMessageShort;
+  public error;
 
-
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private location: Location) {
 
   }
 
@@ -40,12 +43,22 @@ export class CarsComponent implements OnInit {
     this.userService.user.choosedCar = this.choosedCar;
     this.index = index;
     this.started = true;
-    this.userService.getHotels().subscribe(response => {
-      console.log(response);
-    });
+    this.userService.getHotels().subscribe(response =>{},
+      error => 
+      {
+        console.log(error);
+        this.error = true;
+        this.errorMessage = error.error.more_info;
+        this.errorMessageShort = error.error.message;
+        this.started = false;
+      });
     this.userService.isHotels.subscribe(message => {
       if (message === true) {  this.router.navigate(['hotels']); }
     })
+  }
+
+  back(){
+    this.location.back();
   }
 
   ngOnInit() {

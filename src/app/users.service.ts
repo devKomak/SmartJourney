@@ -207,7 +207,7 @@ export class UserService implements OnInit {
     // tslint:disable-next-line:max-line-length
     return this.http.get('https://api.sandbox.amadeus.com/v1.2/airports/nearest-relevant?apikey=' + this.amadeusKey + '&latitude='
     + this.user.userCoords.latStart + '&longitude=' + this.user.userCoords.lngStart)
-    .subscribe(data => {
+    .map(data => {
       this.user.setAirports(data);
       this.subject1.next(true);
     }
@@ -237,23 +237,12 @@ export class UserService implements OnInit {
     for (let i = 0; i < this.user.airports.length; i++) {
         if (this.user.airports[i].airport_name === this.user.choosedAirport.airportName) { originName = this.user.airports[i].airport; }
     }
-
-    // tslint:disable-next-line:max-line-length
-    // const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
-    // + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
-    // + '&return_date=' + this.user.dates.endDate)
-    // .subscribe(data  => {
-    // });
-
-    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
+    return this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
     +  '&number_of_results=35' + '&currency=USD')
-    .subscribe((data: any)  => {
+    .map((data: any)  => {
       this.resultsFlights = data.results;
       if (this.resultsFlights) { this.isInBoundFlightSubject.next(true); console.log(this.resultsFlights); }
-    },
-    error => {
-        this.router.navigate(['error']);
     });
 
   }
@@ -264,18 +253,10 @@ export class UserService implements OnInit {
     for (let i = 0; i < this.user.airports.length; i++) {
         if (this.user.airports[i].airport_name === this.user.choosedAirport.airportName) { originName = this.user.airports[i].airport; }
     }
-
-    // tslint:disable-next-line:max-line-length
-    // const a = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/extensive-search?apikey=8JpvcLVCBj4Ftpkr9ajanPm3QdqpGogT&origin='
-    // + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
-    // + '&return_date=' + this.user.dates.endDate)
-    // .subscribe(data  => {
-    // });
-
-    const b = this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
+    return  this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     +  this.user.endAirport.airport + '&destination=' + originName + '&departure_date=' + this.user.dates.endDate
     +  '&number_of_results=35' + '&currency=USD')
-    .subscribe((data: any)  => {
+    .map((data: any)  => {
       this.resultsFlights = data.results;
       if (this.resultsFlights) { this.isOutBoundFlightSubject.next(true); console.log(this.resultsFlights); }
     },

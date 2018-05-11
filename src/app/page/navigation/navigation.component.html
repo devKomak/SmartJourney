@@ -5,17 +5,11 @@
       aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link">About us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Contacts</a>
-        </li>
         <li *ngIf="state" class="nav-item">
-          <a class="nav-link" [routerLink]="['/account']" >My account</a>
+          <a class="nav-link" [routerLink]="['/account']" >My account and saved journeys</a>
         </li>
       </ul>
-      <a class="btn navbar-btn ml-2 text-white btn-secondary" *ngIf="!state" (click)="signIn()"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+      <a class="btn navbar-btn ml-2 text-white btn-secondary" *ngIf="!state" (click)="signIn()"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in/up</a>
       <a class="btn navbar-btn ml-2 text-white btn-secondary" *ngIf="state" (click)="logOut()"><i class="fa d-inline fa-lg fa-user-circle-o"></i> Logout</a>
     </div>
   </div>
