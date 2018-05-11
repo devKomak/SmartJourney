@@ -23,6 +23,7 @@
                                 </mat-tab>
                             </mat-tab-group>
                             <button type="button" (click)="check(b,i)" class="btn btn-primary">Choose this hotel</button>
+                            <mat-progress-bar *ngIf="started&&i===index" mode="indeterminate"></mat-progress-bar>
                         </div>
                     </div>
                 </div>
