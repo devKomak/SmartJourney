@@ -38,3 +38,7 @@ check(hotel: Hotel, index: number){
 showValue() {
   this.show += 5;
 }
+showValueLess() {
+  if (this.show >= 10)  {this.show -= 5; }
+}
+}
