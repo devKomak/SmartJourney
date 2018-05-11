@@ -15,6 +15,12 @@
                                         Address: {{b.address.street}}, {{b.address.city}}
                                       </p>
                                 </mat-tab>
+                                <mat-tab label="Amenities"> 
+                                    <ul class="list-group">
+                                        <li class="list-group-item" *ngFor ="let a of b.amenities"> {{a.description}} </li>
+                                    </ul>
+                                    <br>
+                                </mat-tab>
                             </mat-tab-group>
                         </div>
                     </div>
