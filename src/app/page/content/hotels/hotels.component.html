@@ -24,6 +24,9 @@
                             </mat-tab-group>
                             <button type="button" (click)="check(b,i)" class="btn btn-primary">Choose this hotel</button>
                             <mat-progress-bar *ngIf="started&&i===index" mode="indeterminate"></mat-progress-bar>
+                            <div *ngIf="error&&i===index" class="alert alert-danger" role="alert">
+                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                              </div>
                         </div>
                     </div>
                 </div>
