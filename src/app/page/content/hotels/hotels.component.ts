@@ -24,3 +24,6 @@ export class HotelsComponent implements OnInit {
   }
 
 }
+check(hotel: Hotel, index: number){
+)
+}
