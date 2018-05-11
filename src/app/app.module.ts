@@ -24,7 +24,6 @@ import { FooterComponent } from './page/footer/footer.component';
 import { FirstPanelComponent } from './page/content/first-panel/first-panel.component';
 import { AirportsComponent } from './page/content/airports/airports.component';
 import { LoginComponent } from './page/login-component/login.component';
-import { UserComponent } from './page/user-component/usert.component';
 import { RegisterComponent } from './page/register-component/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth.service';
@@ -47,7 +46,7 @@ import { CdkStepperModule } from '@angular/cdk/stepper';
 import { AccountComponent } from './page/content/account/account.component';
 import { AccountDetailComponent } from './page/content/account/account-detail/account-detail.component';
 import { PlacesComponent } from './page/content/places/places.component';
-
+import { ChartsModule } from 'ng2-charts';
 
 export const MY_FORMATS = {
   parse: {
@@ -72,7 +71,6 @@ export const MY_FORMATS = {
     AirportsComponent,
     LoginComponent,
     RegisterComponent,
-    UserComponent,
     PageComponent,
     FlightsComponent,
     Flights1Component,
@@ -102,6 +100,7 @@ export const MY_FORMATS = {
     MatDividerModule,
     MatStepperModule,
     MatTableModule,
+    ChartsModule,
     MatSortModule,
     MatProgressBarModule,
     MatNativeDateModule,

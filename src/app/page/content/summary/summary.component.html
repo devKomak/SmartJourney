@@ -7,9 +7,24 @@
                   <mat-step [stepControl]="firstFormGroup">
                       <form [formGroup]="firstFormGroup">
                     <ng-template matStepLabel>Basics information</ng-template>
+                    <div class="row">
+                      <div class="col-md-6">
                       Your travel will start on <b>{{user.dates.startDate | date:'full'}}</b> and end on <b>{{user.dates.endDate| date:'full'}}</b><br>
                       Number of people: <b>{{user.people}}</b> <br>
                       <b>From: </b>{{nameStart}} <b>To: </b> {{nameEnd}}
+                      </div>
+                      <div class="col-md-6">
+                          <h2>Total cost of journey: {{cost |currency:'USD'}}</h2>
+                          <div style="display: block">
+                              <canvas baseChart
+                                [data]="doughnutChartData"
+                                [labels]="doughnutChartLabels"
+                                [chartType]="doughnutChartType"
+                                (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)"></canvas>
+                          </div>
+                      </div>
+                    </div>
                     <div>
                       <button mat-raised-button color="primary" matStepperNext>Next</button>
                     </div>
@@ -48,7 +63,7 @@
                       </table>
                       <br>
                       Outbound flight: <br>
-                      <table class="table">
+                      <table class="table table-responsive">
                           <thead>
                             <tr>
                               <th scope="col">Price</th>
@@ -143,15 +158,16 @@
                         <mat-tab label="Basics information">
                           <div class="row">
                             <div class="col-md-7">
-                           <p>{{p.shortDescription}}</p>
-                            Walk time: {{p.walkTime}} min <br>
-                            <a href="{{p.wikipedia}}" target="_blank">Wikipedia address</a><br>
-                            <a href="{{p.location.link}}" target="_blank">Location google maps</a><br>
+                              <h2>{{p.title}}</h2>
+                              <p>{{p.shortDescription}}</p>
+                              Walk time: {{p.walkTime}} min <br>
+                              <a href="{{p.wikipedia}}" target="_blank">Wikipedia address</a><br>
+                              <a href="{{p.location.link}}" target="_blank">Location google maps</a><br>
+                              </div>
+                              <div class="col-md-5">
+                                <img class="img-responsive" style="height:250px;width:250px" [src]="p.mainImage">
+                              </div>
                             </div>
-                            <div class="col-md-5">
-                              <img class="img-responsive" style="height:250px;width:250px" [src]="p.mainImage">
-                            </div>
-                        </div>
                         </mat-tab>
                         <mat-tab label="Description"> 
                             <p>{{p.description}}</p>
