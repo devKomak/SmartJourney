@@ -29,5 +29,8 @@ check(hotel: Hotel, index: number){
     this.index = index;
     this.userService.addHotel(hotel);
     this.userService.getPlaces().subscribe(message =>{}, 
+      error => { console.log(error)});
+    this.userService.isPlaces.subscribe(message =>{
+      if (message === true) {  this.router.navigate(['places']); }
 )
 }
