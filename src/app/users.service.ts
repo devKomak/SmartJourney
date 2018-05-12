@@ -41,7 +41,7 @@ export class UserService implements OnInit {
   public summaryJourneys;
   public hotels: Hotel[];
   public places: Place[];
-  
+
   constructor(private http: HttpClient, private router: Router, private authService: AuthService, private afs: AngularFirestore) {
     this.journeysCollection = this.afs.collection('journeys');
     this.user = new User();
@@ -141,9 +141,10 @@ export class UserService implements OnInit {
      });
   }
 
-  getPlaces(){
+  getPlaces() {
     return this.http.get('https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-circle?latitude='
-    + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&apikey=' + this.amadeusKey + '&number_of_results=10')
+                        + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&apikey='
+                        + this.amadeusKey + '&number_of_results=10')
     .map((response: any) => {
       console.log(response);
        const data = response.points_of_interest;
@@ -160,7 +161,7 @@ export class UserService implements OnInit {
 
         this.places.push(new Place(mainImage, title, short_description, description,
                         {latitude: latitude, longitude: longitude, link: link},
-                         wikipedia, walkTime))
+                         wikipedia, walkTime));
       }
       console.log(this.places);
       this.isPlaces.next(true);

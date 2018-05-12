@@ -34,20 +34,20 @@ showValueLess() {
   if (this.show >= 10)  {this.show -= 5; }
 }
 
-back(){
+back() {
   this.location.back();
 }
 check(hotel: Hotel, index: number) {
     this.started = true;
     this.index = index;
     this.userService.addHotel(hotel);
-    this.userService.getPlaces().subscribe(message =>{}, 
-      error => { 
+    this.userService.getPlaces().subscribe(message => {},
+      error => {
         console.log(error);
         this.errorMessage = error.error.more_info;
         this.error = true;
       });
-    this.userService.isPlaces.subscribe(message =>{
+    this.userService.isPlaces.subscribe(message => {
       if (message === true) {  this.router.navigate(['places']); }
     });
 }
