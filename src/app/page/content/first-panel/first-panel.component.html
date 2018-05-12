@@ -30,7 +30,7 @@
                             <mat-error *ngIf="!dataForm.get('origin').valid && dataForm.get('origin').touched">Please enter a valid place</mat-error>
                       </mat-form-field>
                       <mat-form-field class="example-full-width d-block">
-                          <mat-label>Where are you go?</mat-label>
+                          <mat-label>Where do you go?</mat-label>
                           <input formControlName="destination" matInput placeholder="Destination place" autocorrect="true" autocapitalize="off" spellcheck="true" type="text" #searchEnd>
                           <mat-error *ngIf="!dataForm.get('destination').valid && dataForm.get('destination').touched">Please enter a valid place</mat-error>
                        </mat-form-field>

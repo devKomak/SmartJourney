@@ -104,7 +104,7 @@ export class UserService implements OnInit {
   getHotels() {
     console.log('getting');
     // tslint:disable-next-line:max-line-length
-    return this.http.get('http://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=' + this.user.userCoords.latEnd
+    return this.http.get('https://api.sandbox.amadeus.com/v1.2/hotels/search-circle?latitude=' + this.user.userCoords.latEnd
     + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&check_in=' + this.user.dates.startDate + '&check_out=' +
      this.user.dates.endDate + '&currency=USD&number_of_results=50&apikey=' + this.amadeusKey + '&currency=USD')
      .map((response: any) => {
