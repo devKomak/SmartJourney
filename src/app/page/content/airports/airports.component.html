@@ -72,9 +72,15 @@
             </agm-marker>
           </agm-map>
 
-</div>
-<button type="submit" (click)="next()" class="btn mt-2 btn-outline-dark">Next</button>
-<mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
+        </div>
+          </div>
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            <strong>{{errorMessageShort}}</strong> <br>More: {{errorMessage}}<br>
+          </div>
+          <div>
+            <button (click)="back()" class="btn mt-2 btn-outline-dark">Back</button>
+            <button type="submit" (click)="next()" class="btn mt-2 btn-outline-dark">Next</button>
+            <mat-progress-bar *ngIf="started" mode="indeterminate"></mat-progress-bar>
           </div>
       </div>
     </div>

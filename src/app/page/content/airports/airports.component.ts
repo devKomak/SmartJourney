@@ -26,6 +26,9 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   public LatLngBounds;
   public choosedAirport;
   public started: boolean;
+  public errorMessage;
+  public errorMessageShort;
+  public error;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,6 +47,10 @@ export class AirportsComponent implements OnInit, AfterViewInit {
    }
 
   ngOnInit() {
+  }
+
+  back(){
+    this.location.back();
   }
 
   ngAfterViewInit() {
@@ -65,7 +72,15 @@ next() {
   if (this.choosedAirport) {
     this.started = true;
     this.userService.addAirport(this.choosedAirport);
-    this.userService.getInBoundFlights();
+    this.userService.getInBoundFlights().subscribe(response =>{},
+    error => 
+    {
+      console.log(error);
+      this.error = true;
+      this.errorMessage = error.error.more_info;
+      this.errorMessageShort = error.error.message;
+      this.started = false;
+    });
     this.userService.isInBoundFlightSubject.asObservable().subscribe(message => {
       if (message === true) {  this.router.navigate(['flights']); }
     });

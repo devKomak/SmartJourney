@@ -20,9 +20,16 @@ export class AccountDetailComponent implements OnInit {
   public LatLng1;
   public LatLng2;
   state;
+  public cost;
 
+  public doughnutChartLabels:string[];
+  public doughnutChartData:number[];
+  public doughnutChartType:string;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+
+
+
   constructor(private userService: UserService, private _formBuilder: FormBuilder,
                private activatedRoute: ActivatedRoute, private location: Location) {
       this.activatedRoute.params.subscribe(params => {
@@ -31,13 +38,27 @@ export class AccountDetailComponent implements OnInit {
       this.nameEnd = this.user.nameEnded;
       console.log(this.user);
 
+      this.doughnutChartLabels = ['Car', 'Hotel', 'Inbound flight', 'Outbound flight'];
+      this.doughnutChartData = [this.user.choosedCar[0], this.user.choosedHotel.price, this.user.choosedInBoundFlight[0].price, 
+      this.user.choosedOutBoundFlight[0].price];
+      this.doughnutChartType = 'doughnut';
+
+      this.cost = Number(this.user.choosedCar[0]) + Number(this.user.choosedHotel.price) + Number(this.user.choosedInBoundFlight[0].price) 
+      + Number(this.user.choosedOutBoundFlight[0].price);
+
     });
    }
 
    back() {
      this.location.back();
    }
-
+   public chartClicked(e:any):void {
+    console.log(e);
+  }
+ 
+  public chartHovered(e:any):void {
+    console.log(e);
+  }
   ngOnInit() {
 
       this.firstFormGroup = this._formBuilder.group({

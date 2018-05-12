@@ -1,0 +1,44 @@
+<div class="py-5 bg-info" style="background-repeat:repeat">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 ">
+            <div class="card">
+              <div class="card-body ">
+              <h1>Choose interesting places to visit</h1>
+              <div *ngFor="let p of places|slice:0:show;let i=index">
+                    <div class="card">
+                      <div class="card-body ">
+                        <div class="card-body border-dark mb-3">
+                        <h2>{{p.title}}</h2><mat-checkbox #checkBox (change)="choosePlace(p, i)">If you want to visit this place check it!</mat-checkbox>
+                        <mat-tab-group >
+                          <mat-tab label="Basics information">
+                            <div class="row">
+                              <div class="col-md-7">
+                             <p>{{p.shortDescription}}</p>
+                              Walk time: {{p.walkTime}} min <br>
+                              <a href="{{p.wikipedia}}" target="_blank">Wikipedia address</a><br>
+                              <a href="{{p.location.link}}" target="_blank">Location google maps</a><br>
+                              </div>
+                              <div class="col-md-5">
+                                <img class="img-responsive" style="height:250px;width:250px" [src]="p.mainImage">
+                              </div>
+                          </div>
+                          </mat-tab>
+                          <mat-tab label="Description"> 
+                              <p>{{p.description}}</p>
+                        </mat-tab>
+                        </mat-tab-group>
+                        <a (click)="summary()" class="btn btn-primary btn-info"> Go to the journey summary</a>
+                        <a (click)="back()" class="btn btn-primary btn-info"> Back</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <a class="btn btn-block btn-primary" (click)="showValue()" ><span class="glyphicon glyphicon-search"></span> Show more</a>
+              <a class="btn btn-block btn-warning" (click)="showValueLess()" ><span class="glyphicon glyphicon-search"></span> Show less</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

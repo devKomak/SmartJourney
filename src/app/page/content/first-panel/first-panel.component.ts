@@ -46,7 +46,7 @@ export class FirstPanelComponent implements OnInit {
   public searchElementStartRef: ElementRef;
   @ViewChild('searchEnd')
   public searchElementEndRef: ElementRef;
-
+  public errorMessage;
   public dates: Dates;
   public people: number;
   public airports: Airport[];
@@ -55,6 +55,8 @@ export class FirstPanelComponent implements OnInit {
   public minDateStart = new Date();
   public minDateEnd = new Date();
   public started: boolean;
+  public markerCheck;
+  public error;
   dataForm: FormGroup;
   isOrigin = new Subject<FormControl>();
 
@@ -70,6 +72,7 @@ export class FirstPanelComponent implements OnInit {
     this.isAirports = false;
     this.isEndAirport = false;
     this.started = false;
+    this.markerCheck = 0;
   }
 
   zoomChange(f: any) {
@@ -94,10 +97,10 @@ export class FirstPanelComponent implements OnInit {
 
     // set google maps defaults
     this.zoom = 6;
-    this.latitudeStart = 8;
-    this.longitudeStart = 5;
-    this.latitudeEnd = 8;
-    this.longitudeEnd = 5;
+    this.latitudeStart = 0;
+    this.longitudeStart = 0;
+    this.latitudeEnd = 0;
+    this.longitudeEnd = 0;
     this.text = '';
     this.isTwoCoords = false;
     this.positionStart = false;
@@ -234,19 +237,6 @@ export class FirstPanelComponent implements OnInit {
 
   }
 
-  setEndDate(event) {
-    this.minDateEnd.setDate(this.minDateStart.getDate());
-  }
-
-  setStartDate(event: any) {
-    const day = event.value._i.date;
-    const month = event.value._i.month;
-    const year = event.value._i.year;
-    const dateTemp = new Date(event.value._i.year, event.value._i.month, event.value._i.date);
-    this.minDateStart.setDate(dateTemp.getDate());
-    this.startDate.nativeElement.min = dateTemp;
-  }
-
   addDates() {
     this.dates = new Dates(this.startDate.nativeElement.value, this.endDate.nativeElement.value);
     this.userService.addUserDates(this.dates);
@@ -266,11 +256,19 @@ export class FirstPanelComponent implements OnInit {
         this.dateError = false;
       }
 
-      if (this.dataForm.valid && this.dateError === false) {
+      console.log(this.positionStart + ' ' + this.positionEnd);
+      if(this.positionStart && this.positionEnd){
+        this.markerCheck = true;
+      }else {    this.markerCheck = false;}
+
+      if (this.dataForm.valid && this.dateError === false && this.markerCheck) {
       this.started = true;
       this.addDates();
       this.addPeople();
-      this.userService.getAirports();
+      this.userService.getAirports().subscribe(message => {},
+      error => {
+        console.log(error);
+      });
       this.userService.subject1.asObservable().subscribe(message => {
         this.isAirports = message;
         if (this.isAirports && this.isEndAirport) { this.router.navigate(['airports']); }
@@ -286,5 +284,4 @@ export class FirstPanelComponent implements OnInit {
   }
 
 }
-
 
