@@ -15,7 +15,7 @@ Kolejnym etapem jest wyszukanie auta, które będzie można wynająć, aby dotrz
 
 <li>Wyszukiwanie ciekawych miejsc i atrakcji<br>
 Ostatnim etapem jest wyszukanie ciekawych miejsc i atrakcji. Tu również dostaniemy wiele wyników, chociażby lokacje, obraz prezentujący dane miejsce, atrakcje, stronę wiki itd.</li>
-<ul>
+</ul>
 
 <h1 id="header-1">Skład zespołu projektowego:</h1>
 <ul>
