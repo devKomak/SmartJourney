@@ -4,15 +4,15 @@
 
 <h1 id="header-1">Główne funkcjonalności:</h1>
 <ul>
-<li>Wyszukiwanie dostępnych lotów<li>
-Po wprowadzeniu danych dotyczących podróży aplikacja będzie zwracała dostępne loty w wybranym terminie z informacjami takimi jak: cena, liczba potencjalnych przesiadek, data i czas wylotu, przylotu, informacje o lotnisku źródłowym i docelowym oraz wiele innych danych. Dodatkowo dla niektórych przewoźników będzie dostępny link do bezpośredniego bookowania lotu.
+<li>Wyszukiwanie dostępnych lotów<br<
+Po wprowadzeniu danych dotyczących podróży aplikacja będzie zwracała dostępne loty w wybranym terminie z informacjami takimi jak: cena, liczba potencjalnych przesiadek, data i czas wylotu, przylotu, informacje o lotnisku źródłowym i docelowym oraz wiele innych danych. Dodatkowo dla niektórych przewoźników będzie dostępny link do bezpośredniego bookowania lotu.<li>
 
-<li>Wyszukiwanie hoteli<li>
-Po wyszukaniu lotu, aplikacja będzie umożliwiała znalezienie hotelu w pobliżu miejsca docelowego. Informacje jakie będą zwracane, to cena, udogodnienia, obraz prezentujący hotel, adres, telefon itd.
+<li>Wyszukiwanie hoteli<br>
+Po wyszukaniu lotu, aplikacja będzie umożliwiała znalezienie hotelu w pobliżu miejsca docelowego. Informacje jakie będą zwracane, to cena, udogodnienia, obraz prezentujący hotel, adres, telefon itd.</li>
 
-<li>Wyszukiwanie aut do wynajęcia<li>
-Kolejnym etapem jest wyszukanie auta, które będzie można wynająć, aby dotrzeć do hotelu. W tym miejscu dostaniemy takie informacje jak: adres, typ auta, zdjęcie, cena, czy auto ma klimatyzacje itd.
+<li>Wyszukiwanie aut do wynajęcia<br>
+Kolejnym etapem jest wyszukanie auta, które będzie można wynająć, aby dotrzeć do hotelu. W tym miejscu dostaniemy takie informacje jak: adres, typ auta, zdjęcie, cena, czy auto ma klimatyzacje itd.</li>
 
-<li>Wyszukiwanie ciekawych miejsc i atrakcji<li>
-Ostatnim etapem jest wyszukanie ciekawych miejsc i atrakcji. Tu również dostaniemy wiele wyników, chociażby lokacje, obraz prezentujący dane miejsce, atrakcje, stronę wiki itd.
+<li>Wyszukiwanie ciekawych miejsc i atrakcji<br>
+Ostatnim etapem jest wyszukanie ciekawych miejsc i atrakcji. Tu również dostaniemy wiele wyników, chociażby lokacje, obraz prezentujący dane miejsce, atrakcje, stronę wiki itd.</li>
 <ul>
