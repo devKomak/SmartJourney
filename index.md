@@ -26,6 +26,6 @@ Ostatnim etapem jest wyszukanie ciekawych miejsc i atrakcji. Tu również dostan
 </ul>
 
 <h1 id="header-1">Link do systemu zarządzania projektem: <a href="https://trello.com/b/HFT6o7TD/smartjourney">Trello</a></h1>
-<h1 id="header-1">Link do witryny projektu: </h1>
+<h1 id="header-1">Link do witryny aplikacji: <a href="https://chivolta.github.io/SmartJourneyPage/"> Witryna aplikacji</a> </h1>
 <h1 id="header-1">Prototyp projektu: <a href="./Prototype/index.html"> Prototyp </a></h1>
 <h1 id="header-1">Raport prac: <a href="./raportPrac.xlsx" > Raport prac każdego członka zespołu </a></h1>
