@@ -3,7 +3,7 @@
 <h1 id="header-1">Opis projektu</h1>
 <p>Głównym celem aplikacji jest usprawnienie procesu planowania podróży. Podając miejsce docelowe wraz datą trwania podróży, aplikacja wyszuka dostępne loty, pobliskie hotele, auta do wynajęcia, ciekawe miejsca i atrakcje. Dodatkowo aplikacja będzie umożliwiała dla zalogowanych użytkowników zapisywanie swojej karty podróży i korzystanie z niej w dowolnym momencie.  Aplikacja będzie korzystała z usług geolokalizacji google do wyznaczania pozycji użytkownika.</p>
 
-<h2 id="header-1">Główne funkcjonalności</h2>
+<h3 id="header-3">Główne funkcjonalności</h3>
 <ul>
 <li>Wyszukiwanie dostępnych lotów<br>
 Po wprowadzeniu danych dotyczących podróży aplikacja będzie zwracała dostępne loty w wybranym terminie z informacjami takimi jak: cena, liczba potencjalnych przesiadek, data i czas wylotu, przylotu, informacje o lotnisku źródłowym i docelowym oraz wiele innych danych. Dodatkowo dla niektórych przewoźników będzie dostępny link do bezpośredniego bookowania lotu.</li>
@@ -26,6 +26,6 @@ Ostatnim etapem jest wyszukanie ciekawych miejsc i atrakcji. Tu również dostan
 </ul>
 
 <h1 id="header-1">Link do systemu zarządzania projektem: <a href="https://trello.com/b/HFT6o7TD/smartjourney">Trello</a></h1>
-<h1 id="header-1">Link do witryny projektu: </h1>
+<h1 id="header-1">Link do witryny aplikacji: <a href="https://chivolta.github.io/SmartJourneyPage/"> Witryna aplikacji</a> </h1>
 <h1 id="header-1">Prototyp projektu: <a href="./Prototype/index.html"> Prototyp </a></h1>
 <h1 id="header-1">Raport prac: <a href="./raportPrac.xlsx" > Raport prac każdego członka zespołu </a></h1>
