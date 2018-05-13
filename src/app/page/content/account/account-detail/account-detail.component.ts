@@ -22,9 +22,9 @@ export class AccountDetailComponent implements OnInit {
   state;
   public cost;
 
-  public doughnutChartLabels:string[];
-  public doughnutChartData:number[];
-  public doughnutChartType:string;
+  public doughnutChartLabels: string[];
+  public doughnutChartData: number[];
+  public doughnutChartType: string;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
@@ -36,14 +36,13 @@ export class AccountDetailComponent implements OnInit {
       this.user = this.userService.summaryJourneys[params['id']];
       this.nameStart = this.user.nameStarted;
       this.nameEnd = this.user.nameEnded;
-      console.log(this.user);
 
       this.doughnutChartLabels = ['Car', 'Hotel', 'Inbound flight', 'Outbound flight'];
-      this.doughnutChartData = [this.user.choosedCar[0], this.user.choosedHotel.price, this.user.choosedInBoundFlight[0].price, 
+      this.doughnutChartData = [this.user.choosedCar[0], this.user.choosedHotel.price, this.user.choosedInBoundFlight[0].price,
       this.user.choosedOutBoundFlight[0].price];
       this.doughnutChartType = 'doughnut';
 
-      this.cost = Number(this.user.choosedCar[0]) + Number(this.user.choosedHotel.price) + Number(this.user.choosedInBoundFlight[0].price) 
+      this.cost = Number(this.user.choosedCar[0]) + Number(this.user.choosedHotel.price) + Number(this.user.choosedInBoundFlight[0].price)
       + Number(this.user.choosedOutBoundFlight[0].price);
 
     });
@@ -52,11 +51,11 @@ export class AccountDetailComponent implements OnInit {
    back() {
      this.location.back();
    }
-   public chartClicked(e:any):void {
+   public chartClicked(e: any): void {
     console.log(e);
   }
- 
-  public chartHovered(e:any):void {
+
+  public chartHovered(e: any): void {
     console.log(e);
   }
   ngOnInit() {
