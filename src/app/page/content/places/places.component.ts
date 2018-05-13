@@ -25,28 +25,21 @@ export class PlacesComponent implements OnInit {
     this.choosedPlaces = [];
   }
 
-  back(){
+  back() {
     this.location.back();
   }
 
-  summary(){
+  summary() {
     this.userService.user.choosedPlaces = this.choosedPlaces;
     this.router.navigate(['summary']);
   }
 
-  choosePlace(p: Place, index: number){
-    console.log(this.choosedPlaces);
-    console.log(this.cb);
-
-    if(this.cb._results[index].checked) { this.choosedPlaces.push(p)}
-    else {
-      for(let i = 0; i <this.choosedPlaces.length; i++){
-        if(p.title === this.choosedPlaces[i].title) this.choosedPlaces.splice(i,1);
+  choosePlace(p: Place, index: number) {
+    if (this.cb._results[index].checked) { this.choosedPlaces.push(p); } else {
+      for (let i = 0; i < this.choosedPlaces.length; i++) {
+        if (p.title === this.choosedPlaces[i].title) { this.choosedPlaces.splice(i, 1); }
       }
     }
-
-    console.log(this.choosedPlaces);
-
   }
 
   showValue() {

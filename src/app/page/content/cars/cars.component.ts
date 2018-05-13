@@ -39,14 +39,11 @@ export class CarsComponent implements OnInit {
 
   takeCar(car: any, index: number) {
     this.choosedCar = car;
-    console.log(this.choosedCar);
     this.userService.user.choosedCar = this.choosedCar;
     this.index = index;
     this.started = true;
-    this.userService.getHotels().subscribe(response =>{},
-      error => 
-      {
-        console.log(error);
+    this.userService.getHotels().subscribe(response => {},
+      error => {
         this.error = true;
         this.errorMessage = error.error.more_info;
         this.errorMessageShort = error.error.message;
@@ -54,10 +51,10 @@ export class CarsComponent implements OnInit {
       });
     this.userService.isHotels.subscribe(message => {
       if (message === true) {  this.router.navigate(['hotels']); }
-    })
+    });
   }
 
-  back(){
+  back() {
     this.location.back();
   }
 
@@ -97,9 +94,5 @@ export class CarsComponent implements OnInit {
         }
         }
       }
-
-      console.log(this.temp);
-
   }
-
 }

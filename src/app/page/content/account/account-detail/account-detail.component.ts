@@ -28,8 +28,6 @@ export class AccountDetailComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
-
-
   constructor(private userService: UserService, private _formBuilder: FormBuilder,
                private activatedRoute: ActivatedRoute, private location: Location) {
       this.activatedRoute.params.subscribe(params => {
@@ -48,28 +46,26 @@ export class AccountDetailComponent implements OnInit {
     });
    }
 
-   back() {
-     this.location.back();
-   }
-   public chartClicked(e: any): void {
-    console.log(e);
+   ngOnInit() {
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
+
+
+}
+
+  back() {
+    this.location.back();
+  }
+
+  public chartClicked(e: any): void {
   }
 
   public chartHovered(e: any): void {
-    console.log(e);
   }
-  ngOnInit() {
-
-      this.firstFormGroup = this._formBuilder.group({
-        firstCtrl: ['', Validators.required]
-      });
-      this.secondFormGroup = this._formBuilder.group({
-        secondCtrl: ['', Validators.required]
-      });
-
-
-
-  }
-
-
 }

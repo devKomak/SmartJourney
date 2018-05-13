@@ -76,12 +76,10 @@ export class FirstPanelComponent implements OnInit {
   }
 
   zoomChange(f: any) {
-    console.log(f);
   }
 
 
   change(startDate: MatDatepickerInput<this>) {
-    console.log(startDate);
   }
 
   ngOnInit() {
@@ -187,7 +185,6 @@ export class FirstPanelComponent implements OnInit {
         });
           this.userCoords = { latStart: this.latitudeStart, lngStart: this.longitudeStart,
           latEnd: this.latitudeEnd, lngEnd: this.longitudeEnd };
-          console.log(this.userCoords);
           this.userService.addUserCoords(this.userCoords);
           this.positionStart = true;
           this.currentPosition = false;
@@ -256,10 +253,9 @@ export class FirstPanelComponent implements OnInit {
         this.dateError = false;
       }
 
-      console.log(this.positionStart + ' ' + this.positionEnd);
-      if(this.positionStart && this.positionEnd){
+      if (this.positionStart && this.positionEnd) {
         this.markerCheck = true;
-      }else {    this.markerCheck = false;}
+      } else {    this.markerCheck = false; }
 
       if (this.dataForm.valid && this.dateError === false && this.markerCheck) {
       this.started = true;
@@ -267,7 +263,7 @@ export class FirstPanelComponent implements OnInit {
       this.addPeople();
       this.userService.getAirports().subscribe(message => {},
       error => {
-        console.log(error);
+
       });
       this.userService.subject1.asObservable().subscribe(message => {
         this.isAirports = message;

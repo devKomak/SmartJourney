@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class SummaryComponent implements OnInit {
   isLinear = false;
 
-  user: any;
+  user;
   public geocoder;
   public nameStart;
   public nameEnd;
@@ -24,46 +24,46 @@ export class SummaryComponent implements OnInit {
   public LatLng2;
   state;
   saved: boolean;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
   public cost;
 
-  public doughnutChartLabels:string[];
-  public doughnutChartData:number[];
-  public doughnutChartType:string;
+  public doughnutChartLabels: string[];
+  public doughnutChartData: number[];
+  public doughnutChartType: string;
+
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   constructor(private afs: AngularFirestore, private userService: UserService, private _formBuilder: FormBuilder,
     private af: AngularFireAuth, private router: Router) {
     this.user = this.userService.getUser();
+    this.saved = false;
+
     this.doughnutChartLabels = ['Car', 'Hotel', 'Inbound flight', 'Outbound flight'];
-    this.doughnutChartData = [this.user.choosedCar[0], this.user.choosedHotel.price, this.user.choosedInBoundFlight[0].price, 
+    this.doughnutChartData = [this.user.choosedCar[0], this.user.choosedHotel.price, this.user.choosedInBoundFlight[0].price,
     this.user.choosedOutBoundFlight[0].price];
     this.doughnutChartType = 'doughnut';
-    this.saved = false;
-    this.cost = Number(this.user.choosedCar[0]) + Number(this.user.choosedHotel.price) + Number(this.user.choosedInBoundFlight[0].price) 
+
+    this.cost = Number(this.user.choosedCar[0]) + Number(this.user.choosedHotel.price) + Number(this.user.choosedInBoundFlight[0].price)
     + Number(this.user.choosedOutBoundFlight[0].price);
   }
 
-  public chartClicked(e:any):void {
-    console.log(e);
+  public chartClicked(e: any): void {
   }
- 
-  public chartHovered(e:any):void {
-    console.log(e);
+
+  public chartHovered(e: any): void {
   }
-  
+
   saveJourney() {
     this.userService.user.uid = this.af.auth.currentUser.uid;
     this.user = this.userService.getUser();
     const data = JSON.parse(JSON.stringify(this.user));
     this.userService.newJourney({data});
     this.saved = true;
-    setTimeout(() => {this.router.navigate(['']); }, 4000);
+    setTimeout(() => {this.router.navigate(['']); }, 5000);
   }
 
   ngOnInit() {
 
-    console.log(this.user);
     this.state = false;
     this.af.authState.subscribe(auth => {
       if (auth) {

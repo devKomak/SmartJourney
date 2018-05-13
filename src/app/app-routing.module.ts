@@ -9,7 +9,6 @@ import { PageComponent } from './page/page.component';
 import { FlightsComponent } from './page/content/flights/flights.component';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
-import { ErrorComponent } from './page/error/error.component';
 import { SummaryComponent } from './page/content/summary/summary.component';
 import { RegisterComponent } from './page/register-component/register.component';
 import { AccountComponent } from './page/content/account/account.component';
@@ -34,7 +33,6 @@ const appRoutes: Routes = [
         ]}
     ]},
     {path: 'summary', component: SummaryComponent},
-    {path: 'error', component: ErrorComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent}
 

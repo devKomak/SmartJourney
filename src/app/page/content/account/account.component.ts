@@ -30,7 +30,6 @@ export class AccountComponent implements OnInit {
     this.lastTime = this.auth.userDetails.metadata.lastSignInTime;
 
     this.userService.getJourneys().subscribe(message => {
-      console.log(this.userService.summaryJourneys);
       this.journeys = [];
       this.journeys = this.userService.summaryJourneys;
       this.length = this.journeys.length;

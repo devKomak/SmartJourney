@@ -50,10 +50,9 @@ export class FlightsComponent implements OnInit, AfterViewInit {
 
   click(event) {
     this.choosedInBoundFlight = event;
-    console.log(this.choosedInBoundFlight);
   }
 
-  back(){
+  back() {
     this.location.back();
   }
 
@@ -61,10 +60,8 @@ export class FlightsComponent implements OnInit, AfterViewInit {
     if (this.choosedInBoundFlight) {
       this.started = true;
       this.userService.addInBoundFlight(this.choosedInBoundFlight);
-      this.userService.getOutBoundFlights().subscribe(response =>{},
-        error => 
-        {
-          console.log(error);
+      this.userService.getOutBoundFlights().subscribe(response => {},
+        error => {
           this.error = true;
           this.errorMessage = error.error.more_info;
           this.errorMessageShort = error.error.message;

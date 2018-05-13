@@ -50,10 +50,9 @@ export class Flights1Component implements OnInit, AfterViewInit {
 
   click(event) {
     this.choosedOutBoundFlight = event;
-    console.log(this.choosedOutBoundFlight);
   }
 
-  back(){
+  back() {
     this.location.back();
   }
 
@@ -61,15 +60,13 @@ export class Flights1Component implements OnInit, AfterViewInit {
      if (this.choosedOutBoundFlight) {
        this.started = true;
        this.userService.addOutBoundFlight(this.choosedOutBoundFlight);
-       this.userService.getCars().subscribe(response =>{},
-        error => 
-        {
-          console.log(error);
+       this.userService.getCars().subscribe(response => {},
+        error => {
           this.error = true;
           this.errorMessage = error.error.more_info;
           this.errorMessageShort = error.error.message;
           this.started = false;
-        });;
+        });
 
        this.userService.isCars.asObservable().subscribe(message => {
         if (message === true) {  this.router.navigate(['cars']); }

@@ -38,7 +38,6 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { Flights1Component } from './page/content/flights1/flights1.component';
 import { CarsComponent } from './page/content/cars/cars.component';
 import { environment } from '../environments/environment';
-import { ErrorComponent } from './page/error/error.component';
 import { HotelsComponent } from './page/content/hotels/hotels.component';
 import { SummaryComponent } from './page/content/summary/summary.component';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -75,7 +74,6 @@ export const MY_FORMATS = {
     FlightsComponent,
     Flights1Component,
     CarsComponent,
-    ErrorComponent,
     HotelsComponent,
     SummaryComponent,
     AccountComponent,

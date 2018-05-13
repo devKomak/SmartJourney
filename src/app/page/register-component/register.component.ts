@@ -23,10 +23,8 @@ export class RegisterComponent implements OnInit {
 
     this.authService.registerError.subscribe((response: any) => {
       if (response === 'Ok') {
-        console.log('Successful');
         this.success = response.message;
       } else {
-        console.log(response.message);
         this.error = response.message;
       }
     });

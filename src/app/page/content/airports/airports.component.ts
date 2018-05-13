@@ -49,7 +49,7 @@ export class AirportsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
-  back(){
+  back() {
     this.location.back();
   }
 
@@ -72,10 +72,8 @@ next() {
   if (this.choosedAirport) {
     this.started = true;
     this.userService.addAirport(this.choosedAirport);
-    this.userService.getInBoundFlights().subscribe(response =>{},
-    error => 
-    {
-      console.log(error);
+    this.userService.getInBoundFlights().subscribe(response => {},
+    error => {
       this.error = true;
       this.errorMessage = error.error.more_info;
       this.errorMessageShort = error.error.message;
@@ -92,7 +90,6 @@ next() {
         this.selection.clear() :
         this.dataSource.data.forEach(row => {
           this.selection.select(row);
-          console.log(this.selection.select(row));
         });
   }
 
@@ -131,7 +128,7 @@ export interface Element {
 }
 
 interface Marker {
-lat: number;
-lng: number;
-label?: string;
+  lat: number;
+  lng: number;
+  label?: string;
 }

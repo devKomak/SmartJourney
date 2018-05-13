@@ -21,10 +21,8 @@ export class NavigationComponent implements OnInit {
     this.af.authState.subscribe(auth => {
       if (auth) {
         this.state = true;
-        console.log(this.state);
       } else {
         this.state = false;
-        console.log(this.state);
       }
     });
   }

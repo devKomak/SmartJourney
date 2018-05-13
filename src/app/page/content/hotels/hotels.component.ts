@@ -43,7 +43,6 @@ check(hotel: Hotel, index: number) {
     this.userService.addHotel(hotel);
     this.userService.getPlaces().subscribe(message => {},
       error => {
-        console.log(error);
         this.errorMessage = error.error.more_info;
         this.error = true;
       });

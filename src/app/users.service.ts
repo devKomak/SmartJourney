@@ -74,11 +74,11 @@ export class UserService implements OnInit {
     this.user.setChoosedAirport(airport);
   }
 
-  addHotel(hotel: Hotel){
+  addHotel(hotel: Hotel) {
     this.user.choosedHotel = hotel;
   }
 
-  addPlaces(places: Place[]){
+  addPlaces(places: Place[]) {
     this.user.choosedPlaces = places;
   }
 
@@ -136,7 +136,6 @@ export class UserService implements OnInit {
         this.isHotels.next(true);
      },
      error => {
-       console.log('error');
        this.router.navigate(['error']);
      });
   }
@@ -146,7 +145,6 @@ export class UserService implements OnInit {
                         + this.user.userCoords.latEnd + '&longitude=' + this.user.userCoords.lngEnd + '&radius=50&apikey='
                         + this.amadeusKey + '&number_of_results=10')
     .map((response: any) => {
-      console.log(response);
        const data = response.points_of_interest;
        for (const p of data) {
         const title = p.title;
@@ -163,11 +161,9 @@ export class UserService implements OnInit {
                         {latitude: latitude, longitude: longitude, link: link},
                          wikipedia, walkTime));
       }
-      console.log(this.places);
       this.isPlaces.next(true);
     },
     error => {
-      console.log('error');
       this.router.navigate(['error']);
     });
   }
@@ -202,7 +198,6 @@ export class UserService implements OnInit {
       this.isCars.next(true);
     },
     error => {
-      console.log('error');
       this.router.navigate(['error']);
     }
   );
@@ -244,10 +239,10 @@ export class UserService implements OnInit {
     }
     return this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     + originName + '&destination=' + this.user.endAirport.airport + '&departure_date=' + this.user.dates.startDate
-    +  '&number_of_results=35' + '&currency=USD')
+    +  '&number_of_results=35' + '&currency=USD' + '&adults=' + this.user.people)
     .map((data: any)  => {
       this.resultsFlights = data.results;
-      if (this.resultsFlights) { this.isInBoundFlightSubject.next(true); console.log(this.resultsFlights); }
+      if (this.resultsFlights) { this.isInBoundFlightSubject.next(true);  }
     });
 
   }
@@ -260,10 +255,10 @@ export class UserService implements OnInit {
     }
     return  this.http.get('https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=' + this.amadeusKey + '&origin='
     +  this.user.endAirport.airport + '&destination=' + originName + '&departure_date=' + this.user.dates.endDate
-    +  '&number_of_results=35' + '&currency=USD')
+    +  '&number_of_results=35' + '&currency=USD' + '&adults=' + this.user.people)
     .map((data: any)  => {
       this.resultsFlights = data.results;
-      if (this.resultsFlights) { this.isOutBoundFlightSubject.next(true); console.log(this.resultsFlights); }
+      if (this.resultsFlights) { this.isOutBoundFlightSubject.next(true); }
     },
     error => {
         this.router.navigate(['error']);
