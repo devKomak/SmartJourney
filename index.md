@@ -5,7 +5,7 @@
 <h1 id="header-1">Główne funkcjonalności:</h1>
 <ul>
 <li>Wyszukiwanie dostępnych lotów<br>
-Po wprowadzeniu danych dotyczących podróży aplikacja będzie zwracała dostępne loty w wybranym terminie z informacjami takimi jak: cena, liczba potencjalnych przesiadek, data i czas wylotu, przylotu, informacje o lotnisku źródłowym i docelowym oraz wiele innych danych. Dodatkowo dla niektórych przewoźników będzie dostępny link do bezpośredniego bookowania lotu.<li>
+Po wprowadzeniu danych dotyczących podróży aplikacja będzie zwracała dostępne loty w wybranym terminie z informacjami takimi jak: cena, liczba potencjalnych przesiadek, data i czas wylotu, przylotu, informacje o lotnisku źródłowym i docelowym oraz wiele innych danych. Dodatkowo dla niektórych przewoźników będzie dostępny link do bezpośredniego bookowania lotu.</li>
 
 <li>Wyszukiwanie hoteli<br>
 Po wyszukaniu lotu, aplikacja będzie umożliwiała znalezienie hotelu w pobliżu miejsca docelowego. Informacje jakie będą zwracane, to cena, udogodnienia, obraz prezentujący hotel, adres, telefon itd.</li>
