@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <img class="d-block img-fluid mx-auto" src="https://jqumhw.bn.files.1drv.com/y4mLMrUnNNUSPnIq0fbXDpgVpymatUoVcYR-omsrljcG7bqisMBQK5Ukgf8ZpDx9JvbOQ-VobhdOMKv4J4DBLZVmbRdY_x0APG5RzwMqk0kae-_TY1omed26IFLLplsb8Sem59v2O1kC5lPeA3Ir4Wu69jsxFuJy6U4RI6RHtS_-XVgq02u5qdGfrace-lvWRDXFOcUIH-zqcNmH7L4nSWdJw/l1.png?psid=1"> </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fa d-inline fa-lg fa-cloud"></i>
+        <b>SmartJourney
+          <br> </b>
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fa d-inline fa-lg fa-bookmark-o"></i> Bookmarks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacts
+              <i class="fa d-inline fa-lg fa-envelope-o"></i>
+              <br> </a>
+          </li>
+        </ul>
+        <a class="btn navbar-btn ml-2 text-white btn-secondary">
+          <i class="fa d-inline fa-lg fa-user-circle-o"></i> Sign in</a>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5" style="background-image: url(&quot;https://images.pexels.com/photos/62623/wing-plane-flying-airplane-62623.jpeg&quot;); background-repeat: repeat;">
+    <div class="container">
+      <div class="row"> </div>
+      <div class="row">
+        <div class="col-md-12 ">
+          <div class="card">
+            <div class="card-body ">
+              <h1 class="">Choose inbound flight</h1>
+            </div>
+            <div class="row">
+              <div class="col-md-12 p-3 fload-md-left">
+                <ul class="list-group">
+                  <li class="list-group-item">Available flights:
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="flights"></th>
+                          <th class="flights">Flight</th>
+                          <th class="flights">Depart</th>
+                          <th class="flights">Arrive</th>
+                          <th class="flights">Travel class</th>
+                          <th class="flights">Price (per 1 adult)</th>
+                          <th class="flights">Type</th>
+                          <th class="flights">Booking</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" value="on"> </div>
+                          </td>
+                          <td id="flight_n0">number 1</td>
+                          <td id="dep0">number 11</td>
+                          <td id="arr0">number 1</td>
+                          <td id="t_class0"></td>
+                          <td id="price0"></td>
+                          <td id="type0"></td>
+                          <td>
+                            <a id="book0">Book now!</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" value="on"> </div>
+                          </td>
+                          <td id="flight_n1">number 2</td>
+                          <td id="dep1">number 11</td>
+                          <td id="arr1">number 1</td>
+                          <td id="t_class1"></td>
+                          <td id="price1"></td>
+                          <td id="type1"></td>
+                          <td>
+                            <a id="book1">Book now!</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" value="on"> </div>
+                          </td>
+                          <td id="flight_n2">number 3</td>
+                          <td id="dep2">number 11</td>
+                          <td id="arr2">number 1</td>
+                          <td id="t_class2"></td>
+                          <td id="price2"></td>
+                          <td id="type2"></td>
+                          <td>
+                            <a id="book2">Book now!</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" value="on"> </div>
+                          </td>
+                          <td id="flight_n3">number 4</td>
+                          <td id="dep3">number 11</td>
+                          <td id="arr3">number 1</td>
+                          <td id="t_class3"></td>
+                          <td id="price3"></td>
+                          <td id="type3"></td>
+                          <td>
+                            <a id="book3">Book now!</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" value="on"> </div>
+                          </td>
+                          <td id="flight_n4">number 5</td>
+                          <td id="dep4">number 11</td>
+                          <td id="arr4">number 1</td>
+                          <td id="t_class4"></td>
+                          <td id="price4"></td>
+                          <td id="type4"></td>
+                          <td>
+                            <a id="book4">Book now!</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  <!--<a href="#" class="list-group-item list-group-item-action">Link list item</a> -->
+                </ul>
+                <script>
+                  $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o", 
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].outbound.flights[0].departs_at;
+                        var resultH = String(result).substr(-5);
+                        document.getElementById("dep" + i).innerHTML = resultH;
+                      }
+                    });
+                  $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o",
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].outbound.flights[0].flight_number;
+                        document.getElementById("flight_n" + i).innerHTML = result;
+                      }
+                    });
+                 $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o", 
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].outbound.flights[0].arrives_at;
+                        var resultH = String(result).substr(-5);
+                        document.getElementById("arr" + i).innerHTML = resultH;
+                      }
+                    });
+                 $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o", 
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].travel_class;
+                        document.getElementById("t_class" + i).innerHTML = result;
+                      }
+                    });
+                 $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o", 
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].fare_family;
+                        document.getElementById("type" + i).innerHTML = result;
+                      }
+                    });   
+                 $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o", 
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].fare.price_per_adult.total_fare;
+                        document.getElementById("price" + i).innerHTML = result;
+                      }
+                    });
+                    $.getJSON("https://api.sandbox.amadeus.com/v1.2/flights/affiliate-search?origin=LON&destination=DUB&departure_date=2018-08-25&currency=EUR&apikey=ppkq8fvJA12cGt37tAbc9g88WizKiU9o", 
+                   function(results){
+                      for (var i=0; i<6; i++){
+                        var result = results.results[i].deep_link;
+                        document.getElementById("book" + i).setAttribute("href", result);
+                      }
+                    });
+                </script>
+                <div class="form-group py-3">
+                  <label>Search other airports</label>
+                  <input class="form-control" placeholder="Place name, please"> </div>
+                <a class="btn mt-2 btn-outline-dark" href="./outboundFlights.html">Next</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-5 bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 text-center align-self-center">
+            <p class="mb-5">
+              <strong>Pingendo Inc.</strong>
+              <br>795 Folsom Ave, Suite 600
+              <br>San Francisco, CA 94107
+              <br>
+              <abbr title="Phone">P:</abbr> (123) 456-7890 </p>
+            <div class="my-3 row">
+              <div class="col-4">
+                <a href="https://www.facebook.com" target="_blank">
+                  <i class="fa fa-3x fa-facebook"></i>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://twitter.com" target="_blank">
+                  <i class="fa fa-3x fa-twitter"></i>
+                </a>
+              </div>
+              <div class="col-4">
+                <a href="https://www.instagram.com" target="_blank">
+                  <i class="fa fa-3x fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 p-0">
+            <img class="img-fluid" src="https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyDW8nO9JhT_pEjebobq9pgUF2cEp0EUb1I&amp;&amp;markers=folsom+Ave+san+francisco&amp;center=folsom+Ave+san+francisco&amp;zoom=16&amp;size=640x300&amp;sensor=false&amp;scale=2"> </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:250px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;
+      <img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16">
+    </pingendo>
+  </div>
+</body>
+
+</html>
