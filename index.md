@@ -1,6 +1,6 @@
 <h1 id="header-1">Tytuł projektu: Smart Journey</h1>
 <h1 id="header-1">Opis projektu</h1>
-      Głównym celem aplikacji jest usprawnienie procesu planowania podróży. Podając miejsce docelowe wraz datą trwania podróży, aplikacja wyszuka dostępne loty, pobliskie hotele, auta do wynajęcia, ciekawe miejsca i atrakcje. Dodatkowo aplikacja będzie umożliwiała dla zalogowanych użytkowników zapisywanie swojej karty podróży i korzystanie z niej w dowolnym momencie.  Aplikacja będzie korzystała z usług geolokalizacji google do wyznaczania pozycji użytkownika.
+      <p>Głównym celem aplikacji jest usprawnienie procesu planowania podróży. Podając miejsce docelowe wraz datą trwania podróży, aplikacja wyszuka dostępne loty, pobliskie hotele, auta do wynajęcia, ciekawe miejsca i atrakcje. Dodatkowo aplikacja będzie umożliwiała dla zalogowanych użytkowników zapisywanie swojej karty podróży i korzystanie z niej w dowolnym momencie.  Aplikacja będzie korzystała z usług geolokalizacji google do wyznaczania pozycji użytkownika.</p>
 
 <h1 id="header-1">Główne funkcjonalności:</h1>
 <ul>
